@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/taite510/FEC/issues"
   },
-  "homepage": "https://github.com/taite510/FEC#readme"
+  "homepage": "https://github.com/taite510/FEC#readme",
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  }
 }
