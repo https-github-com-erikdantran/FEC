@@ -30,14 +30,6 @@ Frameworks
 
 
 
-
-
-
-
-
-
-
-
   Widgets
     Overview & Product Details	- Daniel
     Ratings & Reviews - Taite
