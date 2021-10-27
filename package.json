@@ -1,0 +1,35 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Frameworks   Client - React   Server - Node Express   HTTP Request - Axios/Jquery   Database - We'll use API data",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.24.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jquery": "^3.6.0",
+    "nodemon": "^2.0.14",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.60.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "build": "webpack --config ./webpack.config.js --mode development -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taite510/FEC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taite510/FEC/issues"
+  },
+  "homepage": "https://github.com/taite510/FEC#readme"
+}
