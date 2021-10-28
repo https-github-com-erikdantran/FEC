@@ -40,7 +40,6 @@ export default class App extends React.Component {
 
   render() {
 
-
     if (this.state.view === 'home' && this.state.products !== null) {
       return (
         this.state.products.map((product, i) => { return <ProductInfo handleProductClick={this.handleProductClick} key={i} product={product} /> })
@@ -52,6 +51,7 @@ export default class App extends React.Component {
     } else {
       return (
         <div>
+          Jackie Chan
           <img src='spiffygif_46x46.gif'/>
         </div>
       )

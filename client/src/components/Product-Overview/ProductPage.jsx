@@ -30,7 +30,7 @@ class ProductPage extends React.Component {
   render() {
     return (
       <div>
-        hello World
+        product page
         {/* Main Product Info */}
 
 
