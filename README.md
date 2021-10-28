@@ -4,6 +4,12 @@ Frameworks
   HTTP Request - Axios/Jquery
   Database - We'll use API data
 
+  Quick Start Guide:
+    - run npm install
+    - navigate to the configExample.js file and follow instructions included there
+    - run npm start
+    - run npm build in a seperate terminal
+
 
   API Link
     https://app-hrsei-api.herokuapp.com/api/fec2/hr-la47/
@@ -24,10 +30,6 @@ Frameworks
 
     Interations API
     https://learn-2.galvanize.com/cohorts/2969/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/interactions.md
-
-
-
-
 
 
   Widgets
