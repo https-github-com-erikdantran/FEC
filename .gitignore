@@ -1,3 +1,7 @@
+# MAC OSX
+.DS_Store
+
+
 node_modules/
 
 # Ignore wherever our github token is below
