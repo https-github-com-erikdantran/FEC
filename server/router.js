@@ -11,7 +11,14 @@ router.get('/products/:product_id/styles', controller.getProductStyles)
 router.get('/products/:product_id/related', controller.getRelatedProducts)
 
 // Reviews
+router.post('/reviews/get', controller.getReviews)
+router.post('/reviews', controller.addReview)
 
+router.get('/reviews/meta', controller.getReviewMetadata)
+
+router.post('/reviews/helpful', controller.markHelpful)
+
+router.put('/reviews/report', controller.reportReview)
 
 // Q & A
 router.get('/qa/questions', controller.getQuestionList)

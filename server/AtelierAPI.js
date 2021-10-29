@@ -1,7 +1,7 @@
 const config = require('../config.js');
 const axios = require('axios');
 
-// URL: https://app-hrsei-api.herokuapp.com/api/fec2/:hr-la47/
+// URL: https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/
 
 let options = {
   headers: {
@@ -24,7 +24,7 @@ module.exports.getAllProducts = (cb) => {
 module.exports.getProductInfo = (id, cb) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, options)
     .then(results => {
-      console.log('results.data after get', results.data)
+      //console.log('results.data after get', results.data)
       cb(null, results.data)
     })
     .catch(err => {
@@ -54,8 +54,9 @@ module.exports.getRelatedProducts = (id, cb) => {
 
 
 // Reviews
-module.exports.getReview = (id, cb) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${id}`, options)
+module.exports.getReviews = (params, cb) => {
+  params.headers = options.headers
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
     .then(results => {
       cb(null, results.data)
     })
@@ -64,8 +65,9 @@ module.exports.getReview = (id, cb) => {
     })
 }
 
-module.exports.getReviewMeta = (id, cb) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/${id}`, options)
+module.exports.getReviewMetadata = (params, cb) => {
+  params = {params: {product_id: 42366}, headers: options.headers}
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/`, params)
     .then(results => {
       cb(null, results.data)
     })
@@ -74,6 +76,38 @@ module.exports.getReviewMeta = (id, cb) => {
     })
 }
 
+module.exports.addReview = (params, cb) => {
+  params = {params: {product_id: 42366, rating: 5, summary: 'Chicken chicken chicken (chicken)...', body: '...chicken CHICKEN chicken chicken, chicken chicken. Chicken chicken chicken chicken chicken? Chicken.', recommend: true, name: 'Chicken', email: 'Chicken@chicken.chicken', photos: [], characteristics: {}}, headers: options.headers}
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
+    .then(results => {
+      cb(null, results.data)
+    })
+    .catch(err => {
+      cb(err)
+    })
+}
+
+module.exports.markHelpful = (reviewId, cb) => {
+  reviewId = 841465;
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${reviewId}/helpful`, options)
+   .then(results => {
+      cb(null, results.data)
+    })
+    .catch(err => {
+      cb(err)
+    })
+}
+
+module.exports.reportReview = (reviewId, cb) => {
+  reviewId = 841465;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${reviewId}/report`, options)
+   .then(results => {
+      cb(null, results.data)
+    })
+    .catch(err => {
+      cb(err)
+    })
+}
 
 // Q & A
 module.exports.getQuestionList = (cb) => {
