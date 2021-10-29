@@ -2,7 +2,7 @@ const helper = require('./AtelierAPI.js')
 
 
 const controller = {
-// Products
+  // Products
   getAllProducts: (req, res) => {
     helper.getAllProducts((err, results) => {
       if (err) {
@@ -28,24 +28,32 @@ const controller = {
     // id would be fed into url of axios.get on client side
     helper.getProductStyles(req.params.product_id, (err, results) => {
       if (err) {
-
+        console.log(err)
       } else {
-        console.log(results);
         res.status(200).json(results);
       }
     })
   },
 
   getRelatedProducts: (req, res) => {
-    // id would be fed into url of axios.get on client side
-    helper.getRelatedProducts(req.params.product_id, (err, results) => {
-      if (err) {
-
-      } else {
-        res.status(200).json(results);
-      }
-    })
+    let final = [];
+    helper.getRelatedProducts(req.params.product_id)
+      .then(results => {
+        for (id of results) {
+          final.push(helper.getRelatedProductInfoStyle(id))
+        }
+        Promise.all(final)
+          .then(results => {
+            res.status(200).json(results);
+          })
+          .catch(err => {
+            console.log('error in promise all', err)
+          })
+      })
   },
+
+
+
 
   // Reviews
 
