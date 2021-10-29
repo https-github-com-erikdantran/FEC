@@ -24,7 +24,7 @@ module.exports.getAllProducts = (cb) => {
 module.exports.getProductInfo = (id, cb) => {
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, options)
     .then(results => {
-      console.log('results.data after get', results.data)
+      //console.log('results.data after get', results.data)
       cb(null, results.data)
     })
     .catch(err => {
@@ -55,7 +55,7 @@ module.exports.getRelatedProducts = (id, cb) => {
 
 // Reviews
 module.exports.getReviews = (params, cb) => {
-  params = {params: {page: 1, count: 100, sort: 'newest', product_id: 42366}, headers: options.headers}
+  params.headers = options.headers
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
     .then(results => {
       cb(null, results.data)

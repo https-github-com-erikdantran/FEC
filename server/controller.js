@@ -50,7 +50,7 @@ const controller = {
   // Reviews
 
   getReviews: (req, res) => {
-    helper.getReviews(null, (err, results) => {
+    helper.getReviews(req.body, (err, results) => {
       if (err) {
         console.log('FAILED')
         res.status(404).json(err)

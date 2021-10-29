@@ -11,7 +11,7 @@ router.get('/products/:product_id/styles', controller.getProductStyles)
 router.get('/products/:product_id/related', controller.getRelatedProducts)
 
 // Reviews
-router.get('/reviews', controller.getReviews)
+router.post('/reviews/get', controller.getReviews)
 router.post('/reviews', controller.addReview)
 
 router.get('/reviews/meta', controller.getReviewMetadata)
