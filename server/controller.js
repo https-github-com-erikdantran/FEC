@@ -49,8 +49,60 @@ const controller = {
 
   // Reviews
 
+  getReviews: (req, res) => {
+    helper.getReviews(null, (err, results) => {
+      if (err) {
+        console.log('FAILED')
+        res.status(404).json(err)
+      } else {
+        res.status(200).json(results)
+      }
+    })
+  },
 
+  getReviewMetadata: (req, res) => {
+    helper.getReviewMetadata(null, (err, results) => {
+      if (err) {
+        console.log('FAILED')
+        res.status(404).json(err)
+      } else {
+        res.status(200).json(results)
+      }
+    })
+  },
 
+  addReview: (req, res) => {
+    helper.addReview(null, (err, results) => {
+      if (err) {
+        console.log('FAILED')
+        res.status(404).json(err)
+      } else {
+        res.status(200).json(results)
+      }
+    })
+  },
+
+  markHelpful: (req, res) => {
+    helper.markHelpful(null, (err, results) => {
+      if (err) {
+        console.log('FAILED')
+        res.status(404).json(err)
+      } else {
+        res.status(200).json(results)
+      }
+    })
+  },
+
+  reportReview: (req, res) => {
+    helper.reportReview(null, (err, results) => {
+      if (err) {
+        console.log('FAILED')
+        res.status(404).json(err)
+      } else {
+        res.status(200).json(results)
+      }
+    })
+  },
 
   //Questions and Answers
   getQuestionList: (req, res) => {
