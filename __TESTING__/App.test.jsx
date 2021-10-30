@@ -39,7 +39,7 @@ test('loads product page on product name click', async () => {
 
   await waitFor(() => {
     userEvent.click(screen.getByText('Camo Onesie'))
-    let items = screen.getByText("THIS IS A REVIEW");
+    let items = screen.getByText('product page');
     expect(items).toBeInTheDocument()
   })
 })
