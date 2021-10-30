@@ -1,5 +1,6 @@
 const config = require('../config.js');
 const axios = require('axios');
+const _ = require('underscore');
 
 // URL: https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/
 
@@ -43,13 +44,35 @@ module.exports.getProductStyles = (id, cb) => {
 }
 
 module.exports.getRelatedProducts = (id, cb) => {
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/related`, options)
-    .then(results => {
-      cb(null, results.data)
-    })
-    .catch(err => {
-      cb(err)
-    })
+  return new Promise((resolve, reject) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/related`, options)
+      .then(results => {
+        resolve(results.data)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+
+module.exports.getRelatedProductInfoStyle = (id) => {
+  return new Promise((resolve, reject) => {
+    let info = {};
+    let style = {};
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, options)
+      .then(results => {
+        info = results.data;
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/styles`, options)
+          .then(results => {
+            style = results.data.results[0].photos[0]
+            let combined = _.extend(info, style)
+            resolve(combined)
+          })
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
 }
 
 

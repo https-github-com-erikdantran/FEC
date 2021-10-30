@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import RelatedProductsList from '../RelatedProducts/RelatedProductsList.jsx';
 import Reviews from '../Reviews/ReviewSection.jsx';
 
 function ProductPage(props) {
@@ -20,11 +21,12 @@ function ProductPage(props) {
 
   return(
       <div>
-        product page
+        <h2>Product page</h2>
         {/* Main Product Info */}
 
 
         {/* Related Products */}
+        <RelatedProductsList id={props.id}/>
 
 
         {/* Q&A */}
