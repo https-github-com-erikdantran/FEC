@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
-import Reviews from '../client/src/components/Reviews/Reviews.jsx';
+import Reviews from '../client/src/components/Reviews/ReviewSection.jsx';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 
-var reviews = {
+var review = {
   "product": "42366",
   "page": 0,
   "count": 2,
@@ -38,9 +38,46 @@ var reviews = {
   ]
 }
 
+var meta = {
+  "product_id": "42366",
+  "ratings": {
+      "1": "3",
+      "2": "3",
+      "3": "15",
+      "4": "12",
+      "5": "20"
+  },
+  "recommended": {
+      "false": "17",
+      "true": "36"
+  },
+  "characteristics": {
+      "Fit": {
+          "id": 142032,
+          "value": "2.4000000000000000"
+      },
+      "Length": {
+          "id": 142033,
+          "value": "2.5517241379310345"
+      },
+      "Comfort": {
+          "id": 142034,
+          "value": "3.1785714285714286"
+      },
+      "Quality": {
+          "id": 142035,
+          "value": "3.1071428571428571"
+      }
+  }
+}
+
+
 const server = setupServer(
   rest.post('/api/reviews/get', (req, res, ctx) => {
-    return res(ctx.json(reviews))
+    return res(ctx.json(review))
+  }),
+  rest.post('/api/reviews/meta', (req, res, ctx) => {
+    return res(ctx.json(meta))
   }),
 )
 
@@ -59,3 +96,11 @@ test('loads review on page', async () => {
   })
 })
 
+test('loads metadata (review average) on page', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    let items = screen.getByText("3.8");
+    expect(items).toBeInTheDocument()
+  })
+})

@@ -61,7 +61,7 @@ const controller = {
   },
 
   getReviewMetadata: (req, res) => {
-    helper.getReviewMetadata(null, (err, results) => {
+    helper.getReviewMetadata(req.body, (err, results) => {
       if (err) {
         console.log('FAILED')
         res.status(404).json(err)
