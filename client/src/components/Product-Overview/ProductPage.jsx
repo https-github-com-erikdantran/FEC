@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Reviews from '../Reviews/Reviews.jsx';
+import Reviews from '../Reviews/ReviewSection.jsx';
 
 function ProductPage(props) {
   const [productInfo, setProductInfo] = useState({})
