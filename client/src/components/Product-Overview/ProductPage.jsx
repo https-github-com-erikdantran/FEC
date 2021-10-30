@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Reviews from '../Reviews/Reviews.jsx';
-import RelatedProducts from '../RelatedProducts/RelatedProducts.jsx';
+import RelatedProductsList from '../RelatedProducts/RelatedProductsList.jsx';
 
 class ProductPage extends React.Component {
   constructor (props) {
@@ -31,12 +31,12 @@ class ProductPage extends React.Component {
   render() {
     return (
       <div>
-        product page
+        <h2>Product page</h2>
         {/* Main Product Info */}
 
 
         {/* Related Products */}
-        <RelatedProducts id={this.props.id}/>
+        <RelatedProductsList id={this.props.id}/>
 
 
         {/* Q&A */}

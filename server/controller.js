@@ -1,4 +1,5 @@
 const helper = require('./AtelierAPI.js')
+const _ = require('underscore');
 
 
 const controller = {
@@ -39,16 +40,15 @@ const controller = {
     let final = [];
     helper.getRelatedProducts(req.params.product_id)
       .then(results => {
-        for (id of results) {
-          final.push(helper.getRelatedProductInfoStyle(id))
-        }
+        noDups = _.uniq(results);
+        noDups.forEach(id => final.push(helper.getRelatedProductInfoStyle(id)))
         Promise.all(final)
           .then(results => {
             res.status(200).json(results);
           })
-          .catch(err => {
-            console.log('error in promise all', err)
-          })
+      })
+      .catch(err => {
+        console.log(err)
       })
   },
 
