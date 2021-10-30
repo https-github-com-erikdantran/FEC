@@ -4,8 +4,10 @@
 
 node_modules/
 
-client/dist/bundle.js
 coverage/
+
+client/dist/bundle.js
+
 # Ignore wherever our github token is below
 config.js
 .env

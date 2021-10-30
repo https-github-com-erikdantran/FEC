@@ -1,53 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Reviews from '../Reviews/Reviews.jsx';
 import RelatedProductsList from '../RelatedProducts/RelatedProductsList.jsx';
+import Reviews from '../Reviews/ReviewSection.jsx';
 
-class ProductPage extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      productInfo: null
-    }
+function ProductPage(props) {
+  const [productInfo, setProductInfo] = useState({})
 
-    this.getProductInfo = this.getProductInfo.bind(this);
-  }
+  // the empty array below allows this useEffect to only be ran once
+  useEffect(() => {
+    getProductInfo(props.id)
+  }, [])
 
-  componentDidMount() {
-    // place your on load requests here
-    this.getProductInfo(this.props.id);
-  }
 
-  getProductInfo(id) {
+  let getProductInfo = function (id) {
     axios.get(`/api/products/${id}`)
       .then(results => {
-        this.setState({
-          productInfo: results.data
-        })
+        setProductInfo(results.data)
       })
-
   }
 
-  render() {
-    return (
+  return(
       <div>
         <h2>Product page</h2>
         {/* Main Product Info */}
 
 
         {/* Related Products */}
-        <RelatedProductsList id={this.props.id}/>
+        <RelatedProductsList id={props.id}/>
 
 
         {/* Q&A */}
 
 
         {/* Reviews */}
-        <Reviews />
+        <Reviews id={props.id}/>
 
       </div>
     )
-  }
 }
 
 export default ProductPage;
