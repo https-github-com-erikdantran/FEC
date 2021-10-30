@@ -7,7 +7,7 @@ const RelatedProduct = (props) => {
       <div>{props.info.name}</div>
       <p>${props.info.default_price}</p>
       <p>Reviews here</p>
-      <div><img src={props.info.thumbnail_url}/></div>
+      {/* <div><img src={props.info.thumbnail_url}/></div> */}
     </div>
   )
 }

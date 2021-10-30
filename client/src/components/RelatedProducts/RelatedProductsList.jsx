@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProduct from './RelatedProduct.jsx';
+import Carousel from 'react-grid-carousel';
 
 const RelatedProductsList = (props) => {
   const [related, setRelated] = useState(null);
@@ -12,7 +13,9 @@ const RelatedProductsList = (props) => {
   return (
     <div>
       <h3>Related Products</h3>
-      {related ? related.map((product, i) => <RelatedProduct key={i} info={product} />) : null}
+      <Carousel cols={4} rows={1} gap={14} loop>
+      {related ? related.map((product, i) => <Carousel.Item key={i}><img width="100%" src={product.thumbnail_url} /><RelatedProduct info={product} /></Carousel.Item>) : null}
+      </Carousel>
     </div>
   )
 }
