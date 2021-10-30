@@ -18,12 +18,15 @@ const RelatedProduct = (props) => {
   let { rating, percentRating } = getRating(props.info.ratings)
 
   return (
-    <div>
-      <p>{props.info.category}</p>
-      <div>{props.info.name}</div>
-      <p>${props.info.default_price}</p>
+    <div className="single-related" >
+      <img className="thumbnail" style={{'backgroundImage': `url(${props.info.url}`}}></img>
+      <div className="related-info">
+      <p className="related-category">{props.info.category}</p>
+      <div className="related-name">{props.info.name}</div>
+      <p className="related-price">${props.info.default_price}</p>
       <div className="stars">
         <div className="percent" style={{ width: percentRating }}></div>
+      </div>
       </div>
     </div>
   )

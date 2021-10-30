@@ -14,8 +14,8 @@ const RelatedProductsList = (props) => {
     <div >
       <h3 className="related-list">Related Products</h3>
       <div className="related-carousel">
-        <Carousel cols={4} rows={1} gap={14} loop >
-          {related ? related.map((product, i) => <Carousel.Item key={i}> <img width="100%" src={product.thumbnail_url} /> <RelatedProduct info={product} /> </Carousel.Item>) : null}
+        <Carousel cols={4} rows={1} gap={5} >
+          {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} /> </Carousel.Item>) : null}
         </Carousel>
       </div>
     </div>
