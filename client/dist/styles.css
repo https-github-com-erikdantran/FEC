@@ -5,7 +5,7 @@
 .stars {
   position: relative;
   float: left;
-  font-size: 11pt;
+  font-size: 20pt;
   height: 1em;
   line-height: 1em;
 }
@@ -29,6 +29,120 @@
   color: rgb(255, 200, 0);
 }
 
+/* ----------------------------------
+------------ STAR RATING ------------
+------------------------------------*/
+.num-rating, .star-rating {
+  vertical-align: top;
+  display: inline-block;
+  width: 100px;
+}
+
+
+.num-rating {
+  margin: 10px 0 10px 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+.star-rating {
+  margin: 25px 0 10px 0;
+}
+
+/* ----------------------------------
+------------ RATING BARS ------------
+------------------------------------*/
+.bar {
+  position: relative;
+  float: left;
+  height: 5px;
+  width: 150px;
+  background-color: rgb(218, 218, 218);
+  z-index: 1;
+}
+
+.bar-percent {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  z-index: 3;
+  background-color: rgb(2, 224, 2);
+  height: 100%;
+}
+
+.rating-bars div {
+  display: inline-block;
+  margin-right: 5px;
+}
+.rating-bars div .bar {
+  height: 7px;
+}
+
+.rating-bars {
+  margin-bottom: 5px;
+}
+
+/* ----------------------------------
+---------- CHARACTERISTICS ----------
+------------------------------------*/
+.chara {
+  height: 50px;
+  width: 150px
+}
+
+.chara-name {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.chara-bar {
+  position: relative;
+  width: 100%;
+}
+
+.chara-left, .chara-right, .chara-mid {
+  position: relative;
+  width: 33%;
+  display: inline-block;
+  font-size: 7px;
+}
+.chara-left {
+  text-align: left;
+}
+.chara-mid {
+  text-align: center;
+}
+.chara-right {
+  text-align: right;
+}
+
+
+.bar-divider {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 2px;
+  background-color: white;
+}
+
+
+.marker {
+  position: absolute;
+  z-index: 3;
+  font-size: 11pt;
+  top: -10px;
+}
+
+.marker::after {
+  content: "\25BC";
+}
+
+
+
 
 /* ----------------------------------
 ------------ REVIEW STUFF -----------
@@ -39,6 +153,7 @@
   border-style: ridge;
   width: 39%;
   height: 500px;
+  padding-left: 10px;
 }
 
 .review-list {
@@ -46,7 +161,7 @@
   right: 0px;
   display: inline-block;
   border-style: ridge;
-  width: 59%;
+  width: 58%;
 }
 
 .review-section {
