@@ -104,3 +104,29 @@ test('loads metadata (review average) on page', async () => {
     expect(items).toBeInTheDocument()
   })
 })
+
+test('passes the correct width of stars to the star rating', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    expect(screen.getByTestId('stars')).toHaveStyle('width: 76%')
+  })
+})
+
+test('renders the correct percentage of review recommendations', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    let items = screen.getByText("68% of reviews recommend this product");
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('displays product breakdown on page', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    let items = screen.getByText("Fit:");
+    expect(items).toBeInTheDocument()
+  })
+})
