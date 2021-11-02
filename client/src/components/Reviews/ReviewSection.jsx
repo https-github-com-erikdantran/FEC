@@ -5,7 +5,7 @@ import ReviewList from './ReviewList.jsx';
 
 function Reviews(props) {
   const [allReviewData, setAllReviewData] = useState({reviews: [], metadata: null});
-  const [filters, setFilters] = useState({sort: 'Relevant', page: 1})
+  const [filters, setFilters] = useState({sort: 'Relevant', page: 1, newReviews: null})
   useEffect(() => {
     getReviews(props.id, filters.sort, filters.page)
       .then(reviews => {
@@ -18,7 +18,7 @@ function Reviews(props) {
             })
         }
       })
-  }, [filters])
+  }, [])
 
   let getReviews = async function(id, sort, page) {
     let params = { params: {page: page, count: 4, sort: sort, product_id: id} }
@@ -36,7 +36,9 @@ function Reviews(props) {
   }
 
   let handleMoreReviews = function() {
-    console.log('yee haw')
+    var nextPage = filters.page + 1
+    getReviews(props.id, filters.sort, nextPage)
+      .then(reviews => setFilters({sort: filters.sort, page: nextPage, newReviews: reviews}))
   }
 
   if (allReviewData.reviews.length === 0) {
@@ -49,7 +51,7 @@ function Reviews(props) {
     return (
       <div className='review-section'>
         <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} />
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews}/>
       </div>
     )
   }
