@@ -82,6 +82,7 @@ module.exports.getRelatedProductInfoStyle = (id) => {
 // Reviews
 module.exports.getReviews = (params, cb) => {
   params.headers = options.headers
+  console.log(params)
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
     .then(results => {
       cb(null, results.data)

@@ -4,20 +4,24 @@ import ReviewMeta from './ReviewMeta.jsx';
 import ReviewList from './ReviewList.jsx';
 
 function Reviews(props) {
-  const [allReviewData, setAllReviewData] = useState({reviews: [], metadata: {}});
-
+  const [allReviewData, setAllReviewData] = useState({reviews: [], metadata: null});
+  const [filters, setFilters] = useState({sort: 'Relevant', page: 1})
   useEffect(() => {
-    getReviews(props.id)
+    getReviews(props.id, filters.sort, filters.page)
       .then(reviews => {
-        getReviewmetadata(props.id)
-          .then(metadata => {
-            setAllReviewData({ reviews , metadata })
-          })
+        if (allReviewData.metadata !== null) {
+          setAllReviewData({ reviews , metadata: allReviewData.metadata })
+        } else {
+          getReviewmetadata(props.id)
+            .then(metadata => {
+              setAllReviewData({ reviews , metadata })
+            })
+        }
       })
-  }, [])
+  }, [filters])
 
-  let getReviews = async function(id) {
-    let params = { params: {page: 1, count: 2, sort: 'newest', product_id: id} }
+  let getReviews = async function(id, sort, page) {
+    let params = { params: {page: page, count: 4, sort: sort, product_id: id} }
     return axios.post('/api/reviews/get', params)
       .then(results => results.data)
   }
@@ -25,6 +29,14 @@ function Reviews(props) {
   let getReviewmetadata = async function(id) {
     return axios.post('/api/reviews/meta', {params: {product_id: id}})
     .then(results => results.data)
+  }
+
+  let handleSortChange = function(e) {
+    setFilters({sort: e.target.value, page: 1})
+  }
+
+  let handleMoreReviews = function() {
+    console.log('yee haw')
   }
 
   if (allReviewData.reviews.length === 0) {
@@ -37,10 +49,9 @@ function Reviews(props) {
     return (
       <div className='review-section'>
         <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews}/>
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} />
       </div>
     )
-
   }
 
 }

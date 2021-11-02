@@ -5,7 +5,6 @@ function Review(props) {
   let percentRating = (rating) => {
     return Math.round((rating / 5) * 10) * 10 + '%';
   }
-  console.log(props.review);
   return (
     <div className='review'>
       <div className="stars" style={{fontSize: '11pt'}}>
