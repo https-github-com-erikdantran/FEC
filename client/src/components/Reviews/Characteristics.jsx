@@ -17,7 +17,7 @@ function Characteristics(props) {
           <div className='bar-divider'style={{left: '73%'}}></div>
         </div>
       </div>
-      {props.name === 'Fit' || name === 'Length' ?
+      {props.name === 'Fit' || props.name === 'Length' ?
       <div>
         <span className='chara-left'>Too small</span>
         <span className='chara-mid'> Perfect</span>

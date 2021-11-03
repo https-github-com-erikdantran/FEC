@@ -113,7 +113,7 @@
   position: relative;
   width: 33%;
   display: inline-block;
-  font-size: 7px;
+  font-size: 8px;
 }
 .chara-left {
   text-align: left;
@@ -167,6 +167,9 @@
   display: inline-block;
   border-style: ridge;
   width: 58%;
+  overflow: auto;
+  height: 98.8%;
+  overflow-x: hidden;
 }
 
 .review-section {
@@ -175,14 +178,40 @@
   border-radius: 4px;
   border-width: 2px;
   min-width: 800px;
+  max-width: 1000px;
   width: 70%;
   margin: 0 auto;
 }
 
+
+.review-sort {
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 10;
+  padding: 3px 6px 3px 6px;
+}
+
+/* ----------------------------------
+------------ REVIEW BODY ------------
+------------------------------------*/
+
 .review {
   padding: 20px 10px 20px 10px;
 }
-
+.review .stars {
+  display: block;
+  width: 100%;
+}
+.review h4 {
+  display: inline-block;
+  width: 70%;
+  margin: 5px 0 5px 0;
+}
+.review-date {
+  display: inline-block;
+  width: 30%;
+}
 
 
 /* ----------------------------------
