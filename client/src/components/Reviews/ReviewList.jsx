@@ -13,7 +13,10 @@ const [display, setDisplay] = useState({num: 2})
     <div className='review-list'>
       <div className='review-sort'>
         <span> Sort by </span>
-        <select onChange={props.handleSortChange}>
+        <select onChange={() => {
+          setDisplay({num: 2});
+          return props.handleSortChange;
+          }}>
           <option value='Relevant'>Relevant</option>
           <option value='Helpful'>Helpful</option>
           <option value='Newest'>Newest</option>

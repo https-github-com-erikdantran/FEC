@@ -32,7 +32,9 @@ function Reviews(props) {
   }
 
   let handleSortChange = function(e) {
-    setFilters({sort: e.target.value, page: 1})
+    setFilters({sort: e.target.value, page: 1, newReviews: null})
+    getReviews(props.id, e.target.value, 1)
+      .then(reviews => { console.log(reviews); setAllReviewData({reviews: reviews, metadata: allReviewData.metadata})})
   }
 
   let handleMoreReviews = function() {
