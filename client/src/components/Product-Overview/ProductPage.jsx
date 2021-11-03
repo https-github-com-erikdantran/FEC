@@ -11,13 +11,20 @@ function ProductPage(props) {
     getProductInfo(props.id)
   }, [])
 
-
   let getProductInfo = function (id) {
     axios.get(`/api/products/${id}`)
       .then(results => {
         setProductInfo(results.data)
       })
   }
+
+  const [outfit, setOutfit] = useState([42369, 42366]);
+  const handleOutfitAdd = (id) => {
+    setOutfit([...outfit, id]);
+  }
+
+  // handleOutfitAdd(2)
+  // console.log(outfit)
 
   return(
       <div>
@@ -26,7 +33,7 @@ function ProductPage(props) {
 
 
         {/* Related Products */}
-        <RelatedProductsList id={props.id}/>
+        <RelatedProductsList id={props.id} current={productInfo} outfit={outfit} setOutfit={handleOutfitAdd}/>
 
 
         {/* Q&A */}
