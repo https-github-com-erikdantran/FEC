@@ -18,6 +18,10 @@ module.exports = {
         options: {
           'presets': ['@babel/preset-react']
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },

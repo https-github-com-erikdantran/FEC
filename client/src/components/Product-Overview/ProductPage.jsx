@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RelatedProductsList from '../RelatedProducts/RelatedProductsList.jsx';
 import Reviews from '../Reviews/ReviewSection.jsx';
+import ProductGallery from './ProductGallery.jsx';
 
 function ProductPage(props) {
   const [productInfo, setProductInfo] = useState({})
@@ -23,6 +24,7 @@ function ProductPage(props) {
       <div>
         <h2>Product page</h2>
         {/* Main Product Info */}
+        <ProductGallery id={props.id}/>
 
 
         {/* Related Products */}
