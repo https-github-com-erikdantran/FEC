@@ -183,9 +183,6 @@
   margin: 0 auto;
 }
 
-.review {
-  padding: 20px 10px 20px 10px;
-}
 
 .review-sort {
   position: sticky;
@@ -194,6 +191,28 @@
   z-index: 10;
   padding: 3px 6px 3px 6px;
 }
+
+/* ----------------------------------
+------------ REVIEW BODY ------------
+------------------------------------*/
+
+.review {
+  padding: 20px 10px 20px 10px;
+}
+.review .stars {
+  display: block;
+  width: 100%;
+}
+.review h4 {
+  display: inline-block;
+  width: 70%;
+  margin: 5px 0 5px 0;
+}
+.review-date {
+  display: inline-block;
+  width: 30%;
+}
+
 
 /* ----------------------------------
 ------ RELATED PRODUCTS STUFF -------

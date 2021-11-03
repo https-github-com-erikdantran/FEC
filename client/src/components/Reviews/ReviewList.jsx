@@ -7,7 +7,6 @@ const [display, setDisplay] = useState({num: 2})
   if(props.newReviews !== null && props.newReviews.results.length > 0) {
     props.reviews.results.push(...props.newReviews.results);
     props.newReviews.results = [];
-    console.log(    props.reviews.results)
   }
 
   return (
