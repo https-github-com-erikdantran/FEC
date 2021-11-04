@@ -5,7 +5,7 @@ import ReviewList from './ReviewList.jsx';
 
 function Reviews(props) {
   const [allReviewData, setAllReviewData] = useState({reviews: [], metadata: null});
-  const [filters, setFilters] = useState({sort: 'Relevant', page: 1, newReviews: null})
+  const [filters, setFilters] = useState({sort: 'relevant', page: 1, newReviews: null})
   useEffect(() => {
     getReviews(props.id, filters.sort, filters.page)
       .then(reviews => {
@@ -21,7 +21,7 @@ function Reviews(props) {
   }, [])
 
   let getReviews = async function(id, sort, page) {
-    let params = { params: {page: page, count: 4, sort: sort, product_id: id} }
+    let params = { params: {page: page, count: 50, sort: sort, product_id: id} }
     return axios.post('/api/reviews/get', params)
       .then(results => results.data)
   }
@@ -53,7 +53,7 @@ function Reviews(props) {
     return (
       <div className='review-section'>
         <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews}/>
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name}/>
       </div>
     )
   }

@@ -18,7 +18,6 @@ function ProductPage(props) {
         setProductInfo(results.data)
       })
   }
-
   return(
       <div>
         <h2>Product page</h2>
@@ -33,7 +32,7 @@ function ProductPage(props) {
 
 
         {/* Reviews */}
-        <Reviews id={props.id}/>
+        <Reviews id={props.id || productInfo.id} name={productInfo.name}/>
 
       </div>
     )
