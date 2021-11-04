@@ -234,3 +234,25 @@ test('loads EVEN more reviews upon clicking the MORE REVIEWS button AGAIN', asyn
     expect(items).toBeInTheDocument()
   })
 })
+
+test('Brings up a form when the Submit a Review Button is clicked', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    userEvent.click(screen.getByText('Submit a Review'))
+    let items = screen.getByText('Write Your Review');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+
+test('If the third star on the review form is clicked, it will display the description for that rating', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    userEvent.click(screen.getByText('Submit a Review'))
+    userEvent.click(screen.getByTestId('three-star-rating'))
+    let items = screen.getByText('Average');
+    expect(items).toBeInTheDocument()
+  })
+})

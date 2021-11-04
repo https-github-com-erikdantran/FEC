@@ -192,27 +192,122 @@
   padding: 3px 6px 3px 6px;
 }
 
+.review-sort button {
+  position: absolute;
+  right: 5px;
+}
+
 /* ----------------------------------
 ------------ REVIEW BODY ------------
 ------------------------------------*/
 
 .review {
-  padding: 20px 10px 20px 10px;
+  padding: 0px 10px 20px 10px;
 }
 .review .stars {
   display: block;
-  width: 100%;
 }
 .review h4 {
-  display: inline-block;
+  position: relative;
+  left: -73px;
+  top: 16px;
   width: 70%;
-  margin: 5px 0 5px 0;
 }
 .review-date {
-  display: inline-block;
-  width: 30%;
+  position: relative;
+  top: -36px;
+  right: 3px;
+  float: right;
 }
 
+
+
+/* ----------------------------------
+------------ REVIEW FORM ------------
+------------------------------------*/
+
+.review-form-outline {
+  position: fixed;
+  z-index: 20;
+  padding: 100px 0 100px 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.review-form {
+  position: relative;
+  background-color: white;
+  width: 80%;
+  height: 70%;
+  margin: 0 auto;
+}
+
+.review-form header h2, .review-form header h5 {
+  margin: 0;
+  padding: 0 0 0 5px;
+}
+
+.exit {
+  position: absolute;
+  color: #aaaaaa;
+  float: right;
+  right: 5px;
+  top: -5px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.exit:hover {
+  cursor: pointer;
+}
+
+.rating-input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+.form-rating {
+  display: inline-flex;
+}
+
+.rating-input:checked ~ .rating-label {
+  content: '&#9734;';
+  color: white;
+}
+
+.rating-input:checked + .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.form-rating:hover .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.rating-input:hover ~ .rating-label {
+  color: white;
+}
+
+.rating-input:hover + .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.rating-label {
+  display: grid;
+  color: rgb(255, 200, 0);
+}
+.rating-label > * {
+  font-size: 20pt;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.star-outline {
+  z-index: 1;
+  color: black !important;
+}
 
 /* ----------------------------------
 ------ RELATED PRODUCTS STUFF -------

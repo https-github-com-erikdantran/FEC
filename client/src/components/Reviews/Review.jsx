@@ -12,12 +12,14 @@ function Review(props) {
 
   return (
     <div className='review'>
-      <div className="stars" style={{fontSize: '11pt'}}>
+      <header>
+        <div className="stars" style={{fontSize: '11pt'}}>
           <div className="percent" style={{width: percentRating(props.review.rating)}}>
           </div>
         </div>
-      <h4>{props.review.summary}</h4>
-      <span className='review-date'>{formatDate(props.review.date)}</span>
+        <h4>{props.review.summary}</h4>
+        <span className='review-date'>{formatDate(props.review.date)}</span>
+      </header>
       <p>{props.review.body}</p>
       {props.review.recommend ?
       <span><em>&#10003; I recommend this product! </em></span> :
