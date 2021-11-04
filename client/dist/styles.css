@@ -1,8 +1,10 @@
 /* ----------------------------------
 --------------- APP ---------------
 ------------------------------------*/
-
-
+#app {
+  max-width: 1200px;
+  margin: auto;
+}
 
 /* ----------------------------------
 --------------- STARS ---------------
@@ -11,7 +13,7 @@
   position: relative;
   float: left;
   font-size: 20pt;
-  height: 1em;
+  height: 20px;
   line-height: 1em;
 }
 
@@ -188,23 +190,29 @@
 /* ----------------------------------
 ------ RELATED PRODUCTS STUFF -------
 ------------------------------------*/
+.related-products {
+  margin: 20px;
+}
 
 .related-list {
   margin: auto;
-  max-width: 70%;
+  /* max-width: inherit; */
+  font-weight: 100;
 }
 
-.related-carousel{
-  display: flex;
-  align-content: center;
-  margin: auto;
-  max-width: 74%;
+.related-carousel {
+  /* display: flex;
+  align-content: center; */
+  margin-bottom: 10px;
+  /* max-width: 74%; */
 }
 
 .single-related {
   text-align: center;
   border: 1px solid rgb(114, 114, 114);
-  margin: 20px;
+  /* margin: 20px;
+  width: 240px;
+  display: inline-block; */
 }
 
 .thumbnail {
@@ -212,15 +220,63 @@
   text-align: center;
   width: 240px;
   height: 300px;
-  display: inline-block;  /* makes it fit in like an <img> */
-  background-size: cover; /* or contain */
+  display: inline-block;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  overflow: hidden;
 }
 
 .related-info {
   text-align: left;
   padding-bottom: 20px;
   padding-left: 10px;
+  line-height: 1;
+}
+
+.related-category {
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+
+.related-name {
+  font-weight: 400;
+}
+
+.related-price {
+  font-weight: 100;
+  font-size: 0.65rem;
+}
+
+/* .current-product {
+  float: left;
+  margin-right: 5px;
+}
+
+.clicked-product {
+  float: right;
+  margin-left: 5px;
+} */
+
+.pop-up-chara {
+  float: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.comparing-products-header {
+  position: sticky;
+}
+
+.outfit-text {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.outfit-add-container {
+  text-align: center;
+  border: 1px solid rgb(114, 114, 114);
+  margin: 20px;
+  width: 240px;
+  height: 500px;
+  display: inline-block;
 }
