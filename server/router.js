@@ -10,6 +10,8 @@ router.get('/products/:product_id/styles', controller.getProductStyles)
 
 router.get('/products/:product_id/related', controller.getRelatedProducts)
 
+router.post('/products/outfit', controller.getYourOutfit)
+
 // Reviews
 router.post('/reviews/get', controller.getReviews)
 router.post('/reviews', controller.addReview)

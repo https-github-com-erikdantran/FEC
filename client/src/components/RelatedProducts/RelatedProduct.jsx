@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import InfoPopUp from './InfoPopUp.jsx';
 
 const RelatedProduct = (props) => {
 
@@ -14,21 +18,56 @@ const RelatedProduct = (props) => {
     return { rating, percentRating }
   }
 
-
   let { rating, percentRating } = getRating(props.info.ratings)
 
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
   return (
-    <div className="single-related" >
-      <img className="thumbnail" style={{'backgroundImage': `url(${props.info.url}`}}></img>
-      <div className="related-info">
-      <p className="related-category">{props.info.category}</p>
-      <div className="related-name">{props.info.name}</div>
-      <p className="related-price">${props.info.default_price}</p>
-      <div className="stars">
-        <div className="percent" style={{ width: percentRating }}></div>
-      </div>
-      </div>
-    </div>
+    <>
+      <Typography component="div">
+        <div className="single-related" aria-describedby={id} variant="contained" onClick={handleClick}>
+          <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
+          <div className="related-info">
+            <p className="related-category">{props.info.category}</p>
+            <div className="related-name"><b>{props.info.name}</b></div>
+            <p className="related-price">${props.info.default_price}</p>
+            <div className="stars" style={{"fontSize": "10pt"}}>
+              <div className="percent" style={{ width: percentRating }}></div>
+            </div>
+          </div>
+        </div>
+      </Typography>
+
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'center',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'center',
+          horizontal: 'left',
+        }}
+      >
+        <InfoPopUp info={props.info} current={props.current} />
+      </Popover>
+    </>
   )
 }
 
