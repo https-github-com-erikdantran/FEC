@@ -37,17 +37,19 @@ const RelatedProduct = (props) => {
 
   return (
     <>
-      <div className="single-related" aria-describedby={id} variant="contained" onClick={handleClick}>
-        <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
-        <div className="related-info">
-          <p className="related-category">{props.info.category}</p>
-          <div className="related-name">{props.info.name}</div>
-          <p className="related-price">${props.info.default_price}</p>
-          <div className="stars">
-            <div className="percent" style={{ width: percentRating }}></div>
+      <Typography component="div">
+        <div className="single-related" aria-describedby={id} variant="contained" onClick={handleClick}>
+          <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
+          <div className="related-info">
+            <p className="related-category">{props.info.category}</p>
+            <div className="related-name"><b>{props.info.name}</b></div>
+            <p className="related-price">${props.info.default_price}</p>
+            <div className="stars" style={{"fontSize": "10pt"}}>
+              <div className="percent" style={{ width: percentRating }}></div>
+            </div>
           </div>
         </div>
-      </div>
+      </Typography>
 
       <Popover
         id={id}
@@ -63,7 +65,7 @@ const RelatedProduct = (props) => {
           horizontal: 'left',
         }}
       >
-        <InfoPopUp info={props.info} current={props.current}/>
+        <InfoPopUp info={props.info} current={props.current} />
       </Popover>
     </>
   )

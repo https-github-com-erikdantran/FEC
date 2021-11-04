@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProduct from './RelatedProduct.jsx';
 import Carousel from 'react-grid-carousel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const RelatedProductsList = (props) => {
   const [related, setRelated] = useState(null);
@@ -26,8 +28,8 @@ const RelatedProductsList = (props) => {
 
 
   return (
-    <div>
-      <h3 className="related-list">Related Products</h3>
+    <div className="related-products">
+      <Typography component="div"><h3 className="related-list">Related Products</h3></Typography>
       <div className="related-carousel">
         <Carousel cols={4} rows={1} gap={5} >
           {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} current={props.current} /> </Carousel.Item>) : null}
@@ -35,10 +37,17 @@ const RelatedProductsList = (props) => {
       </div>
 
       {/* If plus is clicked, add this product ID to outfit IDs array and add this product info into carousel */}
-      <h3 className="related-list" onClick={handleAddClick}>Your Outfit</h3>
-      <div className="your-outfit">
+      <Typography component="div"><h3 className="related-list">Your Outfit</h3></Typography>
+      <div className="related-carousel">
         <Carousel cols={4} rows={1} gap={5} >
-          <Carousel.Item><button onClick={handleAddClick}>+</button></Carousel.Item>
+          <Carousel.Item>
+            <div className="single-related">
+              <Typography className="outfit-text">
+                Add to your Outfits
+                <Button variant="contained" onClick={handleAddClick}>+</Button>
+              </Typography>
+            </div>
+          </Carousel.Item>
           {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} current={props.current} /> </Carousel.Item>) : null}
         </Carousel>
       </div>
