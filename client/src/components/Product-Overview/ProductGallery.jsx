@@ -22,10 +22,10 @@ const ProductGallery = (props) => {
         }
       })
 
-    axios.get(`/api/products/${props.id}`)
-      .then(results => {
-        console.log('all results: ', results)
-      })
+    // axios.get(`/api/products/${props.id}`)
+    //   .then(results => {
+    //     console.log('all results: ', results)
+    //   })
   }, []);
 
   const photoMapping = (photoList) => {
@@ -58,6 +58,18 @@ const ProductGallery = (props) => {
   return (
     <div>
       <div>
+        reviews
+      </div>
+      <div>
+        category
+      </div>
+      <div>
+        product name
+      </div>
+      <div>
+        product price
+      </div>
+      <div>
         <h4>Select Style</h4>
         <ul>
           {(productGallery.results || []).map((style, key) => {
@@ -67,6 +79,18 @@ const ProductGallery = (props) => {
         <div>
           {productGallery ? <ImageGallery items={imageList} /> : null}
         </div>
+      </div>
+      <div>
+        select size
+      </div>
+      <div>
+        1
+      </div>
+      <div>
+        add to bag
+      </div>
+      <div>
+        favorite
       </div>
     </div>
   )
