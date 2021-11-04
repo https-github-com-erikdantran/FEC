@@ -23,8 +23,6 @@ function ProductPage(props) {
     setOutfit([...outfit, id]);
   }
 
-  // handleOutfitAdd(2)
-  // console.log(outfit)
 
   return(
       <div>
@@ -40,7 +38,7 @@ function ProductPage(props) {
 
 
         {/* Reviews */}
-        <Reviews id={props.id}/>
+        <Reviews id={props.id || productInfo.id} name={productInfo.name}/>
 
       </div>
     )

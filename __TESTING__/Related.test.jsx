@@ -137,7 +137,6 @@ afterAll(() => server.close())
 
 // second test checks if related products render onto page
 test('checks if info is rendered into related product carousel', async () => {
-  jest.setTimeout(10000)
   render(<RelatedProductsList />)
   await waitFor(() => {
     let items = screen.getByText('YEasy 350')
@@ -146,13 +145,13 @@ test('checks if info is rendered into related product carousel', async () => {
 })
 
 // check if outfits render onto page
-// test('checks if info is rendered into related product carousel', async () => {
-//   render(<RelatedProductsList />)
-//   await waitFor(() => {
-//     let items = screen.getByText('Morning Joggers')
-//     expect(items).toBeInTheDocument()
-//   })
-// })
+test('checks if info is rendered into related product carousel', async () => {
+  render(<RelatedProductsList />)
+  await waitFor(() => {
+    let items = screen.getByText('Morning Joggers')
+    expect(items).toBeInTheDocument()
+  })
+})
 
 
 // check if on click popover works by checking if product info is displayed

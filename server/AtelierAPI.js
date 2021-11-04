@@ -9,6 +9,7 @@ let options = {
     'Authorization': `${config.TOKEN}`
   }
 }
+console.log(options.headers)
 
 
 // Products
@@ -81,8 +82,8 @@ module.exports.getRelatedProductInfoStyle = (id) => {
 
 // Reviews
 module.exports.getReviews = (params, cb) => {
-  params.headers = options.headers
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
+  var stuff = params.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${stuff.product_id}&page=${stuff.page}&count=${stuff.count}&sort=${stuff.sort}`, options)
     .then(results => {
       cb(null, results.data)
     })
@@ -104,7 +105,7 @@ module.exports.getReviewMetadata = (params, cb) => {
 
 module.exports.addReview = (params, cb) => {
   params = { params: { product_id: 42366, rating: 5, summary: 'Chicken chicken chicken (chicken)...', body: '...chicken CHICKEN chicken chicken, chicken chicken. Chicken chicken chicken chicken chicken? Chicken.', recommend: true, name: 'Chicken', email: 'Chicken@chicken.chicken', photos: [], characteristics: {} }, headers: options.headers }
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, params)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/`, null, params)
     .then(results => {
       cb(null, results.data)
     })
@@ -114,8 +115,8 @@ module.exports.addReview = (params, cb) => {
 }
 
 module.exports.markHelpful = (reviewId, cb) => {
-  reviewId = 841465;
-  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${reviewId}/helpful`, options)
+  reviewId = 840809;
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${reviewId}/helpful`, null, options)
     .then(results => {
       cb(null, results.data)
     })

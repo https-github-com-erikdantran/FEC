@@ -18,7 +18,7 @@ router.post('/reviews', controller.addReview)
 
 router.post('/reviews/meta', controller.getReviewMetadata)
 
-router.post('/reviews/helpful', controller.markHelpful)
+router.put('/reviews/helpful', controller.markHelpful)
 
 router.put('/reviews/report', controller.reportReview)
 
