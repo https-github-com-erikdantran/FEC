@@ -115,9 +115,7 @@ let outfitInfo = [{
     Comfort: { id: 142039, value: '3.0000000000000000' },
     Quality: { id: 142040, value: '3.2000000000000000' }
   }
-}
-
-]
+}]
 
 const server = setupServer(
   rest.get(`/api/products/:product_id/related`, (req, res, ctx) => {
@@ -132,10 +130,7 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-// first test just makes sure api call works and we get data back
 
-
-// second test checks if related products render onto page
 test('checks if info is rendered into related product carousel', async () => {
   render(<RelatedProductsList />)
   await waitFor(() => {
@@ -144,7 +139,6 @@ test('checks if info is rendered into related product carousel', async () => {
   })
 })
 
-// check if outfits render onto page
 test('checks if info is rendered into related product carousel', async () => {
   render(<RelatedProductsList />)
   await waitFor(() => {
@@ -153,8 +147,6 @@ test('checks if info is rendered into related product carousel', async () => {
   })
 })
 
-
-// check if on click popover works by checking if product info is displayed
 // test('checks if pop up activates when a related product is clicked', async () => {
 //   render(<RelatedProductsList />)
 //   await waitFor(() => {
