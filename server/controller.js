@@ -52,7 +52,19 @@ const controller = {
       })
   },
 
-
+  getYourOutfit: (req, res) => {
+    // req.body needs to be an array of IDs
+    let final = [];
+    noDups = _.uniq(req.body)
+    noDups.forEach(id => final.push(helper.getRelatedProductInfoStyle(id)))
+    Promise.all(final)
+      .then(results => {
+        res.status(200).json(results);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
 
 
   // Reviews

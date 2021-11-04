@@ -5,6 +5,7 @@ Frameworks
   Database - We'll use API data
 
   Quick Start Guide:
+    - need npm version to be version 6 for react carousel
     - run npm install
     - navigate to the configExample.js file and follow instructions included there
     - run npm start

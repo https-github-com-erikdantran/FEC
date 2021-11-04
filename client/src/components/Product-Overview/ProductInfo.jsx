@@ -9,8 +9,6 @@ export default class ProductInfo extends React.Component {
     }
   }
 
-
-
   render() {
     return (
       <div onClick={() => this.props.handleProductClick(this.props.product.id)}>

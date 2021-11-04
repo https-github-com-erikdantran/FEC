@@ -1,3 +1,10 @@
+/* ----------------------------------
+--------------- APP ---------------
+------------------------------------*/
+#app {
+  max-width: 1200px;
+  margin: auto;
+}
 
 /* ----------------------------------
 --------------- STARS ---------------
@@ -5,8 +12,8 @@
 .stars {
   position: relative;
   float: left;
-  font-size: 11pt;
-  height: 1em;
+  font-size: 20pt;
+  height: 20px;
   line-height: 1em;
 }
 
@@ -29,6 +36,120 @@
   color: rgb(255, 200, 0);
 }
 
+/* ----------------------------------
+------------ STAR RATING ------------
+------------------------------------*/
+.num-rating, .star-rating {
+  vertical-align: top;
+  display: inline-block;
+  width: 100px;
+}
+
+
+.num-rating {
+  margin: 10px 0 10px 0;
+  text-align: center;
+  font-size: 50px;
+}
+
+.star-rating {
+  margin: 25px 0 10px 0;
+}
+
+/* ----------------------------------
+------------ RATING BARS ------------
+------------------------------------*/
+.bar {
+  position: relative;
+  float: left;
+  height: 5px;
+  width: 150px;
+  background-color: rgb(218, 218, 218);
+  z-index: 1;
+}
+
+.bar-percent {
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  z-index: 3;
+  background-color: rgb(2, 224, 2);
+  height: 100%;
+}
+
+.rating-bars div {
+  display: inline-block;
+  margin-right: 5px;
+}
+.rating-bars div .bar {
+  height: 7px;
+}
+
+.rating-bars {
+  margin-bottom: 5px;
+}
+
+/* ----------------------------------
+---------- CHARACTERISTICS ----------
+------------------------------------*/
+.chara {
+  height: 50px;
+  width: 150px
+}
+
+.chara-name {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.chara-bar {
+  position: relative;
+  width: 100%;
+}
+
+.chara-left, .chara-right, .chara-mid {
+  position: relative;
+  width: 33%;
+  display: inline-block;
+  font-size: 8px;
+}
+.chara-left {
+  text-align: left;
+}
+.chara-mid {
+  text-align: center;
+}
+.chara-right {
+  text-align: right;
+}
+
+
+.bar-divider {
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  width: 2px;
+  background-color: white;
+}
+
+
+.marker {
+  position: absolute;
+  z-index: 3;
+  font-size: 11pt;
+  top: -10px;
+}
+
+.marker::after {
+  content: "\25BC";
+}
+
+
+
 
 /* ----------------------------------
 ------------ REVIEW STUFF -----------
@@ -39,6 +160,7 @@
   border-style: ridge;
   width: 39%;
   height: 500px;
+  padding-left: 10px;
 }
 
 .review-list {
@@ -46,7 +168,10 @@
   right: 0px;
   display: inline-block;
   border-style: ridge;
-  width: 59%;
+  width: 58%;
+  overflow: auto;
+  height: 98.8%;
+  overflow-x: hidden;
 }
 
 .review-section {
@@ -55,9 +180,28 @@
   border-radius: 4px;
   border-width: 2px;
   min-width: 800px;
+  max-width: 1000px;
   width: 70%;
   margin: 0 auto;
 }
+
+
+.review-sort {
+  position: sticky;
+  top: 0px;
+  background-color: white;
+  z-index: 10;
+  padding: 3px 6px 3px 6px;
+}
+
+.review-sort button {
+  position: absolute;
+  right: 5px;
+}
+
+/* ----------------------------------
+------------ REVIEW BODY ------------
+------------------------------------*/
 
 .review {
   padding: 20px 10px 20px 10px;
@@ -70,4 +214,203 @@
 .image-gallery {
   width: 50%;
   height: auto;
+  padding: 0px 10px 20px 10px;
+}
+.review .stars {
+  display: block;
+}
+.review h4 {
+  position: relative;
+  left: -73px;
+  top: 16px;
+  width: 70%;
+}
+.review-date {
+  position: relative;
+  top: -36px;
+  right: 3px;
+  float: right;
+}
+
+
+
+/* ----------------------------------
+------------ REVIEW FORM ------------
+------------------------------------*/
+
+.review-form-outline {
+  position: fixed;
+  z-index: 20;
+  padding: 100px 0 100px 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.review-form {
+  position: relative;
+  background-color: white;
+  width: 80%;
+  height: 70%;
+  margin: 0 auto;
+}
+
+.review-form header h2, .review-form header h5 {
+  margin: 0;
+  padding: 0 0 0 5px;
+}
+
+.exit {
+  position: absolute;
+  color: #aaaaaa;
+  float: right;
+  right: 5px;
+  top: -5px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.exit:hover {
+  cursor: pointer;
+}
+
+.rating-input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+.form-rating {
+  display: inline-flex;
+}
+
+.rating-input:checked ~ .rating-label {
+  content: '&#9734;';
+  color: white;
+}
+
+.rating-input:checked + .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.form-rating:hover .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.rating-input:hover ~ .rating-label {
+  color: white;
+}
+
+.rating-input:hover + .rating-label {
+  color: rgb(255, 200, 0);
+}
+
+.rating-label {
+  display: grid;
+  color: rgb(255, 200, 0);
+}
+.rating-label > * {
+  font-size: 20pt;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+.star-outline {
+  z-index: 1;
+  color: black !important;
+}
+
+/* ----------------------------------
+------ RELATED PRODUCTS STUFF -------
+------------------------------------*/
+.related-products {
+  margin: 20px;
+}
+
+.related-list {
+  margin: auto;
+  /* max-width: inherit; */
+  font-weight: 100;
+}
+
+.related-carousel {
+  /* display: flex;
+  align-content: center; */
+  margin-bottom: 10px;
+  /* max-width: 74%; */
+}
+
+.single-related {
+  text-align: center;
+  border: 1px solid rgb(114, 114, 114);
+  /* margin: 20px;
+  width: 240px;
+  display: inline-block; */
+}
+
+.thumbnail {
+  background-color: black;
+  text-align: center;
+  width: 240px;
+  height: 300px;
+  display: inline-block;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.related-info {
+  text-align: left;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  line-height: 1;
+}
+
+.related-category {
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+
+.related-name {
+  font-weight: 400;
+}
+
+.related-price {
+  font-weight: 100;
+  font-size: 0.65rem;
+}
+
+/* .current-product {
+  float: left;
+  margin-right: 5px;
+}
+
+.clicked-product {
+  float: right;
+  margin-left: 5px;
+} */
+
+.pop-up-chara {
+  float: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.comparing-products-header {
+  position: sticky;
+}
+
+.outfit-text {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.outfit-add-container {
+  text-align: center;
+  border: 1px solid rgb(114, 114, 114);
+  margin: 20px;
+  width: 240px;
+  height: 500px;
+  display: inline-block;
 }
