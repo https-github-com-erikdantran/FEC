@@ -79,7 +79,6 @@ module.exports.getRelatedProductInfoStyle = (id) => {
   })
 }
 
-
 // Reviews
 module.exports.getReviews = (params, cb) => {
   var stuff = params.params
