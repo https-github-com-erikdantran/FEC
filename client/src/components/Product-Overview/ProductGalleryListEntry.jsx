@@ -14,7 +14,7 @@ class ProductGalleryListEntry extends React.Component {
 
 
   render() {
-    // console.log(this.props.style.photos)
+    //console.log('this props style name', this.props.style.name)
     return (
       <div onClick={(e) => this.props.handleClickName(e, this.props.style.photos)}>
         {this.props.style.name}

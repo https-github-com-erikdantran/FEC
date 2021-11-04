@@ -48,6 +48,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "css-loader": "^6.5.0",
+    "identity-obj-proxy": "^3.0.0",
     "style-loader": "^3.3.1",
     "webpack-cli": "^4.9.1"
   }
