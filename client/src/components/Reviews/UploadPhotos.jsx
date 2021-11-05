@@ -17,18 +17,30 @@ function UploadPhotos(props) {
   }
 
   let upload = function(e) {
+    var id = e.target.name
     document.getElementById(e.target.name).click()
   }
-
+  var style0 = { display: 'inline-block'}
   var style1 = { display: photos.photos.length > 0 ? 'inline-block' : 'none'}
   var style2 = { display: photos.photos.length > 1 ? 'inline-block' : 'none'}
   var style3 = { display: photos.photos.length > 2 ? 'inline-block' : 'none'}
   var style4 = { display: photos.photos.length > 3 ? 'inline-block' : 'none'}
+  var styleArr = [style0, style1, style2, style3, style4]
 
   return (
     <div className='image-form'>
       {/* <label htmlFor='img0'>Select image: </label> */}
-        <div>
+        {styleArr.map((style, i) => {
+          return (
+            <div key={i} style={style}>
+              <input type='file' id={`img${i}`} name={`img${i}`} accept='image/*' onChange={handleAddImage}></input><br/>
+              <img  onClick={upload} name={`img${i}`} src={ photos.photos.length > i ? URL.createObjectURL(photos.photos[i]) : 'default-image.jpeg' }></img>
+              { photos.photos.length > i ? <div id={`${i}`} onClick={deleteImg}>&times;</div> : null }
+            </div>
+            )
+          })}
+
+        {/* <div>
           <input type='file' id='img0' name='0' accept='image/*' onChange={handleAddImage}></input><br/>
           <img  onClick={upload} name='img0' src={ photos.photos.length > 0 ? URL.createObjectURL(photos.photos[0]) : 'default-image.jpeg' }></img>
           { photos.photos.length > 0 ? <div id='0' onClick={deleteImg}>&times;</div> : null }
@@ -52,7 +64,7 @@ function UploadPhotos(props) {
           <input type='file' id='img4' name='4' accept='image/*' onChange={handleAddImage}></input><br/>
           <img onClick={upload} name='img4' src={ photos.photos.length > 4 ? URL.createObjectURL(photos.photos[4]) : 'default-image.jpeg' }></img>
           { photos.photos.length > 4 ? <div id='4' onClick={deleteImg}>&times;</div> : null }
-        </div>
+        </div> */}
     </div>
   )
 }

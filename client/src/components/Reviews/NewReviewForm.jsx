@@ -20,7 +20,24 @@ function NewReviewForm(props) {
   } else {
     styleDisplay = { display: 'none' }
   }
+  console.log(props.metadata)
+  let handleSubmit = function(e) {
+    e.preventDefault()
+    console.log(e.target.rating.value)
+    console.log(e.target.recommend.value)
+    console.log('Fit', e.target['chara-Fit'].value)
+    console.log('Length', e.target['chara-Length'].value)
+    //console.log('Size', e.target['chara-Size'].value)
+    console.log('Comfort', e.target['chara-Comfort'].value)
+    console.log('Quality', e.target['chara-Quality'].value)
+    //console.log('Width', e.target['chara-Width'].value)
+    console.log(e.target['review-summary'].value)
+    console.log(e.target['review-body'].value)
+    console.log(e.target.img0.value)
+    console.log(e.target.nickname.value)
+    console.log(e.target.email.value)
 
+  }
 
 
   return (
@@ -31,7 +48,7 @@ function NewReviewForm(props) {
           <h5>About the {props.name}:</h5>
           <span onClick={props.toggleFormDisplay} className='exit'>&times;</span>
         </header>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='form-rating'>
             {/* the commented code below allows the stars to be unchecked upon load, but a strange bug occurs where you have to click twice to check a star */}
             {/* <input disabled checked className='rating-input rating-input-none' name='rating' id='no-rating' value='0' type='radio'></input> */}
@@ -64,7 +81,10 @@ function NewReviewForm(props) {
           {/* <label htmlFor='review-summary'>Review Summary:</label><br/> */}
           <input type='text' id='review-summary' name='review-summary' maxLength='60' placeholder='Review summary'></input><br/>
           <textarea name='review-body' placeholder='Write the remainder of your review here...' maxLength='1000'></textarea><br/>
-          <UploadPhotos />
+          <UploadPhotos /><br/>
+          <input type='text' name='nickname' placeholder='Nickname' maxLength='60'></input>
+          <input type='text' name='email' placeholder='Example: jackson11@email.com' maxLength='60'></input>
+          <button>Submit</button>
         </form>
       </div>
     </div>
