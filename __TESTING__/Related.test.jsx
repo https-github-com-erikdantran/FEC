@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, StateMock, fireEvent } from '@testing-library/react';
 import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList.jsx';
+import InfoPopUp from '../client/src/components/RelatedProducts/InfoPopUp.jsx';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
@@ -117,6 +118,8 @@ let outfitInfo = [{
   }
 }]
 
+let currentProductInfo = { "id": 42370, "campus": "hr-lax", "name": "Heir Force Ones", "slogan": "A sneaker dynasty", "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl", "category": "Kicks", "default_price": "99.00", "created_at": "2021-08-13T14:39:39.968Z", "updated_at": "2021-08-13T14:39:39.968Z", "features": [{ "feature": "Sole", "value": "Rubber" }, { "feature": "Material", "value": "FullControlSkin" }, { "feature": "Mid-Sole", "value": "ControlSupport Arch Bridge" }, { "feature": "Stitching", "value": "Double Stitch" }] }
+
 const server = setupServer(
   rest.get(`/api/products/:product_id/related`, (req, res, ctx) => {
     return res(ctx.json(relatedProductInfo))
@@ -130,9 +133,24 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
+// const renderComponent = (info) =>
+//   render(
+//     <StateMock state={{ info }}>
+//       <RelatedProductsList />
+//     </StateMock>
+//   );
+
+// test('checks state of component', async () => {
+//   renderComponent(currentProductInfo)
+
+//   await waitFor(() => {
+//     let items = screen.getByText('A sneaker dynasty')
+//     expect(items).toBeInTheDocument()
+//   })
+// })
 
 test('checks if info is rendered into related product carousel', async () => {
-  render(<RelatedProductsList />)
+  render(<RelatedProductsList current={currentProductInfo}/>)
   await waitFor(() => {
     let items = screen.getByText('YEasy 350')
     expect(items).toBeInTheDocument()
@@ -140,21 +158,32 @@ test('checks if info is rendered into related product carousel', async () => {
 })
 
 test('checks if info is rendered into related product carousel', async () => {
-  render(<RelatedProductsList />)
+  render(<RelatedProductsList current={currentProductInfo}/>)
   await waitFor(() => {
     let items = screen.getByText('Morning Joggers')
     expect(items).toBeInTheDocument()
   })
 })
 
-// test('checks if pop up activates when a related product is clicked', async () => {
-//   render(<RelatedProductsList />)
-//   await waitFor(() => {
-//     userEvent.click(screen.getByText('Summer Shoes'))
-//     let items = screen.getByText('FullControlSkin')
-//     expect(items).toBeInTheDocument()
-//   })
-// })
+test('checks if pop up activates when a related product is clicked', async () => {
+  render(<RelatedProductsList current={currentProductInfo}/>)
+
+  await waitFor(() => {
+    userEvent.click(screen.getAllByText('Summer Shoes')[0])
+    let items = screen.getAllByText('FullControlSkin')[0]
+    expect(items).toBeInTheDocument()
+  })
+})
 
 
-// does button add new product into outfits carousel
+// Can't test this function since it relies on parent hooks, not sure how to test all in one component
+test('checks if button adds current product into outfit carousel', async () => {
+  render(<RelatedProductsList current={currentProductInfo}/>)
+  fireEvent.click(screen.getByText('+'))
+
+  await waitFor(() => {
+
+    let items = screen.getByText('Heir Force Ones')
+    expect(items).toBeInTheDocument()
+  })
+})
