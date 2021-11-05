@@ -2,30 +2,36 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ImageGallery from 'react-image-gallery';
 import ProductGalleryListEntry from './ProductGalleryListEntry.jsx';
+import ProductSelectSize from './ProductSelectSize.jsx';
 import "react-image-gallery/styles/css/image-gallery.css";
 
 const ProductGallery = (props) => {
   const [productGallery, setProductGallery] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [stylePrice, setStylePrice] = useState('');
+  const [salePrice, setSalePrice] = useState('');
+
 
 
   useEffect(() => {
     axios.get(`/api/products/${props.id}/styles`)
       .then(results => {
         setProductGallery(results.data);
-        console.log(results)
+        console.log('product results: ', results)
         if (props.id === 42367) {
           setImageList(sunglassImage)
+          setStylePrice(results.data.results[0].original_price)
         } else {
           const imageListEntry = photoMapping(results.data.results[0].photos)
           setImageList(imageListEntry)
+          setStylePrice(results.data.results[0].original_price)
         }
       })
 
-    // axios.get(`/api/products/${props.id}`)
-    //   .then(results => {
-    //     console.log('all results: ', results)
-    //   })
+    axios.get(`/api/products/${props.id}`)
+      .then(results => {
+        console.log('product overview results: ', results)
+      })
   }, []);
 
   const photoMapping = (photoList) => {
@@ -37,11 +43,15 @@ const ProductGallery = (props) => {
     return imageListEntry
   }
 
-  const handleClickName = (e, imageList) => {
+  const handleClickName = (e, imageList, stylePrice, salePrice) => {
     e.preventDefault();
     if (props.id === 42367) {
+      setStylePrice(stylePrice)
+      setSalePrice(salePrice)
       setImageList(sunglassImage)
     } else {
+      setStylePrice(stylePrice)
+      setSalePrice(salePrice)
       const imageListEntry = photoMapping(imageList)
       setImageList(imageListEntry)
       }
@@ -53,7 +63,7 @@ const ProductGallery = (props) => {
   }]
 
 
-  console.log('imageList: ', imageList)
+  //console.log('imageList: ', imageList)
 
   return (
     <div>
@@ -61,13 +71,13 @@ const ProductGallery = (props) => {
         reviews
       </div>
       <div>
-        category
+        {props.productInfo.category}
       </div>
       <div>
-        product name
+        {props.productInfo.name}
       </div>
       <div>
-        product price
+        {salePrice ? '$' + salePrice + ' ' + '$' + stylePrice : '$' + stylePrice}
       </div>
       <div>
         <h4>Select Style</h4>
@@ -81,7 +91,10 @@ const ProductGallery = (props) => {
         </div>
       </div>
       <div>
-        select size
+        Select Size
+        {(productGallery.results || []).map((style, key) => {
+            return <ProductSelectSize key={style.style_id} style={style} />
+          })}
       </div>
       <div>
         1
@@ -91,6 +104,9 @@ const ProductGallery = (props) => {
       </div>
       <div>
         favorite
+      </div>
+      <div>
+      {props.productInfo.description}
       </div>
     </div>
   )

@@ -16,8 +16,15 @@ class ProductGalleryListEntry extends React.Component {
   render() {
     //console.log('this props style name', this.props.style.name)
     return (
-      <div onClick={(e) => this.props.handleClickName(e, this.props.style.photos)}>
-        {this.props.style.name}
+      <div>
+        {/* <div>
+            {this.props.style.sale_price}
+          </div> */}
+        <div onClick={(e) => this.props.handleClickName(e, this.props.style.photos, this.props.style.original_price, this.props.style.sale_price)}>
+          <div>
+            {this.props.style.name}
+          </div>
+        </div>
       </div>
     )
   }
