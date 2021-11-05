@@ -45,7 +45,7 @@ function ReviewList(props) {
         }}>MORE REVIEWS</button> :
         null
       }
-      <NewReviewForm toggleFormDisplay={toggleFormDisplay} display={formDisplay.display} name={props.name}/>
+      <NewReviewForm toggleFormDisplay={toggleFormDisplay} display={formDisplay.display} name={props.name} metadata={props.metadata}/>
     </div>
   )
 }

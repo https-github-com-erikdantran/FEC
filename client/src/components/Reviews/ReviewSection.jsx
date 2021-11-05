@@ -53,7 +53,7 @@ function Reviews(props) {
     return (
       <div className='review-section'>
         <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name}/>
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name} metadata={allReviewData.metadata}/>
       </div>
     )
   }

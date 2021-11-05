@@ -6,7 +6,6 @@ function Characteristics(props) {
 
 
 
-
   return (
     <div className='chara'>
       <div className='chara-name'>{props.name + ':'}</div>

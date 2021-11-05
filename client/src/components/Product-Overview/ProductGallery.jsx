@@ -13,7 +13,6 @@ const ProductGallery = (props) => {
     axios.get(`/api/products/${props.id}/styles`)
       .then(results => {
         setProductGallery(results.data);
-        console.log(results)
         if (props.id === 42367) {
           setImageList(sunglassImage)
         } else {
@@ -53,7 +52,6 @@ const ProductGallery = (props) => {
   }]
 
 
-  console.log('imageList: ', imageList)
 
   return (
     <div>
