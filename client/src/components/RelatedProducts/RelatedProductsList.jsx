@@ -14,10 +14,17 @@ const RelatedProductsList = (props) => {
 
   // adds IDs of current product into outfits array and gets info for new added product to display
   const handleAddClick = (e) => {
-    props.setOutfit(props.current.id)
+    props.setOutfit('add', props.current.id)
     // doesn't handle dupes
     axios.post('api/products/outfit', [props.current.id])
       .then(results => { setOutfitInfo([...outfitInfo, results.data[0]]) })
+  }
+
+  const handleRemoveClick = (id) => {
+    props.setOutfit('remove', id);
+    console.log('list')
+    console.log(id)
+    setOutfitInfo(outfitInfo.filter(info =>  info.id !== id))
   }
 
   const [outfitInfo, setOutfitInfo] = useState(null)
@@ -32,23 +39,23 @@ const RelatedProductsList = (props) => {
       <Typography component="div"><h3 className="related-list">Related Products</h3></Typography>
       <div className="related-carousel">
         <Carousel cols={4} rows={1} gap={5} >
-          {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} current={props.current} /> </Carousel.Item>) : null}
+          {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"related"} info={product} current={props.current} /> </Carousel.Item>) : null}
         </Carousel>
       </div>
 
       {/* If plus is clicked, add this product ID to outfit IDs array and add this product info into carousel */}
       <Typography component="div"><h3 className="related-list">Your Outfit</h3></Typography>
       <div className="related-carousel">
-        <Carousel cols={4} rows={1} gap={5} >
+        <Carousel cols={4} rows={1} gap={1} >
           <Carousel.Item>
-            <div className="single-related">
-              <Typography className="outfit-text">
+            <div className="outfit-add" onClick={handleAddClick}>
+              <Typography component="div">
                 Add to your Outfits
-                <Button variant="contained" onClick={handleAddClick}>+</Button>
+                {/* <Button variant="contained" >+</Button> */}
               </Typography>
             </div>
           </Carousel.Item>
-          {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} current={props.current} /> </Carousel.Item>) : null}
+          {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick}/> </Carousel.Item>) : null}
         </Carousel>
       </div>
     </div>
