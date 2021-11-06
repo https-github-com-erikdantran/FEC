@@ -34,7 +34,7 @@ function UploadPhotos(props) {
           return (
             <div key={i} style={style}>
               <input type='file' id={`img${i}`} name={`img${i}`} accept='image/*' onChange={handleAddImage}></input><br/>
-              <img  onClick={upload} name={`img${i}`} src={ photos.photos.length > i ? URL.createObjectURL(photos.photos[i]) : 'default-image.jpeg' }></img>
+              <img  onClick={upload} name={`img${i}`} src={ photos.photos.length > i ? URL.createObjectURL(photos.photos[i]) : 'AddImage.png' }></img>
               { photos.photos.length > i ? <div id={`${i}`} onClick={deleteImg}>&times;</div> : null }
             </div>
             )

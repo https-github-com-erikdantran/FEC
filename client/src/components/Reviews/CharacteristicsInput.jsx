@@ -27,7 +27,7 @@ function CharacteristicsInput(props) {
     <React.Fragment >
       <span>{`${chara}: ${charaDesc.description}`}</span>
       <div>
-        <input name={`chara-${chara}`} type='radio' value='1' className='chara-input' onChange={handleCharaScoreChange} id={`${chara}-score-1`}></input>
+        <input name={`chara-${chara}`} type='radio' value='1' className='chara-input' onChange={handleCharaScoreChange} id={`${chara}-score-1`} ></input>
         <label className='chara-label' htmlFor={`${chara}-score-1`}>
           <div>1</div>
         </label>
