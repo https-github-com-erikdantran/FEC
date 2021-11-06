@@ -2,10 +2,9 @@ import React from 'react';
 
 function RatingBars(props) {
 
-
   return (
     <div className='rating-bars'>
-      <div>
+      <div onClick={() => props.handleSortByRating(props.name)}>
         {props.name}
       </div>
       <div>

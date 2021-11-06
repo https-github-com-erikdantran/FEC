@@ -15,8 +15,10 @@ function ReviewList(props) {
     setDisplay({num: 2});
   }
 
+  var reviewArr = props.sortedResults === null ? props.reviews.results : props.sortedResults
+
   if(props.newReviews !== null && props.newReviews.results.length > 0) {
-    props.reviews.results.push(...props.newReviews.results);
+    reviewArr.push(...props.newReviews.results);
     props.newReviews.results = [];
   }
 
@@ -31,21 +33,21 @@ function ReviewList(props) {
         </select>
         <button onClick={toggleFormDisplay}>Submit a Review</button>
       </div>
-      {props.reviews.results.map((review, index) => {
+      {reviewArr.map((review, index) => {
       if (index < display.num) {
         return (<Review review={review} key={index} />)
       }
       })}
-      {props.reviews.results.length > display.num ?
+      {reviewArr.length > display.num ?
         <button onClick={() => {
           setDisplay({num: display.num += 2});
-          if(display.num >= props.reviews.results.length) {
+          if(display.num >= reviewArr.length) {
             props.handleMoreReviews();
           }
         }}>MORE REVIEWS</button> :
         null
       }
-      <NewReviewForm toggleFormDisplay={toggleFormDisplay} display={formDisplay.display} name={props.name}/>
+      <NewReviewForm toggleFormDisplay={toggleFormDisplay} display={formDisplay.display} name={props.name} metadata={props.metadata}/>
     </div>
   )
 }

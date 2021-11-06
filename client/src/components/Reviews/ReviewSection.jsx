@@ -4,8 +4,10 @@ import ReviewMeta from './ReviewMeta.jsx';
 import ReviewList from './ReviewList.jsx';
 
 function Reviews(props) {
-  const [allReviewData, setAllReviewData] = useState({reviews: [], metadata: null});
+  const [allReviewData, setAllReviewData] = useState({reviews: null, metadata: null});
   const [filters, setFilters] = useState({sort: 'relevant', page: 1, newReviews: null})
+  const [sortedReviewData, setSortedReviewData] = useState({results: null})
+
   useEffect(() => {
     getReviews(props.id, filters.sort, filters.page)
       .then(reviews => {
@@ -32,6 +34,7 @@ function Reviews(props) {
   }
 
   let handleSortChange = function(e) {
+    setSortedReviewData({results: null})
     setFilters({sort: e.target.value, page: 1, newReviews: null})
     getReviews(props.id, e.target.value, 1)
       .then(reviews => { console.log(reviews); setAllReviewData({reviews: reviews, metadata: allReviewData.metadata})})
@@ -43,7 +46,21 @@ function Reviews(props) {
       .then(reviews => setFilters({sort: filters.sort, page: nextPage, newReviews: reviews}))
   }
 
-  if (allReviewData.reviews.length === 0) {
+  let handleSortByRating = function(rating) {
+    var num = rating.slice(0,1)
+    var sortedArr = allReviewData.reviews.results.filter(review => {
+      console.log(review)
+      if (review.rating == num) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    console.log(sortedArr)
+    setSortedReviewData({results: sortedArr})
+  }
+
+  if (allReviewData.reviews === null) {
     return (
       <div>
         <img src='spiffygif_46x46.gif' />
@@ -52,8 +69,8 @@ function Reviews(props) {
   } else {
     return (
       <div className='review-section'>
-        <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name}/>
+        <ReviewMeta metadata={allReviewData.metadata} handleSortByRating={handleSortByRating}/>
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name} metadata={allReviewData.metadata} sortedResults={sortedReviewData.results}/>
       </div>
     )
   }
