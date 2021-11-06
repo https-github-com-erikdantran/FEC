@@ -21,6 +21,7 @@ const ProductGallery = (props) => {
   const [quantity, setQuantity] = useState('')
   const [outOfStock, setOutOfStock] = useState(false)
   const [selectQuantityList, setSelectQuantityList] = useState([])
+  const [initialQuantity, setInitialQuantity] = useState('1')
 
 
 
@@ -87,15 +88,16 @@ const ProductGallery = (props) => {
   const handleSizeChange = (e) => {
     console.log('e.target: ', e.target.value)
     if (e.target.value === null) {
+      setInitialQuantity('1')
       setSize('')
       setOutOfStock(true)
     } else {
+      setInitialQuantity('1')
       setSize(e.target.value)
       console.log(e.target.value)
       setSizeLoaded(true)
     }
   }
-
 
 
   const onClick = (quantity) => {
@@ -111,7 +113,7 @@ const ProductGallery = (props) => {
   }
 
   const handleQuantityChange = (e) => {
-    setQuantity(e.target.value)
+    setInitialQuantity(e.target.value)
   }
 
   // console.log('this is size: ', size)
@@ -156,6 +158,7 @@ const ProductGallery = (props) => {
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Select Size</InputLabel>
               <Select
+                data-testid='testSize'
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={size}
@@ -188,12 +191,13 @@ const ProductGallery = (props) => {
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label"></InputLabel>
             <Select
+              data-testid='testQuantity'
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={quantity}
+              value={initialQuantity}
               label="quantity"
-              defaultValue='1'
               onChange={handleQuantityChange}
+              defaultValue={quantity}
               >
               {selectQuantityList.map(item => {
                 return item
