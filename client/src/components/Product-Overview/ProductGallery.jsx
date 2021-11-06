@@ -22,7 +22,7 @@ const ProductGallery = (props) => {
   const [outOfStock, setOutOfStock] = useState(false)
   const [selectQuantityList, setSelectQuantityList] = useState([])
   const [initialQuantity, setInitialQuantity] = useState('1')
-
+  const [metadata, setMetadata] = useState({metadata: null})
 
 
   useEffect(() => {
@@ -51,6 +51,10 @@ const ProductGallery = (props) => {
       .then(results => {
         console.log('product overview results: ', results)
       })
+
+    axios.post('/api/reviews/meta/', {params: {product_id: props.id}})
+      .then(results => setMetadata({metadata: results.data}))
+
   }, []);
 
   const photoMapping = (photoList) => {
@@ -116,12 +120,49 @@ const ProductGallery = (props) => {
     setInitialQuantity(e.target.value)
   }
 
-  // console.log('this is size: ', size)
+
+  console.log('this is metadata: ', metadata.metadata)
+  let getRating = function (ratings) {
+    let totalScore = 0;
+    let numOfScores = 0;
+    for (let key in ratings) {
+      numOfScores += ratings[key] * 1;
+      totalScore += ratings[key] * key;
+    }
+    let rating = Math.round(10 * totalScore / numOfScores) / 10;
+    let percentRating = (rating / 5) * 100 + '%'
+    return { rating, percentRating }
+  }
+
+
+  let starWidth = { width: '0%' };
+  if (metadata.metadata !== null) {
+    let { rating, percentRating } = getRating(metadata.metadata.ratings)
+    starWidth = { width: percentRating };
+  }
+
+  const handleAddToCart = () => {
+    //size
+    //quantity
+    var cartItem = {
+
+    }
+    return props.addToCart(cartItem)
+  }
+
+  console.log('this is size: ', size)
+
 
   return (
     <div>
-      <div>
-        reviews
+      <span>
+        <a href='#reviews'>Read all reviews</a>
+      </span>
+      <div className="starsAboveCategory">
+      {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
+        <div className="percent" style={starWidth}></div>
+      </div>
+      }
       </div>
       <div>
         {props.productInfo.category}
@@ -206,7 +247,7 @@ const ProductGallery = (props) => {
           </FormControl>
         </Box>
       </div>}
-      <div>
+      <div onClick={handleAddToCart}>
         add to bag
       </div>
       <div>
@@ -221,21 +262,7 @@ const ProductGallery = (props) => {
 
 export default ProductGallery;
 
-// let getRating = function (ratings) {
-//   let totalScore = 0;
-//   let numOfScores = 0;
-//   for (let key in ratings) {
-//     numOfScores += ratings[key] * 1;
-//     totalScore += ratings[key] * key;
-//   }
-//   let rating = Math.round(10 * totalScore / numOfScores) / 10;
-//   let percentRating = (rating / 5) * 100 + '%'
-//   return { rating, percentRating }
-// }
+
 
 //run getmetadatareview call and set results to a var and put var in getRating() fn
 // let { rating, percentRating } = getRating(props.info.ratings)
-
-// <div className="stars" style={{"fontSize": "10pt"}}>
-//               <div className="percent" style={{ width: percentRating }}></div>
-//             </div>
