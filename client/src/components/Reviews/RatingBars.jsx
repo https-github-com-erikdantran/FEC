@@ -4,7 +4,7 @@ function RatingBars(props) {
 
   return (
     <div className='rating-bars'>
-      <div onClick={() => props.handleSortByRating(props.name)}>
+      <div className='rating-bars-link'onClick={() => props.handleSortByRating(props.name)}>
         {props.name}
       </div>
       <div>
