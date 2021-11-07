@@ -29,7 +29,7 @@ function ProductPage(props) {
       <div>
         <h2>Product page</h2>
         {/* Main Product Info */}
-        <ProductGallery id={props.id}/>
+        <ProductGallery id={props.id} productInfo={productInfo}/>
 
 
         {/* Related Products */}
