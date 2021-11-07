@@ -22,8 +22,7 @@ function ProductPage(props) {
   const [outfit, setOutfit] = useState([42369, 42366]);
   const handleOutfitAdd = (command, id) => {
     if (command === 'add') { setOutfit([...outfit, id]); }
-    if (command === 'remove') { console.log('top')
-    setOutfit(outfit.filter(index => id !== index)) }
+    if (command === 'remove') { setOutfit(outfit.filter(index => id !== index)) }
   }
 
 

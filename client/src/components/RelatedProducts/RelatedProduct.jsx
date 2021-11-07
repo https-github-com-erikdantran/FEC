@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import InfoPopUp from './InfoPopUp.jsx';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import StarIcon from '@mui/icons-material/Star';
+import CircleIcon from '@mui/icons-material/Circle';
 
 const RelatedProduct = (props) => {
 
@@ -37,8 +39,14 @@ const RelatedProduct = (props) => {
   const id = open ? 'simple-popover' : undefined;
 
   const handleRemove = (e) => {
-    console.log('clicked')
     props.remove(props.info.id)
+  }
+
+
+
+  const handleCircleXHover = (e) => {
+    e.target.style.color = "red";
+    console.log('hovered')
   }
 
   return (
@@ -47,7 +55,7 @@ const RelatedProduct = (props) => {
         <div className="single-related" aria-describedby={id} variant="contained">
           <div className="carousel-container">
           <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
-          {props.carousel === "related" ? <StarOutlineIcon className="icon" onClick={handleClick}/> : <HighlightOffIcon className="icon" onClick={handleRemove}/>}
+          {props.carousel === "related" ? <StarOutlineIcon className="icon" onClick={handleClick} sx={{"color":"white"}}/>: <HighlightOffIcon className="icon" onClick={handleRemove} sx={{"fill":"white"}}/>}
           </div>
           <div className="related-info">
             <p className="related-category">{props.info.category}</p>
