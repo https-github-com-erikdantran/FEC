@@ -10,15 +10,20 @@ export default class App extends React.Component {
     this.state = {
       products: null,
       view: 'home',
-      product_id: null
+      product_id: null,
+      cart: []
     }
-
+    this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
   }
 
   componentDidMount() {
     this.getProducts()
+  }
+
+  addToCart(item) {
+    this.setState({cart: item})
   }
 
   getProducts() {
@@ -39,14 +44,14 @@ export default class App extends React.Component {
 
 
   render() {
-
+    // console.log('shopping cart: ', this.state.cart)
     if (this.state.view === 'home' && this.state.products !== null) {
       return (
         this.state.products.map((product, i) => { return <ProductInfo handleProductClick={this.handleProductClick} key={i} product={product} /> })
       )
     } else if (this.state.view === 'product') {
       return (
-        <ProductPage id={this.state.product_id} />
+        <ProductPage id={this.state.product_id} addToCart={this.addToCart}/>
       )
     } else {
       return (
