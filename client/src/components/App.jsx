@@ -11,11 +11,13 @@ export default class App extends React.Component {
       products: null,
       view: 'home',
       product_id: null,
-      cart: []
+      cart: [],
+      outfit: [42369, 42366]
     }
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
+    this.handleOutfitAdd = this.handleOutfitAdd.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +44,10 @@ export default class App extends React.Component {
     })
   }
 
+  handleOutfitAdd(command, id) {
+    if (command === 'add') { this.setState([...this.state.outfit, id]); }
+    if (command === 'remove') { this.setState(this.state.outfit.filter(index => id !== index)) }
+  }
 
   render() {
     // console.log('shopping cart: ', this.state.cart)
@@ -51,7 +57,7 @@ export default class App extends React.Component {
       )
     } else if (this.state.view === 'product') {
       return (
-        <ProductPage id={this.state.product_id} addToCart={this.addToCart}/>
+        <ProductPage id={this.state.product_id} addToCart={this.addToCart} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd}/>
       )
     } else {
       return (
