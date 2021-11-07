@@ -10,11 +10,13 @@ export default class App extends React.Component {
     this.state = {
       products: null,
       view: 'home',
-      product_id: null
+      product_id: null,
+      outfit: [42369, 42366]
     }
 
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
+    this.handleOutfitAdd = this.handleOutfitAdd.bind(this);
   }
 
   componentDidMount() {
@@ -37,6 +39,10 @@ export default class App extends React.Component {
     })
   }
 
+  handleOutfitAdd(command, id) {
+    if (command === 'add') { this.setState([...this.state.outfit, id]); }
+    if (command === 'remove') { this.setState(this.state.outfit.filter(index => id !== index)) }
+  }
 
   render() {
 
@@ -46,7 +52,7 @@ export default class App extends React.Component {
       )
     } else if (this.state.view === 'product') {
       return (
-        <ProductPage id={this.state.product_id} />
+        <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd}/>
       )
     } else {
       return (

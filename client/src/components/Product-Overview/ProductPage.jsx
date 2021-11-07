@@ -19,11 +19,11 @@ function ProductPage(props) {
       })
   }
 
-  const [outfit, setOutfit] = useState([42369, 42366]);
-  const handleOutfitAdd = (command, id) => {
-    if (command === 'add') { setOutfit([...outfit, id]); }
-    if (command === 'remove') { setOutfit(outfit.filter(index => id !== index)) }
-  }
+  // const [outfit, setOutfit] = useState([42369, 42366]);
+  // const handleOutfitAdd = (command, id) => {
+  //   if (command === 'add') { setOutfit([...outfit, id]); }
+  //   if (command === 'remove') { setOutfit(outfit.filter(index => id !== index)) }
+  // }
 
 
   return(
@@ -34,7 +34,7 @@ function ProductPage(props) {
 
 
         {/* Related Products */}
-        <RelatedProductsList id={props.id} current={productInfo} outfit={outfit} setOutfit={handleOutfitAdd}/>
+        <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd}/>
 
 
         {/* Q&A */}
