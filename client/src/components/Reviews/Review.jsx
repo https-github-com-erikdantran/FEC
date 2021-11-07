@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function Review(props) {
 
   const [helpfulness, setHelpfulness] = useState({ num: props.review.helpfulness, hasRated: false})
+
+  useEffect(() => {
+    setHelpfulness({num: props.review.helpfulness, hasRated: false})
+  }, [props.review])
 
   let percentRating = (rating) => {
     return Math.round((rating / 5) * 10) * 10 + '%';

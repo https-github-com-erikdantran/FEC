@@ -15,7 +15,9 @@ const RelatedProductsList = (props) => {
 
   // adds IDs of current product into outfits array and gets info for new added product to display
   const handleAddClick = (e) => {
-    if (!props.outfit.includes(props.current.id)) {
+    let saved = false;
+    outfitInfo.forEach(item => { if (item.id === props.current.id) { saved = true } })
+    if (!saved) {
       props.setOutfit('add', props.current.id)
       axios.post('api/products/outfit', [props.current.id])
         .then(results => { setOutfitInfo([...outfitInfo, results.data[0]]) })
@@ -32,7 +34,10 @@ const RelatedProductsList = (props) => {
   const [outfitInfo, setOutfitInfo] = useState(null)
   useEffect(() => {
     axios.post('api/products/outfit', props.outfit)
-      .then(results => { setOutfitInfo(results.data) })
+      .then(results => {
+        console.log(results.data)
+        setOutfitInfo(results.data)
+      })
   }, [])
 
 

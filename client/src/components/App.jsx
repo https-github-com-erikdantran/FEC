@@ -11,8 +11,8 @@ export default class App extends React.Component {
       products: null,
       view: 'home',
       product_id: null,
-      cart: [],
-      outfit: [42369, 42366]
+      outfit: [42369, 42366],
+      cart: []
     }
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
@@ -57,7 +57,7 @@ export default class App extends React.Component {
       )
     } else if (this.state.view === 'product') {
       return (
-        <ProductPage id={this.state.product_id} addToCart={this.addToCart} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd}/>
+        <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd} addToCart={this.addToCart}/>
       )
     } else {
       return (
