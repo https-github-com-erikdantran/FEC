@@ -92,9 +92,9 @@ const controller = {
   },
 
   addReview: (req, res) => {
-    helper.addReview(null, (err, results) => {
+    helper.addReview(req.body, (err, results) => {
       if (err) {
-        console.log('FAILED')
+        console.log('FAILED', err)
         res.status(404).json(err)
       } else {
         res.status(200).json(results)
@@ -103,7 +103,7 @@ const controller = {
   },
 
   markHelpful: (req, res) => {
-    helper.markHelpful(null, (err, results) => {
+    helper.markHelpful(req.body.reviewId, (err, results) => {
       if (err) {
         console.log('FAILED')
         res.status(404).json(err)

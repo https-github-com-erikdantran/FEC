@@ -37,7 +37,7 @@ function Reviews(props) {
     setSortedReviewData({results: null})
     setFilters({sort: e.target.value, page: 1, newReviews: null})
     getReviews(props.id, e.target.value, 1)
-      .then(reviews => { console.log(reviews); setAllReviewData({reviews: reviews, metadata: allReviewData.metadata})})
+      .then(reviews => setAllReviewData({reviews: reviews, metadata: allReviewData.metadata}))
   }
 
   let handleMoreReviews = function() {
@@ -49,14 +49,12 @@ function Reviews(props) {
   let handleSortByRating = function(rating) {
     var num = rating.slice(0,1)
     var sortedArr = allReviewData.reviews.results.filter(review => {
-      console.log(review)
       if (review.rating == num) {
         return true;
       } else {
         return false;
       }
     })
-    console.log(sortedArr)
     setSortedReviewData({results: sortedArr})
   }
 
