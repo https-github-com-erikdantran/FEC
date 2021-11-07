@@ -77,6 +77,14 @@
   height: 100%;
 }
 
+.rating-bars-link {
+  text-decoration: underline;
+}
+.rating-bars-link:hover {
+  color: aqua;
+  cursor: pointer;
+}
+
 .rating-bars div {
   display: inline-block;
   margin-right: 5px;
@@ -207,30 +215,6 @@
   padding: 20px 10px 20px 10px;
 }
 
-/* ----------------------------------
-------- Overview: Image Gallery -----
-------------------------------------*/
-
-.image-gallery {
-  width: 50%;
-  height: auto;
-  padding: 0px 10px 20px 10px;
-}
-.review .stars {
-  display: block;
-}
-.review h4 {
-  position: relative;
-  left: -73px;
-  top: 16px;
-  width: 70%;
-}
-.review-date {
-  position: relative;
-  top: -36px;
-  right: 3px;
-  float: right;
-}
 
 
 
@@ -530,3 +514,29 @@ input[type='file'] {
   right: 0;
   margin: 8px;
 }
+
+  /* ----------------------------------
+  ------- Overview: Image Gallery -----
+  ------------------------------------*/
+
+  .image-gallery {
+    width: 50%;
+    height: auto;
+    padding: 0px 10px 20px 10px;
+  }
+  .review .stars {
+    display: block;
+  }
+  .review h4 {
+    position: relative;
+    left: -73px;
+    top: 16px;
+    width: 70%;
+  }
+  .review-info {
+    position: relative;
+    top: -36px;
+    right: 3px;
+    float: right;
+    font-size: 8pt;
+  }

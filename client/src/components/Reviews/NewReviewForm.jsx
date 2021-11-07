@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CharacteristicsInput from './CharacteristicsInput.jsx';
 import UploadPhotos from './UploadPhotos.jsx';
+import axios from 'axios';
 
 function NewReviewForm(props) {
   const [ratingDescription, setRatingDescription] = useState({description: null})
@@ -45,7 +46,7 @@ function NewReviewForm(props) {
       })
 
       var data = {
-        product_id: props.metadata.product_id,
+        product_id: parseInt(props.metadata.product_id),
         rating: parseInt(e.target.rating.value),
         summary: e.target['review-summary'].value,
         body: e.target['review-body'].value,
@@ -55,17 +56,21 @@ function NewReviewForm(props) {
         photos: [e.target.img0.value],
         characteristics: {}
       }
-      for (var key in chara) {
-        data.characteristics[chara[key].id] = e.target[`chara-${key}`].value
-      }
-      console.log(data)
+      // the commented code below adds the characteristics but the format that they are currently in causes a posting error
+      // for (var key in chara) {
+      //   data.characteristics[chara[key].id] = e.target[`chara-${key}`].value
+      // }
+      axios.post('/api/reviews', data)
+        .then(results => {
+          console.log('post results:', results)
+          alert('Your review has been submitted!')
+        })
     }
   }
 
   let checkErrors = function(e) {
     var errorsArr = [null, null, null, null, null, null, null];
     var errorExists = false
-    console.log(typeof e.target.rating.value)
     if (e.target.rating.value === '') {
       errorsArr[0] = 'Input a rating';
       errorExists = true;

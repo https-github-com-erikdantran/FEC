@@ -21,7 +21,7 @@ function ReviewMeta(props) {
     for (let key in ratings) {
       starRatingPercents[key + ' stars'] = Math.round((ratings[key] / numOfScores) * 100) + '%';
     }
-    let rating = Math.round(10 * totalScore / numOfScores) / 10;
+    let rating = (Math.round(10 * totalScore / numOfScores) / 10).toFixed(1);
     let percentRating = Math.round(( rating / 5 ) * 10) * 10 + '%';
     return {rating, percentRating, starRatingPercents}
   }
@@ -30,6 +30,7 @@ function ReviewMeta(props) {
     let total = data.false * 1 + data.true * 1;
     return Math.round((data.true / total) * 100);
   }
+
 
   let recommendPercent = findRecommendPercent(props.metadata.recommended)
   let {rating , percentRating, starRatingPercents} = getRating(props.metadata.ratings)
