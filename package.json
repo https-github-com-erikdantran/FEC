@@ -7,6 +7,7 @@
     "@babel/preset-react": "^7.14.5",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
     "axios": "^0.24.0",
     "babel": "^6.23.0",
@@ -23,8 +24,8 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.1",
     "react-dom": "^17.0.2",
-    "react-image-gallery": "^1.2.7",
     "react-grid-carousel": "^1.0.1",
+    "react-image-gallery": "^1.2.7",
     "underscore": "^1.13.1",
     "webpack": "^5.60.0"
   },

@@ -241,7 +241,7 @@
 .review-form-outline {
   position: fixed;
   z-index: 20;
-  padding: 100px 0 100px 0;
+  padding: 50px 0 50px 0;
   left: 0;
   top: 0;
   width: 100%;
@@ -251,11 +251,13 @@
 }
 
 .review-form {
+  padding: 10px;
   position: relative;
   background-color: white;
   width: 80%;
-  height: 70%;
+  height: 90%;
   margin: 0 auto;
+  border-radius: 10px;
 }
 
 .review-form header h2, .review-form header h5 {
@@ -277,13 +279,26 @@
   cursor: pointer;
 }
 
-.rating-input {
+textarea {
+  resize: none;
+  height: 100px;
+  width: 250px;
+}
+
+#review-summary {
+  width: 248px;
+}
+
+/* --------- RATING FORM ---------- */
+
+.rating-input, .recommend-input, .chara-input {
   position: absolute !important;
   left: -9999px !important;
 }
 
 .form-rating {
   display: inline-flex;
+
 }
 
 .rating-input:checked ~ .rating-label {
@@ -312,6 +327,7 @@
   color: rgb(255, 200, 0);
 }
 .rating-label > * {
+  transition: all 0.2s;
   font-size: 20pt;
   grid-column-start: 1;
   grid-row-start: 1;
@@ -320,6 +336,90 @@
   z-index: 1;
   color: black !important;
 }
+
+/* -------- RECOMMEND FORM -------- */
+
+.form-recommend {
+  margin: 10px 0 10px 0;
+}
+
+.recommend-label div {
+  display: inline-flex;
+  width: 30px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 300;
+  transition: all 0.2s;
+}
+
+.recommend-label div:hover {
+  background-color: rgb(154, 197, 199);
+}
+
+.recommend-input:checked + .recommend-label{
+  background-color: rgb(154, 197, 199);
+}
+
+/* ----- CHARACTERISTICS FORM ----- */
+
+.chara-label div {
+  display: inline-flex;
+  width: 30px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 300;
+  transition: all 0.2s;
+}
+
+.chara-label div:hover {
+  background-color: rgb(154, 197, 199);
+}
+
+.chara-input:checked + .chara-label {
+  background-color: rgb(154, 197, 199);
+}
+
+/* ---------- IMAGE FORM ---------- */
+.image-form div img {
+  width: 100px;
+  height: 100px;
+}
+
+.image-form div div {
+  float: left;
+  left: -7%;
+  top: -100%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 11px;
+}
+
+.image-form div div:hover {
+  cursor: pointer;
+}
+
+.image-form div {
+  display: inline-block;
+  position: relative;
+  width: 110px;
+  height: 110px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
 
 /* ----------------------------------
 ------ RELATED PRODUCTS STUFF -------
@@ -342,19 +442,19 @@
 }
 
 .single-related {
+  position: relative;
   text-align: center;
   border: 1px solid rgb(114, 114, 114);
-  /* margin: 20px;
-  width: 240px;
-  display: inline-block; */
+  width: 250px;
+  height: 400px;
 }
 
 .thumbnail {
   background-color: black;
   text-align: center;
-  width: 240px;
+  width: 100%;
   height: 300px;
-  display: inline-block;
+  display: block;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -365,11 +465,14 @@
   padding-bottom: 20px;
   padding-left: 10px;
   line-height: 1;
+  margin-bottom: 8px;
 }
 
 .related-category {
   font-weight: 100;
   font-size: 0.8rem;
+  margin-top: 13px;
+  margin-bottom: 8px
 }
 
 .related-name {
@@ -401,16 +504,29 @@
   position: sticky;
 }
 
-.outfit-text {
-  text-align: center;
-  vertical-align: middle;
-}
-
-.outfit-add-container {
+.outfit-add {
+  /* background-color: rgb(114, 114, 114); */
+  position: relative;
   text-align: center;
   border: 1px solid rgb(114, 114, 114);
-  margin: 20px;
-  width: 240px;
-  height: 500px;
-  display: inline-block;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  text-align: center;
+  vertical-align: middle;
+  align-content: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+.carousel-container .icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px;
 }
