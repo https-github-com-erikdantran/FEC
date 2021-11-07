@@ -13,16 +13,7 @@ export default class App extends React.Component {
       product_id: null,
       cart: []
     }
-    /*
-    {
-      style:
-      size:
-      quantity:
-    }
-
-    */
-
-
+    this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
   }
@@ -53,7 +44,7 @@ export default class App extends React.Component {
 
 
   render() {
-
+    // console.log('shopping cart: ', this.state.cart)
     if (this.state.view === 'home' && this.state.products !== null) {
       return (
         this.state.products.map((product, i) => { return <ProductInfo handleProductClick={this.handleProductClick} key={i} product={product} /> })

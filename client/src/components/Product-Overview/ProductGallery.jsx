@@ -13,6 +13,7 @@ import Select from '@mui/material/Select';
 const ProductGallery = (props) => {
   const [productGallery, setProductGallery] = useState([]);
   const [imageList, setImageList] = useState([]);
+  const [styleName, setStyleName] = useState('');
   const [stylePrice, setStylePrice] = useState('');
   const [salePrice, setSalePrice] = useState('');
   const [size, setSize] = useState('');
@@ -21,8 +22,10 @@ const ProductGallery = (props) => {
   const [quantity, setQuantity] = useState('')
   const [outOfStock, setOutOfStock] = useState(false)
   const [selectQuantityList, setSelectQuantityList] = useState([])
-  const [initialQuantity, setInitialQuantity] = useState('1')
+  const [initialQuantity, setInitialQuantity] = useState(1)
   const [metadata, setMetadata] = useState({metadata: null})
+  const [openSizeSelection, setOpenSizeSelection] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
 
   useEffect(() => {
@@ -40,6 +43,7 @@ const ProductGallery = (props) => {
           setImageList(sunglassImage)
           setStylePrice(results.data.results[0].original_price)
         } else {
+          setStyleName(results.data.results[0].name)
           setSizeSelection(skuSize)
           const imageListEntry = photoMapping(results.data.results[0].photos)
           setImageList(imageListEntry)
@@ -47,13 +51,15 @@ const ProductGallery = (props) => {
         }
       })
 
-    axios.get(`/api/products/${props.id}`)
-      .then(results => {
-        console.log('product overview results: ', results)
-      })
+    // axios.get(`/api/products/${props.id}`)
+    //   .then(results => {
+    //     console.log('product overview results: ', results)
+    //   })
 
     axios.post('/api/reviews/meta/', {params: {product_id: props.id}})
       .then(results => setMetadata({metadata: results.data}))
+
+
 
   }, []);
 
@@ -68,14 +74,16 @@ const ProductGallery = (props) => {
 
 
 
-  const handleClickName = (e, imageList, stylePrice, salePrice, skus) => {
+  const handleClickName = (e, imageList, stylePrice, salePrice, skus, styleName) => {
     e.preventDefault();
     if (props.id === 42367) {
+      setStyleName(styleName)
       setSizeSelection(Object.values(skus))
       setStylePrice(stylePrice)
       setSalePrice(salePrice)
       setImageList(sunglassImage)
     } else {
+      setStyleName(styleName)
       setSizeSelection(Object.values(skus))
       setStylePrice(stylePrice)
       setSalePrice(salePrice)
@@ -90,15 +98,15 @@ const ProductGallery = (props) => {
   }]
 
   const handleSizeChange = (e) => {
-    console.log('e.target: ', e.target.value)
+    //console.log('e.target: ', e.target.value)
     if (e.target.value === null) {
-      setInitialQuantity('1')
       setSize('')
       setOutOfStock(true)
     } else {
-      setInitialQuantity('1')
+      setOpenSizeSelection(false);
+      setInitialQuantity(1)
       setSize(e.target.value)
-      console.log(e.target.value)
+      //console.log(e.target.value)
       setSizeLoaded(true)
     }
   }
@@ -118,10 +126,11 @@ const ProductGallery = (props) => {
 
   const handleQuantityChange = (e) => {
     setInitialQuantity(e.target.value)
+    setQuantity(e.target.value)
   }
 
 
-  console.log('this is metadata: ', metadata.metadata)
+  //console.log('this is metadata: ', metadata.metadata)
   let getRating = function (ratings) {
     let totalScore = 0;
     let numOfScores = 0;
@@ -141,16 +150,28 @@ const ProductGallery = (props) => {
     starWidth = { width: percentRating };
   }
 
-  const handleAddToCart = () => {
-    //size
-    //quantity
-    var cartItem = {
-
-    }
-    return props.addToCart(cartItem)
+  const handleClose = () => {
+    setOpenSizeSelection(false);
+  }
+  const handleOpen = () => {
+    setOpenSizeSelection(true);
   }
 
-  console.log('this is size: ', size)
+
+  const handleAddToCart = () => {
+    console.log('size: ', size)
+    console.log('quantity: ', initialQuantity)
+    console.log('style name: ', styleName)
+    var cartItemEntry = {
+      Style: styleName,
+      Size: size,
+      Quantity: initialQuantity
+    }
+    cartItems.push(cartItemEntry)
+    return props.addToCart(cartItems)
+  }
+
+  // console.log('this is size: ', size)
 
 
   return (
@@ -204,6 +225,11 @@ const ProductGallery = (props) => {
                 id="demo-simple-select"
                 value={size}
                 label="Size"
+
+                open={openSizeSelection}
+                onClose={handleClose}
+                onOpen={handleOpen}
+
                 onChange={handleSizeChange}
                  >
                 {sizeSelection.map((item, index) => {
@@ -247,9 +273,12 @@ const ProductGallery = (props) => {
           </FormControl>
         </Box>
       </div>}
-      <div onClick={handleAddToCart}>
-        add to bag
-      </div>
+      {outOfStock === false && !size && <button onClick={handleOpen} >
+        Add to Cart +
+      </button>}
+      {outOfStock === false && size && <button onClick={handleAddToCart} >
+        Add to Cart +
+      </button>}
       <div>
         favorite
       </div>
