@@ -67,8 +67,8 @@ function Reviews(props) {
   } else {
     return (
       <div className='review-section' id='reviews'>
-        <ReviewMeta metadata={allReviewData.metadata}/>
-        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name}/>
+        <ReviewMeta metadata={allReviewData.metadata} handleSortByRating={handleSortByRating}/>
+        <ReviewList reviews={allReviewData.reviews} handleSortChange={handleSortChange} handleMoreReviews={handleMoreReviews} newReviews={filters.newReviews} name={props.name} metadata={allReviewData.metadata} sortedResults={sortedReviewData.results}/>
       </div>
     )
   }
