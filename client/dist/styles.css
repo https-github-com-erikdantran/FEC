@@ -6,6 +6,11 @@
   margin: auto;
 }
 
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+}
+
 /* ----------------------------------
 --------------- STARS ---------------
 ------------------------------------*/
@@ -427,6 +432,7 @@ input[type='file'] {
 
 .single-related {
   position: relative;
+  margin: 5px;
   text-align: center;
   border: 1px solid rgb(114, 114, 114);
   width: 250px;
@@ -468,16 +474,6 @@ input[type='file'] {
   font-size: 0.65rem;
 }
 
-/* .current-product {
-  float: left;
-  margin-right: 5px;
-}
-
-.clicked-product {
-  float: right;
-  margin-left: 5px;
-} */
-
 .pop-up-chara {
   float: center;
   margin-right: 5px;
@@ -489,9 +485,8 @@ input[type='file'] {
 }
 
 .outfit-add {
-  /* background-color: rgb(114, 114, 114); */
   position: relative;
-  text-align: center;
+  margin: 5px;
   border: 1px solid rgb(114, 114, 114);
   width: 250px;
   height: 400px;
@@ -499,10 +494,15 @@ input[type='file'] {
   text-align: center;
   vertical-align: middle;
   align-content: center;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* transition: .3s; */
 }
+
+/* .outline-add:hover {
+  box-shadow: 0 0 5px rgba(33,33,33,.2);
+} */
 
 .carousel-container {
   position: relative;
@@ -513,6 +513,8 @@ input[type='file'] {
   top: 0;
   right: 0;
   margin: 8px;
+  stroke: black;
+  stroke-width: .5;
 }
 
   /* ----------------------------------

@@ -19,23 +19,15 @@ function ProductPage(props) {
       })
   }
 
-  const [outfit, setOutfit] = useState([42369, 42366]);
-  const handleOutfitAdd = (command, id) => {
-    if (command === 'add') { setOutfit([...outfit, id]); }
-    if (command === 'remove') { console.log('top')
-    setOutfit(outfit.filter(index => id !== index)) }
-  }
-
-
   return(
       <div>
         <h2>Product page</h2>
         {/* Main Product Info */}
-        <ProductGallery id={props.id} productInfo={productInfo}/>
+        <ProductGallery id={props.id} productInfo={productInfo} addToCart={props.addToCart}/>
 
 
         {/* Related Products */}
-        <RelatedProductsList id={props.id} current={productInfo} outfit={outfit} setOutfit={handleOutfitAdd}/>
+        <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd}/>
 
 
         {/* Q&A */}
