@@ -1,13 +1,18 @@
+//react, axios, and component imports
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ImageGallery from 'react-image-gallery';
 import ProductGalleryListEntry from './ProductGalleryListEntry.jsx';
+//imagegallery library imports
+import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
+//react mui select button imports
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+//share feature icon import
+import { SocialIcon } from 'react-social-icons';
 
 
 const ProductGallery = (props) => {
@@ -280,7 +285,9 @@ const ProductGallery = (props) => {
         Add to Cart +
       </button>}
       <div>
-        favorite
+        <SocialIcon url="https://facebook.com/" target="_blank"/>
+        <SocialIcon url="https://twitter.com/" target="_blank"/>
+        <SocialIcon url="https://pinterest.com/" target="_blank"/>
       </div>
       <div>
       {props.productInfo.description}
@@ -288,6 +295,7 @@ const ProductGallery = (props) => {
     </div>
   )
 }
+
 
 export default ProductGallery;
 
