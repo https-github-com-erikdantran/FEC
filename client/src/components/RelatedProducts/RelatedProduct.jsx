@@ -38,15 +38,9 @@ const RelatedProduct = (props) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
+
   const handleRemove = (e) => {
     props.remove(props.info.id)
-  }
-
-
-
-  const handleCircleXHover = (e) => {
-    e.target.style.color = "red";
-    console.log('hovered')
   }
 
   return (
@@ -54,14 +48,14 @@ const RelatedProduct = (props) => {
       <Typography component="div">
         <div className="single-related" aria-describedby={id} variant="contained">
           <div className="carousel-container">
-          <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
-          {props.carousel === "related" ? <StarOutlineIcon className="icon" onClick={handleClick} sx={{"color":"white"}}/>: <HighlightOffIcon className="icon" onClick={handleRemove} sx={{"fill":"white"}}/>}
+            <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
+            {props.carousel === "related" ? <StarOutlineIcon aria-label="comparison" className="icon" onClick={handleClick} sx={{ "color": "white" }} /> : <HighlightOffIcon aria-label="remove" className="icon" onClick={handleRemove} sx={{ "fill": "white" }} />}
           </div>
           <div className="related-info">
             <p className="related-category">{props.info.category}</p>
             <div className="related-name"><b>{props.info.name}</b></div>
             <p className="related-price">${props.info.default_price}</p>
-            <div className="stars" style={{"fontSize": "10pt"}}>
+            <div className="stars" style={{ "fontSize": "10pt" }}>
               <div className="percent" style={{ width: percentRating }}></div>
             </div>
           </div>
