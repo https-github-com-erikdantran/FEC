@@ -13,7 +13,15 @@ const RelatedProductsList = (props) => {
       .then(results => { setRelated(results.data) })
   }, []);
 
-  // adds IDs of current product into outfits array and gets info for new added product to display
+
+  const [outfitInfo, setOutfitInfo] = useState(null)
+  useEffect(() => {
+    axios.post('api/products/outfit', props.outfit)
+      .then(results => {
+        setOutfitInfo(results.data)
+      })
+  }, [])
+
   const handleAddClick = (e) => {
     let saved = false;
     outfitInfo.forEach(item => { if (item.id === props.current.id) { saved = true } })
@@ -27,18 +35,11 @@ const RelatedProductsList = (props) => {
   }
 
   const handleRemoveClick = (id) => {
+    // removes from top level app outfits state
     props.setOutfit('remove', id);
+    // removes from current page outfitsInfo
     setOutfitInfo(outfitInfo.filter(info => info.id !== id))
   }
-
-  const [outfitInfo, setOutfitInfo] = useState(null)
-  useEffect(() => {
-    axios.post('api/products/outfit', props.outfit)
-      .then(results => {
-        console.log(results.data)
-        setOutfitInfo(results.data)
-      })
-  }, [])
 
 
   return (
@@ -59,7 +60,7 @@ const RelatedProductsList = (props) => {
               <Typography component="div">
                 Add to your Outfits
               </Typography>
-              <div><Button variant="contained" onClick={handleAddClick}><AddIcon /></Button></div>
+              <div><Button variant="contained" aria-label="addToOutfit" onClick={handleAddClick}><AddIcon aria-label="addToOutfit"/></Button></div>
             </div>
           </Carousel.Item>
           {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick} /> </Carousel.Item>) : null}
