@@ -1,9 +1,14 @@
 /* ----------------------------------
 --------------- APP ---------------
 ------------------------------------*/
+
+/* needed so navbar doesn't block content on top */
+body {
+  padding-top: 50px;
+}
+
 #app {
   max-width: 1200px;
-  margin-top: 70px;
   margin: auto;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
@@ -17,17 +22,12 @@
   box-sizing: border-box;
   width: 100%;
   z-index: 1000;
-  margin-bottom: 20px;
 }
 
-.right-side-content {
+/* .right-side-content {
   display: flex;
   align-items: center;
-}
-
-.products {
-  margin-top: 70px;
-}
+} */
 
 a {
   color: rgb(0, 0, 0);

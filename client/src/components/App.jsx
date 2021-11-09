@@ -86,7 +86,7 @@ export default class App extends React.Component {
       return (
         <>
           <NavBar home={this.handleHomeClick}/>
-          <h2 className="products">Fall 2021 Collection X Hack Reactor</h2>
+          <h2>Fall 2021 Collection X Hack Reactor</h2>
           <Carousel cols={4} rows={2} gap={5} style={{ 'margin-top': '50px' }}>
             {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
           </Carousel>
