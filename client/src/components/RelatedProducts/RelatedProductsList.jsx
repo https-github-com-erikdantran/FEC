@@ -49,7 +49,7 @@ const RelatedProductsList = (props) => {
       <ClickTracker element="related-carousel" module="related-products">
         <div className="related-carousel">
           <Carousel cols={4} rows={1} gap={5} >
-            {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"related"} info={product} current={props.current} /> </Carousel.Item>) : null}
+            {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"related"} info={product} current={props.current} productChange={props.productChange}/> </Carousel.Item>) : null}
           </Carousel>
         </div>
       </ClickTracker>
@@ -71,7 +71,7 @@ const RelatedProductsList = (props) => {
                 </ClickTracker >
               </div>
             </Carousel.Item>
-            {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick} /> </Carousel.Item>) : null}
+            {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick} productChange={props.productChange}/> </Carousel.Item>) : null}
           </Carousel>
         </div>
       </ClickTracker >
