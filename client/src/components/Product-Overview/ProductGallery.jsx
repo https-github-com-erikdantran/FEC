@@ -5,6 +5,7 @@ import ProductGalleryListEntry from './ProductGalleryListEntry.jsx';
 //imagegallery library imports
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
+import styles from '../../../dist/styles.css'
 //react mui select button imports
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -32,14 +33,13 @@ const ProductGallery = (props) => {
   const [openSizeSelection, setOpenSizeSelection] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
-
   useEffect(() => {
     axios.get(`/api/products/${props.id}/styles`)
       .then(results => {
         setProductGallery(results.data);
-        console.log('product results: ', results)
+        //console.log('product results: ', results)
         const skuSize = Object.values(results.data.results[0].skus)
-        console.log('skuSize: ', skuSize)
+        //console.log('skuSize: ', skuSize)
         if (props.id === 42367) {
           if (skuSize[0].size === null) {
             setOutOfStock(true)
@@ -164,9 +164,9 @@ const ProductGallery = (props) => {
 
 
   const handleAddToCart = () => {
-    console.log('size: ', size)
-    console.log('quantity: ', initialQuantity)
-    console.log('style name: ', styleName)
+    // console.log('size: ', size)
+    // console.log('quantity: ', initialQuantity)
+    // console.log('style name: ', styleName)
     var cartItemEntry = {
       Style: styleName,
       Size: size,
@@ -178,6 +178,16 @@ const ProductGallery = (props) => {
 
   // console.log('this is size: ', size)
 
+  const myImageRef = React.createRef();
+  const onFullscreen = () => {
+    myImageRef.current.fullScreen()
+  }
+  const exitfullscreen = () => {
+    myImageRef.current.exitFullScreen()
+  }
+  const defaultMagnifyingGlass = () => {
+
+  }
 
   return (
     <div>
@@ -207,7 +217,7 @@ const ProductGallery = (props) => {
           })}
         </ul>
         <div>
-          {productGallery ? <ImageGallery items={imageList} /> : null}
+          {productGallery ? <ImageGallery ref={myImageRef} onClick={onFullscreen} useBrowserFullscreen={false} infinite={false} showPlayButton={false} thumbnailPosition='left' items={imageList} /> : null}
         </div>
       </div>
       {outOfStock === true && <div>
@@ -299,7 +309,3 @@ const ProductGallery = (props) => {
 
 export default ProductGallery;
 
-
-
-//run getmetadatareview call and set results to a var and put var in getRating() fn
-// let { rating, percentRating } = getRating(props.info.ratings)
