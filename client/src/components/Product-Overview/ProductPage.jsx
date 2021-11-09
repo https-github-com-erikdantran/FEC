@@ -21,6 +21,7 @@ function ProductPage(props) {
   }
 
   return (
+    // <div key={props.id}>
     <div>
       <h2>Product page</h2>
       {/* Main Product Info */}
@@ -28,11 +29,7 @@ function ProductPage(props) {
 
 
       {/* Related Products */}
-      {/* <ClickTracker eventName={'Related Products'}>
-        <Wrapper> */}
-          <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd} />
-        {/* </Wrapper>
-      </ClickTracker> */}
+          <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd} productChange={props.productChange}/>
 
 
       {/* Q&A */}

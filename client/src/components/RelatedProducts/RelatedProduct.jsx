@@ -43,17 +43,22 @@ const RelatedProduct = (props) => {
     props.remove(props.info.id)
   }
 
+  const handleProductChange = (e) => {
+    props.productChange(props.info.id)
+  }
+
   return (
     <>
       <Typography component="div">
         <div className="single-related" aria-describedby={id} variant="contained">
           <div className="carousel-container">
             <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
-            {props.carousel === "related" ? <StarOutlineIcon aria-label="comparison" className="icon" onClick={handleClick} sx={{ "color": "white" }} /> : <HighlightOffIcon aria-label="remove" className="icon" onClick={handleRemove} sx={{ "fill": "white" }} />}
+            {props.carousel === "related" ? <StarOutlineIcon aria-label="comparison" className="icon" onClick={handleClick} sx={{ "color": "white" }} /> : null}
+            {props.carousel === "outfits" ? <HighlightOffIcon aria-label="remove" className="icon" onClick={handleRemove} sx={{ "fill": "white" }} /> : null}
           </div>
           <div className="related-info">
             <p className="related-category">{props.info.category}</p>
-            <div className="related-name"><b>{props.info.name}</b></div>
+            <div className="related-name" onClick={handleProductChange}><b>{props.info.name}</b></div>
             <p className="related-price">${props.info.default_price}</p>
             <div className="stars" style={{ "fontSize": "10pt" }}>
               <div className="percent" style={{ width: percentRating }}></div>
