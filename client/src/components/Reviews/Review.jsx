@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ClickTracker from '../ClickTracker.jsx';
 
 function Review(props) {
 
@@ -27,23 +28,28 @@ function Review(props) {
 
   //console.log(props.review)
   return (
-    <div className='review'>
-      <header>
-        <div className="stars" style={{fontSize: '11pt'}}>
-          <div className="percent" style={{width: percentRating(props.review.rating)}}>
+
+      <div className='review'>
+        <header>
+          <div className="stars" style={{fontSize: '11pt'}}>
+            <div className="percent" style={{width: percentRating(props.review.rating)}}>
+            </div>
           </div>
-        </div>
-        <h4>{props.review.summary}</h4>
-        <span className='review-info'>{props.review.reviewer_name},&nbsp;&nbsp;{formatDate(props.review.date)}</span>
-      </header>
-      <p>{props.review.body}</p>
-      {props.review.recommend ?
-      <span><em>&#10003; I recommend this product! </em></span> :
-      null
-      }
-      <div>Helpful? <span onClick={handleHelpful}>{!helpfulness.hasRated ? 'Yes' : 'Yes ✓'}</span>({helpfulness.num})</div>
-    </div>
-  )
+          <h4>{props.review.summary}</h4>
+          <span className='review-info'>{props.review.reviewer_name},&nbsp;&nbsp;{formatDate(props.review.date)}</span>
+        </header>
+        <p>{props.review.body}</p>
+        {props.review.recommend ?
+        <span><em>&#10003; I recommend this product! </em></span> :
+        null
+        }
+        <ClickTracker eventName='Helpful' module='reviews' element='helpfulness'>
+
+        <div>Helpful? <span onClick={handleHelpful}>{!helpfulness.hasRated ? 'Yes' : 'Yes ✓'}</span>({helpfulness.num})</div>
+        </ClickTracker>
+      </div>
+
+    )
 }
 
 export default Review;

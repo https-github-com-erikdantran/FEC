@@ -4,6 +4,7 @@ import ProductInfo from './Product-Overview/ProductInfo.jsx';
 import ProductPage from './Product-Overview/ProductPage.jsx';
 
 
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -57,7 +58,7 @@ export default class App extends React.Component {
       )
     } else if (this.state.view === 'product') {
       return (
-        <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd} addToCart={this.addToCart}/>
+            <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd} addToCart={this.addToCart}/>
       )
     } else {
       return (
