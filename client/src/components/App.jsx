@@ -74,9 +74,11 @@ export default class App extends React.Component {
   }
 
 
-  handleOutfitAdd(command, id) {
+  handleOutfitChange(command, id) {
     if (command === 'add') { this.setState([...this.state.outfit, id]); }
-    if (command === 'remove') { this.setState(this.state.outfit.filter(index => id !== index)) }
+    if (command === 'remove') {
+      console.log(id)
+      this.setState({outfit: this.state.outfit.filter(index => id !== index)} )}
   }
 
   render() {
@@ -94,7 +96,7 @@ export default class App extends React.Component {
       return (
         <>
           <NavBar home={this.handleHomeClick}/>
-          <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd} addToCart={this.addToCart} productChange={this.handleProductClick} />
+          <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitChange} addToCart={this.addToCart} productChange={this.handleProductClick} />
         </>
         // remove the porduct Change prop later since it doesnt work when passed down
       )
