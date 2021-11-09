@@ -3,8 +3,30 @@
 ------------------------------------*/
 #app {
   max-width: 1200px;
+  margin-top: 70px;
   margin: auto;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+
+.nav-bar {
+  color: #aaaaaa;
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: 0;
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 1000;
+  margin-bottom: 20px;
+}
+
+.right-side-content {
+  display: flex;
+  align-items: center;
+}
+
+.products {
+  margin-top: 70px;
 }
 
 a {
@@ -523,7 +545,7 @@ input[type='file'] {
   ------- Overview: Image Gallery -----
   ------------------------------------*/
 
-  
+
   /*overall image gallery position*/
   .image-gallery {
     width: 600px;
