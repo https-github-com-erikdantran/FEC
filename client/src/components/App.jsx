@@ -26,7 +26,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
-    this.handleOutfitAdd = this.handleOutfitAdd.bind(this);
+    this.handleOutfitChange = this.handleOutfitChange.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
   }
