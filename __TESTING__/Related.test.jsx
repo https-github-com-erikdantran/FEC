@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, waitFor, screen, StateMock, fireEvent } from '@testing-library/react';
 import RelatedProductsList from '../client/src/components/RelatedProducts/RelatedProductsList.jsx';
-import InfoPopUp from '../client/src/components/RelatedProducts/InfoPopUp.jsx';
+import App from '../client/src/components/App.jsx';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
@@ -64,61 +64,92 @@ let relatedProductInfo = [{
 }]
 
 let outfitInfo = [{
-  id: 42371,
-  campus: 'hr-lax',
-  name: 'Pumped Up Kicks',
-  slogan: 'Faster than a just about anything',
-  description: 'The Pumped Up serves up crisp court style with a modern look. These shoes show off tennis-whites shades and are constructed with a supple leather upper and a classic rubber cupsole.',
-  category: 'Kicks',
-  default_price: '89.00',
-  created_at: '2021-08-13T14:39:39.968Z',
-  updated_at: '2021-08-13T14:39:39.968Z',
-  features: [
-    { feature: 'Sole', value: 'Rubber' },
-    { feature: 'Material', value: 'FullControlSkin' },
-    { feature: 'Mid-Sole', value: 'ControlSupport Arch Bridge' },
-    { feature: 'Stitching', value: 'Double Stitch' }
-  ],
-  thumbnail_url: 'https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-  url: 'https://images.unsplash.com/photo-1477420143023-6a0e0b04b69a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-  product_id: '42371',
-  ratings: {},
-  recommended: {},
-  characteristics: {
-    Size: { id: 142049, value: null },
-    Width: { id: 142050, value: null },
-    Comfort: { id: 142051, value: null },
-    Quality: { id: 142052, value: null }
+  "id": 42369,
+  "campus": "hr-lax",
+  "name": "Slacker's Slacks",
+  "slogan": "Comfortable for everything, or nothing",
+  "description": "I'll tell you how great they are after I nap for a bit.",
+  "category": "Pants",
+  "default_price": "65.00",
+  "created_at": "2021-08-13T14:39:39.968Z",
+  "updated_at": "2021-08-13T14:39:39.968Z",
+  "features": [{ "feature": "Fabric", "value": "99% Cotton 1% Elastic" }, { "feature": "Cut", "value": "Loose" }],
+  "thumbnail_url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+  "url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+  "product_id": "42369",
+  "ratings": { "2": "1", "3": "1", "4": "1", "5": "1" },
+  "recommended": { "false": "2", "true": "2" },
+  "characteristics": {
+    "Fit": { "id": 142041, "value": "3.5000000000000000" },
+    "Length": { "id": 142042, "value": "3.5000000000000000" },
+    "Comfort": { "id": 142043, "value": "3.5000000000000000" },
+    "Quality": { "id": 142044, "value": "3.5000000000000000" }
   }
 },
 {
-  id: 42368,
-  campus: 'hr-lax',
-  name: 'Morning Joggers',
-  slogan: 'Make yourself a morning person',
-  description: "Whether you're a morning person or not.  Whether you're gym bound or not.  Everyone looks good in joggers.",
-  category: 'Pants',
-  default_price: '40.00',
-  created_at: '2021-08-13T14:39:39.968Z',
-  updated_at: '2021-08-13T14:39:39.968Z',
-  features: [
-    { feature: 'Fabric', value: '100% Cotton' },
-    { feature: 'Cut', value: 'Skinny' }
-  ],
-  thumbnail_url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-  url: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-  product_id: '42368',
-  ratings: { '1': '1', '3': '6', '4': '1', '5': '2' },
-  recommended: { false: '2', true: '8' },
-  characteristics: {
-    Fit: { id: 142037, value: '3.0000000000000000' },
-    Length: { id: 142038, value: '2.4000000000000000' },
-    Comfort: { id: 142039, value: '3.0000000000000000' },
-    Quality: { id: 142040, value: '3.2000000000000000' }
-  }
+  "id": 42366,
+  "campus": "hr-lax",
+  "name": "Camo Onesie",
+  "slogan": "Blend in to your crowd",
+  "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+  "category": "Jackets",
+  "default_price": "140.00",
+  "created_at": "2021-08-13T14:39:39.968Z",
+  "updated_at": "2021-08-13T14:39:39.968Z",
+  "features": [{ "feature": "Fabric", "value": "Canvas" }, { "feature": "Buttons", "value": "Brass" }],
+  "thumbnail_url": "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+  "url": "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80",
+  "product_id": "42366",
+  "ratings": { "1": "3", "2": "4", "3": "33", "4": "23", "5": "26" },
+  "recommended": { "false": "30", "true": "59" },
+  "characteristics": { "Fit": { "id": 142032, "value": "2.6904761904761905" }, "Length": { "id": 142033, "value": "2.5526315789473684" }, "Comfort": { "id": 142034, "value": "3.0540540540540541" }, "Quality": { "id": 142035, "value": "2.9459459459459459" } }
 }]
 
-let currentProductInfo = { "id": 42370, "campus": "hr-lax", "name": "Heir Force Ones", "slogan": "A sneaker dynasty", "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl", "category": "Kicks", "default_price": "99.00", "created_at": "2021-08-13T14:39:39.968Z", "updated_at": "2021-08-13T14:39:39.968Z", "features": [{ "feature": "Sole", "value": "Rubber" }, { "feature": "Material", "value": "FullControlSkin" }, { "feature": "Mid-Sole", "value": "ControlSupport Arch Bridge" }, { "feature": "Stitching", "value": "Double Stitch" }] }
+let currentProductInfo = {
+  "id": 42370,
+  "campus": "hr-lax",
+  "name": "Heir Force Ones",
+  "slogan": "A sneaker dynasty",
+  "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
+  "category": "Kicks",
+  "default_price": "99.00",
+  "created_at": "2021-08-13T14:39:39.968Z",
+  "updated_at": "2021-08-13T14:39:39.968Z",
+  "features": [{ "feature": "Sole", "value": "Rubber" }, { "feature": "Material", "value": "FullControlSkin" }, { "feature": "Mid-Sole", "value": "ControlSupport Arch Bridge" }, { "feature": "Stitching", "value": "Double Stitch" }]
+}
+
+let appStarterInfo = [{
+  "id": 42370,
+  "campus": "hr-lax",
+  "name": "Heir Force Ones",
+  "slogan": "A sneaker dynasty",
+  "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
+  "category": "Kicks",
+  "default_price": "99.00",
+  "created_at": "2021-08-13T14:39:39.968Z",
+  "updated_at": "2021-08-13T14:39:39.968Z"
+}]
+
+let currentFullInfo = {
+  "id": 42370,
+  "campus": "hr-lax",
+  "name": "Heir Force Ones",
+  "slogan": "A sneaker dynasty",
+  "description": "Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl",
+  "category": "Kicks",
+  "default_price": "99.00",
+  "created_at": "2021-08-13T14:39:39.968Z",
+  "updated_at": "2021-08-13T14:39:39.968Z",
+  "features": [{ "feature": "Sole", "value": "Rubber" }, { "feature": "Material", "value": "FullControlSkin" }, { "feature": "Mid-Sole", "value": "ControlSupport Arch Bridge" }, { "feature": "Stitching", "value": "Double Stitch" }],
+  "thumbnail_url": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+  "url": "https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
+  "product_id": "42370",
+  "ratings": { "1": "1", "2": "1", "3": "7", "4": "1", "5": "2" },
+  "recommended": { "false": "6", "true": "6" },
+  "characteristics": { "Size": { "id": 142045, "value": "2.7000000000000000" }, "Width": { "id": 142046, "value": "2.3000000000000000" }, "Comfort": { "id": 142047, "value": "3.7000000000000000" }, "Quality": { "id": 142048, "value": "3.3000000000000000" } }
+}
+
+// let styles =
 
 const server = setupServer(
   rest.get(`/api/products/:product_id/related`, (req, res, ctx) => {
@@ -126,50 +157,51 @@ const server = setupServer(
   }),
   rest.post(`/api/products/outfit`, (req, res, ctx) => {
     return res(ctx.json(outfitInfo))
-  })
+  }),
+  rest.get('/api/products', (req, res, ctx) => {
+    return res(ctx.json(appStarterInfo))
+  }),
+  // rest.get('/api/products/42370/styles', (req, res, ctx) => {
+  //   return res(ctx.json())
+  // }),
+  // rest.post('/api/reviews/meta/', (req, res, ctx) => {
+  //   return res(ctx.json())
+  // }),
+  // rest.post('/api/reviews/get', (req, res, ctx) => {
+  //   return res(ctx.json())
+  // }),
+  rest.get('/api/products/42370', (req, res, ctx) => {
+    return res(ctx.json(currentProductInfo))
+  }),
 )
 
 beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-// const renderComponent = (info) =>
-//   render(
-//     <StateMock state={{ info }}>
-//       <RelatedProductsList />
-//     </StateMock>
-//   );
-
-// test('checks state of component', async () => {
-//   renderComponent(currentProductInfo)
-
-//   await waitFor(() => {
-//     let items = screen.getByText('A sneaker dynasty')
-//     expect(items).toBeInTheDocument()
-//   })
-// })
 
 test('checks if info is rendered into related product carousel', async () => {
-  render(<RelatedProductsList current={currentProductInfo}/>)
+  render(<RelatedProductsList current={currentProductInfo} />)
   await waitFor(() => {
     let items = screen.getByText('YEasy 350')
     expect(items).toBeInTheDocument()
   })
 })
 
-test('checks if info is rendered into related product carousel', async () => {
-  render(<RelatedProductsList current={currentProductInfo}/>)
+
+test('checks if info is rendered into your outfits carousel', async () => {
+  render(<RelatedProductsList current={currentProductInfo} />)
   await waitFor(() => {
-    let items = screen.getByText('Morning Joggers')
+    let items = screen.getByText('Camo Onesie')
     expect(items).toBeInTheDocument()
   })
 })
 
-test('checks if pop up activates when a related product is clicked', async () => {
-  render(<RelatedProductsList current={currentProductInfo}/>)
 
+test('checks if pop up activates when a related product is clicked', async () => {
+  render(<RelatedProductsList current={currentProductInfo} />)
   await waitFor(() => {
-    userEvent.click(screen.getAllByText('Summer Shoes')[0])
+    userEvent.click(screen.getAllByLabelText('comparison')[0])
     let items = screen.getAllByText('FullControlSkin')[0]
     expect(items).toBeInTheDocument()
   })
@@ -177,13 +209,42 @@ test('checks if pop up activates when a related product is clicked', async () =>
 
 
 // Can't test this function since it relies on parent hooks, not sure how to test all in one component
-test('checks if button adds current product into outfit carousel', async () => {
-  render(<RelatedProductsList current={currentProductInfo}/>)
-  fireEvent.click(screen.getByText('+'))
+// test('checks if button adds current product into outfit carousel', async () => {
+//   render(<RelatedProductsList current={currentProductInfo} />)
+//   await waitFor(() => {
+//     // let items = screen.getByText('Morning Joggers')
+//     userEvent.click(screen.getByLabelText('addToOutfit'))
+//     let newItems = screen.getByText('Heir Force Ones')
+//     expect(newItems).toBeInTheDocument()
+//   })
+// })
 
-  await waitFor(() => {
 
-    let items = screen.getByText('Heir Force Ones')
-    expect(items).toBeInTheDocument()
-  })
-})
+// same as test above but trying to come in from top level, Tried to do this but it would require filling in info for every API call that all three of us write since it renders all of our sections
+// test('checks if button adds current product into outfit carousel', async () => {
+//   render(<App />)
+//   await waitFor(() => {
+//     userEvent.click(screen.getByText('Heir Force Ones'))
+//   })
+//   await waitFor(() => {
+//     userEvent.click(screen.getAllByLabelText('addToOutfit')[0])
+//     let newItems = screen.getByText('Heir Force Ones')
+//     // cant run because it relies on another API call in the addOutfit click, it ends up serving back the same data it received in the first place so nothing changes
+//     expect(newItems).toBeInTheDocument()
+//   })
+// })
+
+
+// hitting same problem as above since this component relies on functions that are passed down as props
+// test('Clicking X in your outfits removes that item from carousel', async () => {
+//   render(<RelatedProductsList current={currentProductInfo} />)
+
+//   await waitFor(() => {
+//     userEvent.click(screen.getAllByLabelText('remove')[1])
+//     expect(screen.getByText('Camo Onesie')).not.toBeInTheDocument()
+
+//   })
+//   // await waitForElementToBeRemoved(() => {
+//   //   screen.getByText('Camo Onesie')
+//   // })
+// })

@@ -5,6 +5,7 @@ import Carousel from 'react-grid-carousel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
+import ClickTracker from '../ClickTracker.jsx';
 
 const RelatedProductsList = (props) => {
   const [related, setRelated] = useState(null);
@@ -13,7 +14,15 @@ const RelatedProductsList = (props) => {
       .then(results => { setRelated(results.data) })
   }, []);
 
-  // adds IDs of current product into outfits array and gets info for new added product to display
+
+  const [outfitInfo, setOutfitInfo] = useState(null)
+  useEffect(() => {
+    axios.post('api/products/outfit', props.outfit)
+      .then(results => {
+        setOutfitInfo(results.data)
+      })
+  }, [])
+
   const handleAddClick = (e) => {
     let saved = false;
     outfitInfo.forEach(item => { if (item.id === props.current.id) { saved = true } })
@@ -27,44 +36,45 @@ const RelatedProductsList = (props) => {
   }
 
   const handleRemoveClick = (id) => {
+    // removes from top level app outfits state
     props.setOutfit('remove', id);
+    // removes from current page outfitsInfo
     setOutfitInfo(outfitInfo.filter(info => info.id !== id))
   }
-
-  const [outfitInfo, setOutfitInfo] = useState(null)
-  useEffect(() => {
-    axios.post('api/products/outfit', props.outfit)
-      .then(results => {
-        console.log(results.data)
-        setOutfitInfo(results.data)
-      })
-  }, [])
 
 
   return (
     <div className="related-products">
       <Typography component="div"><h3 className="related-list">Related Products</h3></Typography>
-      <div className="related-carousel">
-        <Carousel cols={4} rows={1} gap={5} >
-          {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"related"} info={product} current={props.current} /> </Carousel.Item>) : null}
-        </Carousel>
-      </div>
+      <ClickTracker element="related-carousel" module="related-products">
+        <div className="related-carousel">
+          <Carousel cols={4} rows={1} gap={5} >
+            {related ? related.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"related"} info={product} current={props.current} /> </Carousel.Item>) : null}
+          </Carousel>
+        </div>
+      </ClickTracker>
 
       {/* If plus is clicked, add this product ID to outfit IDs array and add this product info into carousel */}
       <Typography component="div"><h3 className="related-list">Your Outfit</h3></Typography>
-      <div className="related-carousel">
-        <Carousel cols={4} rows={1} gap={5} >
-          <Carousel.Item>
-            <div className="outfit-add" >
-              <Typography component="div">
-                Add to your Outfits
-              </Typography>
-              <div><Button variant="contained" onClick={handleAddClick}><AddIcon /></Button></div>
-            </div>
-          </Carousel.Item>
-          {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick} /> </Carousel.Item>) : null}
-        </Carousel>
-      </div>
+      <ClickTracker element="outfits-carousel" module="related-products">
+        <div className="related-carousel">
+          <Carousel cols={4} rows={1} gap={5} >
+            <Carousel.Item>
+              <div className="outfit-add" >
+                <Typography component="div">
+                  Add to your Outfits
+                </Typography>
+                <ClickTracker eventName="addOutfits">
+                <div>
+                  <Button variant="contained" aria-label="addToOutfit" onClick={handleAddClick}><AddIcon aria-label="addToOutfit" /></Button>
+                </div>
+                </ClickTracker >
+              </div>
+            </Carousel.Item>
+            {outfitInfo ? outfitInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct carousel={"outfits"} info={product} current={props.current} remove={handleRemoveClick} /> </Carousel.Item>) : null}
+          </Carousel>
+        </div>
+      </ClickTracker >
     </div>
   )
 }
