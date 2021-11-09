@@ -248,3 +248,5 @@ test('checks if pop up activates when a related product is clicked', async () =>
 //   //   screen.getByText('Camo Onesie')
 //   // })
 // })
+
+// try creating a mock function for next tests
