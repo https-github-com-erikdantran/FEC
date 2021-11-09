@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Review from './Review.jsx';
 import NewReviewForm from './NewReviewForm.jsx';
+import ClickTracker from '../ClickTracker.jsx';
 
 function ReviewList(props) {
   const [display, setDisplay] = useState({num: 2})
@@ -35,7 +36,9 @@ function ReviewList(props) {
       </div>
       {reviewArr.map((review, index) => {
       if (index < display.num) {
-        return (<Review review={review} key={index} />)
+        return (
+            <Review review={review} key={index} />
+        )
       }
       })}
       {reviewArr.length > display.num ?

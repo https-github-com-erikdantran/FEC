@@ -203,7 +203,22 @@ const controller = {
         res.status(204).json(results);
       }
     })
+  },
+
+  // {element: this.props.element, time: time, widget: this.props.module}
+
+  addClickInteraction: (req, res) => {
+    console.log(req.body)
+    helper.addClickInteraction(req.body, (err, results) => {
+      if (err) {
+        // console.log(err)
+        res.status(404).json(err)
+      } else {
+        res.status(201).json(results);
+      }
+    })
   }
+
 
 }
 

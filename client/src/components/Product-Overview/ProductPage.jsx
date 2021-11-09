@@ -3,6 +3,7 @@ import axios from 'axios';
 import RelatedProductsList from '../RelatedProducts/RelatedProductsList.jsx';
 import Reviews from '../Reviews/ReviewSection.jsx';
 import ProductGallery from './ProductGallery.jsx';
+import ClickTracker from '../ClickTracker.jsx';
 
 function ProductPage(props) {
   const [productInfo, setProductInfo] = useState({})
@@ -19,25 +20,28 @@ function ProductPage(props) {
       })
   }
 
-  return(
-      <div>
-        <h2>Product page</h2>
-        {/* Main Product Info */}
-        <ProductGallery id={props.id} productInfo={productInfo} addToCart={props.addToCart}/>
+  return (
+    <div>
+      <h2>Product page</h2>
+      {/* Main Product Info */}
+      <ProductGallery id={props.id} productInfo={productInfo} addToCart={props.addToCart} />
 
 
-        {/* Related Products */}
-        <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd}/>
+      {/* Related Products */}
+      {/* <ClickTracker eventName={'Related Products'}>
+        <Wrapper> */}
+          <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd} />
+        {/* </Wrapper>
+      </ClickTracker> */}
 
 
-        {/* Q&A */}
+      {/* Q&A */}
 
 
-        {/* Reviews */}
-        <Reviews id={props.id || productInfo.id} name={productInfo.name}/>
-
-      </div>
-    )
+      {/* Reviews */}
+      <Reviews id={props.id || productInfo.id} name={productInfo.name} />
+    </div>
+  )
 }
 
 export default ProductPage;

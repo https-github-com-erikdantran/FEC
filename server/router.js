@@ -27,7 +27,9 @@ router.get('/qa/questions', controller.getQuestionList)
 
 router.get('/qa/questions/:question_id/answers', controller.getAnswerList)
 
+// Interactions
 
+router.post('/user/interaction', controller.addClickInteraction)
 
 
 module.exports = router;

@@ -214,3 +214,13 @@ module.exports.reportAnswer = (id, cb) => {
     })
 }
 
+module.exports.addClickInteraction = (params, cb) => {
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/interactions`, params, options)
+    .then(results => {
+      cb(null, results)
+    })
+    .catch(err => {
+      cb(err)
+    })
+}
+

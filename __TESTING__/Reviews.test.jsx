@@ -20,7 +20,7 @@ var reviewPage1 = {
           "body": "dsafdsafsdaf",
           "date": "2021-09-14T00:00:00.000Z",
           "reviewer_name": "fake",
-          "helpfulness": 0,
+          "helpfulness": 12,
           "photos": []
       },
       {
@@ -76,7 +76,7 @@ var reviewPage2 = {
           "body": "dslakjfsadjflkdsjf",
           "date": "2021-09-16T00:00:00.000Z",
           "reviewer_name": "testing916 sfa",
-          "helpfulness": 2,
+          "helpfulness": 0,
           "photos": []
       },
       {
@@ -162,6 +162,9 @@ const server = setupServer(
   rest.post('/api/reviews/meta', (req, res, ctx) => {
     return res(ctx.json(meta))
   }),
+  rest.put('/api/reviews/helpful', (req, res, ctx) => {
+    return res(ctx.json(meta))
+  })
 )
 
 
@@ -253,6 +256,38 @@ test('If the third star on the review form is clicked, it will display the descr
     userEvent.click(screen.getByText('Submit a Review'))
     userEvent.click(screen.getByTestId('three-star-rating'))
     let items = screen.getByText('Average');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('If the second option for the fit characteristic in the review form is clicked, it will display the description for that rating', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    userEvent.click(screen.getByText('Submit a Review'))
+    userEvent.click(screen.getByTestId('length-chara'))
+    let items = screen.getByText('Length: Runs slightly short');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+// test('If a form is submitted with no information added, it will display error messages', async () => {
+//   render(<Reviews />)
+
+//   await waitFor(() => {
+//     userEvent.click(screen.getByText('Submit a Review'))
+//     userEvent.click(screen.getByText('Submit'))
+//     let items = screen.getByText('Please imput a rating for all characteristics');
+//     expect(items).toBeInTheDocument()
+//   })
+// })
+
+test('When a review is marked as helpful by a user, it should add 1 to the rating', async () => {
+  render(<Reviews />)
+
+  await waitFor(() => {
+    userEvent.click(screen.getAllByText('Yes')[0])
+    let items = screen.getByText('Helpful? (13)');
     expect(items).toBeInTheDocument()
   })
 })
