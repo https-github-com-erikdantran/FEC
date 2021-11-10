@@ -32,6 +32,7 @@ const ProductGallery = (props) => {
   const [metadata, setMetadata] = useState({metadata: null})
   const [openSizeSelection, setOpenSizeSelection] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     axios.get(`/api/products/${props.id}/styles`)
@@ -177,49 +178,53 @@ const ProductGallery = (props) => {
   }
 
   // console.log('this is size: ', size)
-
+  // let imageGallery = useRef();
   const myImageRef = React.createRef();
-  const onFullscreen = () => {
-    myImageRef.current.fullScreen()
-  }
-  const exitfullscreen = () => {
-    myImageRef.current.exitFullScreen()
-  }
-  const defaultMagnifyingGlass = () => {
 
+  const fullscreen = () => {
+    if (isFullscreen === true) {
+      setIsFullscreen(false)
+      //myImageRef.current.exitFullScreen()
+    } else {
+      setIsFullscreen(true)
+      myImageRef.current.fullScreen()
+    }
   }
 
-  return (
-    <div>
-      <span>
-        <a href='#reviews'>Read all reviews</a>
-      </span>
+
+
+return (
+  <div className='Main-Display'>
+
+    <div className="Image-Gallery">
+      <div>
+        {productGallery ? <ImageGallery  ref={myImageRef} showBullets={true} onClick={fullscreen} useBrowserFullscreen={false} infinite={false} showPlayButton={false} thumbnailPosition='left' items={imageList} /> : null}
+      </div>
+    </div>
+
+    <div className="Product-Detail">
       <div className="starsAboveCategory">
-      {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
-        <div className="percent" style={starWidth}></div>
+        {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
+          <div className="percent" style={starWidth}></div>
+        </div>
+        }
       </div>
-      }
-      </div>
-      <div>
-        {props.productInfo.category}
-      </div>
-      <div>
-        {props.productInfo.name}
+      <span className='reviews-link'>
+      &nbsp;<a href='#reviews'>Read all reviews</a>
+      </span><br/>
+      <div className='product-name'>
+        <span><em>{props.productInfo.category}</em></span>
+        <h1>{props.productInfo.name}</h1>
       </div>
       <div>
         {salePrice ? '$' + salePrice + ' ' + '$' + stylePrice : '$' + stylePrice}
       </div>
-      <div>
-        <h4>Select Style</h4>
-        <ul>
-          {(productGallery.results || []).map((style, key) => {
-            return <ProductGalleryListEntry key={style.style_id} style={style} handleClickName={handleClickName}/>
-          })}
-        </ul>
-        <div>
-          {productGallery ? <ImageGallery ref={myImageRef} onClick={onFullscreen} useBrowserFullscreen={false} infinite={false} showPlayButton={false} thumbnailPosition='left' items={imageList} /> : null}
-        </div>
-      </div>
+      <h4>Select Style</h4>
+      <ul>
+        {(productGallery.results || []).map((style, key) => {
+          return <ProductGalleryListEntry key={style.style_id} style={style} handleClickName={handleClickName}/>
+        })}
+      </ul>
       {outOfStock === true && <div>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
@@ -246,7 +251,7 @@ const ProductGallery = (props) => {
                 onOpen={handleOpen}
 
                 onChange={handleSizeChange}
-                 >
+                  >
                 {sizeSelection.map((item, index) => {
                   return (
                     <MenuItem onClick={() => onClick(item.quantity)} value={item.size} key={index} >
@@ -257,7 +262,7 @@ const ProductGallery = (props) => {
               </Select>
             </FormControl>
           </Box>
-         </div>}
+        </div>}
       </div>
       {sizeLoaded === false && outOfStock === false && <div>
         <Box sx={{ minWidth: 120 }}>
@@ -299,11 +304,134 @@ const ProductGallery = (props) => {
         <SocialIcon url="https://twitter.com/" target="_blank"/>
         <SocialIcon url="https://pinterest.com/" target="_blank"/>
       </div>
+    </div>
+
+    <div className="Description">
       <div>
-      {props.productInfo.description}
+        {props.productInfo.description}
       </div>
     </div>
+
+  </div>
   )
+
+
+
+  // return (
+  //   <div>
+  //     <span>
+  //       <a href='#reviews'>Read all reviews</a>
+  //     </span>
+  //     <div className="starsAboveCategory">
+  //     {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
+  //       <div className="percent" style={starWidth}></div>
+  //     </div>
+  //     }
+  //     </div>
+  //     <div>
+  //       {props.productInfo.category}
+  //     </div>
+  //     <div>
+  //       {props.productInfo.name}
+  //     </div>
+  //     <div>
+  //       {salePrice ? '$' + salePrice + ' ' + '$' + stylePrice : '$' + stylePrice}
+  //     </div>
+  //     <div>
+  //       <h4>Select Style</h4>
+  //       <ul>
+  //         {(productGallery.results || []).map((style, key) => {
+  //           return <ProductGalleryListEntry key={style.style_id} style={style} handleClickName={handleClickName}/>
+  //         })}
+  //       </ul>
+  //       <div>
+  //         {productGallery ? <ImageGallery ref={myImageRef} onClick={fullscreen} useBrowserFullscreen={false} infinite={false} showPlayButton={false} thumbnailPosition='left' items={imageList} /> : null}
+  //       </div>
+  //     </div>
+  //     {outOfStock === true && <div>
+  //       <Box sx={{ minWidth: 120 }}>
+  //         <FormControl fullWidth>
+  //           <InputLabel id="demo-simple-select-label">OUT OF STOCK</InputLabel>
+  //           <Select defaultValue="">
+  //           </Select>
+  //         </FormControl>
+  //       </Box>
+  //     </div>}
+  //     <div>
+  //       {outOfStock === false && <div>
+  //         <Box sx={{ minWidth: 120 }}>
+  //           <FormControl fullWidth>
+  //             <InputLabel id="demo-simple-select-label">Select Size</InputLabel>
+  //             <Select
+  //               data-testid='testSize'
+  //               labelId="demo-simple-select-label"
+  //               id="demo-simple-select"
+  //               value={size}
+  //               label="Size"
+
+  //               open={openSizeSelection}
+  //               onClose={handleClose}
+  //               onOpen={handleOpen}
+
+  //               onChange={handleSizeChange}
+  //                >
+  //               {sizeSelection.map((item, index) => {
+  //                 return (
+  //                   <MenuItem onClick={() => onClick(item.quantity)} value={item.size} key={index} >
+  //                     {item.size}
+  //                   </MenuItem>
+  //                 )
+  //               })}
+  //             </Select>
+  //           </FormControl>
+  //         </Box>
+  //        </div>}
+  //     </div>
+  //     {sizeLoaded === false && outOfStock === false && <div>
+  //       <Box sx={{ minWidth: 120 }}>
+  //         <FormControl fullWidth>
+  //           <InputLabel id="demo-simple-select-label">-</InputLabel>
+  //           <Select defaultValue="">
+  //           </Select>
+  //         </FormControl>
+  //       </Box>
+  //     </div>}
+  //     {sizeLoaded === true && outOfStock === false && <div>
+  //       <Box sx={{ minWidth: 120 }}>
+  //         <FormControl fullWidth>
+  //           <InputLabel id="demo-simple-select-label"></InputLabel>
+  //           <Select
+  //             data-testid='testQuantity'
+  //             labelId="demo-simple-select-label"
+  //             id="demo-simple-select"
+  //             value={initialQuantity}
+  //             label="quantity"
+  //             onChange={handleQuantityChange}
+  //             defaultValue={quantity}
+  //             >
+  //             {selectQuantityList.map(item => {
+  //               return item
+  //             })}
+  //           </Select>
+  //         </FormControl>
+  //       </Box>
+  //     </div>}
+  //     {outOfStock === false && !size && <button onClick={handleOpen} >
+  //       Add to Cart +
+  //     </button>}
+  //     {outOfStock === false && size && <button onClick={handleAddToCart} >
+  //       Add to Cart +
+  //     </button>}
+  //     <div>
+  //       <SocialIcon url="https://facebook.com/" target="_blank"/>
+  //       <SocialIcon url="https://twitter.com/" target="_blank"/>
+  //       <SocialIcon url="https://pinterest.com/" target="_blank"/>
+  //     </div>
+  //     <div>
+  //     {props.productInfo.description}
+  //     </div>
+  //   </div>
+  // )
 }
 
 
