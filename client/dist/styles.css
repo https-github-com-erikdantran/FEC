@@ -110,7 +110,7 @@ a {
   text-decoration: underline;
 }
 .rating-bars-link:hover {
-  color: aqua;
+  color: rgb(81, 124, 223);
   cursor: pointer;
 }
 
@@ -243,8 +243,13 @@ a {
 .review {
   padding: 20px 10px 20px 10px;
 }
-
-
+.review div span:hover{
+  cursor: pointer;
+  color: rgb(81, 124, 223)
+}
+.review div span {
+  text-decoration: underline;
+}
 
 
 /* ----------------------------------
@@ -572,7 +577,6 @@ input[type='file'] {
     position: relative;
     object-fit: none;
     cursor: zoom-in;
-
   }
 
 
