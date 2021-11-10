@@ -18,11 +18,7 @@ export default class App extends React.Component {
       outfit: [42369, 42366],
       cart: []
     }
-    // var cartItemEntry = {
-    //   Style: styleName,
-    //   Size: size,
-    //   Quantity: initialQuantity
-    // }
+
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);

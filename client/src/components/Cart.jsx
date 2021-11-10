@@ -30,14 +30,17 @@ import Typography from '@mui/material/Typography';
 //     }
 //   }
 
+  // let total = 0;
+  // items.forEach(item => (total += item.price))
+
 //   render() {
-//     console.log(this.state.items)
-//     return (
-//       <div>
-//         <Box sx={{ width: 400, textAlign: "left", padding: '20px' }}>
-//           {this.state.items.map((item, i) => (<CartItem key={i} info={item} />))}
-//         </Box>
-//       </div>
+//   <Typography component="div">
+//   <Box sx={{ width: 400, paddingLeft: '40px', paddingRight: '40px', paddingTop: '20px' }}>
+//     <h2>Your Cart</h2>
+//     {items.map((item, i) => (<CartItem key={i} info={item} />))}
+//     <h3>Total: ${total}</h3>
+//   </Box>
+// </Typography>
 //     )
 //   }
 // }
@@ -67,6 +70,7 @@ const Cart = (props) => {
   ]
 
   const [items, updateItems] = useState(current)
+
   let total = 0;
   items.forEach(item => (total += item.price))
 
