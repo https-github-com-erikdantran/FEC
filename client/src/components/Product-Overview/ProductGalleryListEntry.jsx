@@ -11,9 +11,19 @@ class ProductGalleryListEntry extends React.Component {
 
 
 
-
   render() {
-    let style = {'backgroundImage': `url(${this.props.style.photos[0].thumbnail_url})`}
+    let selectedStyle = this.props.selectedStyle === this.props.style.name ?
+    {
+      borderStyle: 'solid',
+      borderColor: '#2A8387',
+      borderWidth: '3px'
+    } :
+    {
+      borderStyle: 'solid',
+      borderColor: 'white',
+      borderWidth: '3px'
+    };
+    let style = {'backgroundImage': `url(${this.props.style.photos[0].thumbnail_url})`, borderStyle: selectedStyle.borderStyle, borderColor: selectedStyle.borderColor, borderWidth: selectedStyle.borderWidth}
     if(this.props.i === 3) {
       return (
         <React.Fragment>

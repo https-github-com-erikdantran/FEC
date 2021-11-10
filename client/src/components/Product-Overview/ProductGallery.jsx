@@ -220,7 +220,7 @@ return (
       <h4>Select Style {'> '}<span>{styleName}</span></h4>
       <ul>
         {(productGallery.results || []).map((style, key) => {
-          return <ProductGalleryListEntry i={key} key={style.style_id} style={style} handleClickName={handleClickName}/>
+          return <ProductGalleryListEntry i={key} key={style.style_id} style={style} handleClickName={handleClickName} selectedStyle={styleName}/>
         })}
       </ul>
       {outOfStock === true && <div>
