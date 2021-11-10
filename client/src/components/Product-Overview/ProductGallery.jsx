@@ -217,10 +217,10 @@ return (
         <h1>{props.productInfo.name}</h1>
       </div>
         {salePrice ? <div><span style={{color: "red"}}> ${salePrice}</span> <strike>${stylePrice}</strike></div> : <span> ${stylePrice}</span>}
-      <h4>Select Style</h4>
+      <h4>Select Style {'> '}<span>{styleName}</span></h4>
       <ul>
         {(productGallery.results || []).map((style, key) => {
-          return <ProductGalleryListEntry key={style.style_id} style={style} handleClickName={handleClickName}/>
+          return <ProductGalleryListEntry i={key} key={style.style_id} style={style} handleClickName={handleClickName}/>
         })}
       </ul>
       {outOfStock === true && <div>
@@ -232,82 +232,89 @@ return (
           </FormControl>
         </Box>
       </div>}
-      <div>
-        {outOfStock === false && <div>
+      <div className="styleAndQuantity">
+        <div>
+          {outOfStock === false && <div>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Select Size</InputLabel>
+                <Select
+                  className="selectSizeButton"
+                  data-testid='testSize'
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={size}
+                  label="Size"
+
+                  open={openSizeSelection}
+                  onClose={handleClose}
+                  onOpen={handleOpen}
+
+                  onChange={handleSizeChange}
+                    >
+                  {sizeSelection.map((item, index) => {
+                    return (
+                      <MenuItem onClick={() => onClick(item.quantity)} value={item.size} key={index} >
+                        {item.size}
+                      </MenuItem>
+                    )
+                  })}
+                </Select>
+              </FormControl>
+            </Box>
+          </div>}
+        </div>
+        {sizeLoaded === false && outOfStock === false && <div>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Select Size</InputLabel>
+              <InputLabel id="demo-simple-select-label">-</InputLabel>
               <Select
-                data-testid='testSize'
+              className="selectQuantityButton"
+              defaultValue="">
+              </Select>
+            </FormControl>
+          </Box>
+        </div>}
+        {sizeLoaded === true && outOfStock === false && <div>
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Quantity</InputLabel>
+              <Select
+                className="selectQuantityButton"
+                data-testid='testQuantity'
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={size}
-                label="Size"
-
-                open={openSizeSelection}
-                onClose={handleClose}
-                onOpen={handleOpen}
-
-                onChange={handleSizeChange}
-                  >
-                {sizeSelection.map((item, index) => {
-                  return (
-                    <MenuItem onClick={() => onClick(item.quantity)} value={item.size} key={index} >
-                      {item.size}
-                    </MenuItem>
-                  )
+                value={initialQuantity}
+                label="quantity"
+                onChange={handleQuantityChange}
+                defaultValue={quantity}
+                >
+                {selectQuantityList.map(item => {
+                  return item
                 })}
               </Select>
             </FormControl>
           </Box>
         </div>}
       </div>
-      {sizeLoaded === false && outOfStock === false && <div>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">-</InputLabel>
-            <Select defaultValue="">
-            </Select>
-          </FormControl>
-        </Box>
-      </div>}
-      {sizeLoaded === true && outOfStock === false && <div>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label"></InputLabel>
-            <Select
-              data-testid='testQuantity'
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={initialQuantity}
-              label="quantity"
-              onChange={handleQuantityChange}
-              defaultValue={quantity}
-              >
-              {selectQuantityList.map(item => {
-                return item
-              })}
-            </Select>
-          </FormControl>
-        </Box>
-      </div>}
-      {outOfStock === false && !size && <button onClick={handleOpen} >
+      {outOfStock === false && !size && <button className="addToCart" onClick={handleOpen} >
         Add to Cart +
       </button>}
-      {outOfStock === false && size && <button onClick={handleAddToCart} >
+      {outOfStock === false && size && <button className="addToCart" onClick={handleAddToCart} >
         Add to Cart +
       </button>}
       <div>
-        <SocialIcon url="https://facebook.com/" target="_blank"/>
-        <SocialIcon url="https://twitter.com/" target="_blank"/>
-        <SocialIcon url="https://pinterest.com/" target="_blank"/>
+        <SocialIcon className="socialIcon" url="https://facebook.com/" target="_blank"/>
+        <SocialIcon className="socialIcon" url="https://twitter.com/" target="_blank"/>
+        <SocialIcon className="socialIcon" url="https://pinterest.com/" target="_blank"/>
       </div>
     </div>
 
     <div className="Description">
-      <div>
+      <h3>Placeholder Product Description:</h3>
+      <p>
         {props.productInfo.description}
-      </div>
+      </p>
     </div>
 
   </div>

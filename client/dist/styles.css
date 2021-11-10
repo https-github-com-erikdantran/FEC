@@ -783,15 +783,69 @@ input[type='file'] {
   font-size: 10pt;
 }
 
+h4 span {
+  font-weight: normal;
+}
 
 /* ----------------------------------
   ----- Select Style Circle Buttons----
   ------------------------------------*/
 
   .circle {
-    display: flex;
-    width: 100px;
-    height: 100px;
-    background-color: green;
+    display: inline-block;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  /* ---------------------------------------
+  Select Size, Quantity, Add to Cart Buttons
+  -----------------------------------------*/
+
+  .selectSizeButton {
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .selectQuantityButton {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+
+  .styleAndQuantity div {
+    display: inline-block;
+  }
+
+  .addToCart {
+    background-color: #36A9AE;
+    background-image: linear-gradient(#37ADB2, #329CA0);
+    border: 1px solid #2A8387;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    line-height: 100%;
+    margin: 0;
+    outline: 0;
+    padding: 11px 15px 12px;
+    text-align: center;
+    transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 200px;
+    margin-bottom: 20px
+  }
+
+  .socialIcon {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 10px;
+    margin-top: 5px;
   }
