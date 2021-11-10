@@ -34,6 +34,25 @@ a {
   text-decoration: underline;
 }
 
+.jackie-chan::before {
+  content: "";
+  background-image: url("./2d7cb24161541f539c2b.png");
+  opacity: .02;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+}
+.jackie-chan img{
+  margin-left: 50%;
+  margin-right: 50%;
+  margin-top: 20%;
+  display: block;
+  float: left;
+}
 
 /* ----------------------------------
 --------------- STARS ---------------
