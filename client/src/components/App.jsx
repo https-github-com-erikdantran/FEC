@@ -97,8 +97,7 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <div>
-          Jackie Chan
+        <div className='jackie-chan'>
           <img src='spiffygif_46x46.gif' />
         </div>
       )

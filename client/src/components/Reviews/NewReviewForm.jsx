@@ -4,7 +4,7 @@ import UploadPhotos from './UploadPhotos.jsx';
 import axios from 'axios';
 
 function NewReviewForm(props) {
-  const [ratingDescription, setRatingDescription] = useState({description: null})
+  const [ratingStatus, setRatingStatus] = useState({description: null, checked: true})
   const [formErrors, setFormErrors] = useState({
     rating: null,
     summary: null,
@@ -18,11 +18,11 @@ function NewReviewForm(props) {
 
   let handleStarRatingChange = function(e) {
     var value = e.target.value
-    value == 1 ? setRatingDescription({description: 'Poor'})
-    : value == 2 ? setRatingDescription({description: 'Fair'})
-    : value == 3 ? setRatingDescription({description: 'Average'})
-    : value == 4 ? setRatingDescription({description: 'Good'})
-    : setRatingDescription({description: 'Great'});
+    value == 1 ? setRatingStatus({description: 'Poor', checked: false})
+    : value == 2 ? setRatingStatus({description: 'Fair', checked: false})
+    : value == 3 ? setRatingStatus({description: 'Average', checked: false})
+    : value == 4 ? setRatingStatus({description: 'Good', checked: false})
+    : setRatingStatus({description: 'Great', checked: false});
   }
 
   let styleDisplay
@@ -135,7 +135,7 @@ function NewReviewForm(props) {
         <form onSubmit={handleSubmit}>
           <div className='form-rating'>
             {/* the commented code below allows the stars to be unchecked upon load, but a strange bug occurs where you have to click twice to check a star */}
-            {/* <input disabled checked className='rating-input rating-input-none' name='rating' id='no-rating' value='0' type='radio'></input> */}
+            <input disabled checked={ratingStatus.checked} className='rating-input rating-input-none' name='rating' id='no-rating' value='0' type='radio'></input>
             <input name='rating' type='radio' value='1' className='rating-input' id='one-star-rating' onChange={handleStarRatingChange} ></input>
             <label className='rating-label' htmlFor='one-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
             <input name='rating' type='radio' value='2' className='rating-input' id='two-star-rating' onChange={handleStarRatingChange}></input>
@@ -146,7 +146,7 @@ function NewReviewForm(props) {
             <label className='rating-label' htmlFor='four-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
             <input name='rating' type='radio' value='5' className='rating-input' id='five-star-rating' onChange={handleStarRatingChange}></input>
             <label className='rating-label' htmlFor='five-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-              <span>{ratingDescription.description}</span>
+              <span>{ratingStatus.description}</span>
               <span className='form-error' style={{ color: "red" }}>{formErrors.rating}</span>
           </div>
           <h4>Do you recommend this product?</h4>

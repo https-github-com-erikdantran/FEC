@@ -28,6 +28,25 @@ a {
   text-decoration: underline;
 }
 
+.jackie-chan::before {
+  content: "";
+  background-image: url("./2d7cb24161541f539c2b.png");
+  opacity: .02;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+
+}
+.jackie-chan img{
+  margin-left: 50%;
+  margin-right: 50%;
+  margin-top: 20%;
+  display: block;
+  float: left;
+}
 
 /* ----------------------------------
 --------------- STARS ---------------
@@ -104,7 +123,7 @@ a {
   text-decoration: underline;
 }
 .rating-bars-link:hover {
-  color: aqua;
+  color: rgb(81, 124, 223);
   cursor: pointer;
 }
 
@@ -237,8 +256,13 @@ a {
 .review {
   padding: 20px 10px 20px 10px;
 }
-
-
+.review div span:hover{
+  cursor: pointer;
+  color: rgb(81, 124, 223)
+}
+.review div span {
+  text-decoration: underline;
+}
 
 
 /* ----------------------------------
@@ -609,7 +633,7 @@ input[type='file'] {
   /*thumbnail image */
   .image-gallery-thumbnail .image-gallery-thumbnail-image {
     vertical-align: middle;
-    width: 55px;
+    width: 100%;
     height: 55px;
     line-height: 0;
   }
@@ -659,7 +683,6 @@ input[type='file'] {
 
   .image-gallery.fullscreen-modal .image-gallery-image {
     cursor: crosshair !important;
-
   }
 
 
@@ -686,8 +709,6 @@ input[type='file'] {
   .image-gallery-slide-wrapper {
     background-color: #aaaaaa4b;
   }
-
-
 
   /* .image-gallery-slide {
     background-color: #aaaaaaa1;
@@ -755,3 +776,71 @@ input[type='file'] {
 .reviews-link {
   font-size: 10pt;
 }
+
+h4 span {
+  font-weight: normal;
+}
+
+/* ----------------------------------
+  ----- Select Style Circle Buttons----
+  ------------------------------------*/
+
+  .circle {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    background-size: cover;
+  }
+
+  /* ---------------------------------------
+  Select Size, Quantity, Add to Cart Buttons
+  -----------------------------------------*/
+
+  .selectSizeButton {
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .selectQuantityButton {
+    width: 100px;
+    margin-bottom: 20px;
+  }
+
+  .styleAndQuantity div {
+    display: inline-block;
+  }
+
+  .addToCart {
+    background-color: #36A9AE;
+    background-image: linear-gradient(#37ADB2, #329CA0);
+    border: 1px solid #2A8387;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 17px;
+    line-height: 100%;
+    margin: 0;
+    outline: 0;
+    padding: 11px 15px 12px;
+    text-align: center;
+    transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 200px;
+    margin-bottom: 20px
+  }
+
+  .socialIcon {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
