@@ -48,7 +48,6 @@ export default class App extends React.Component {
         })
         let IDs = [];
         results.data.forEach(product => IDs.push(product.id))
-        console.log(IDs)
         axios.post('/api/products/outfit', IDs)
           .then(results => {
             this.setState({
