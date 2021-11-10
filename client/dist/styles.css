@@ -665,7 +665,6 @@ input[type='file'] {
 
   .image-gallery.fullscreen-modal .image-gallery-image {
     cursor: crosshair !important;
-
   }
 
 
@@ -692,8 +691,6 @@ input[type='file'] {
   .image-gallery-slide-wrapper {
     background-color: #aaaaaa4b;
   }
-
-
 
   /* .image-gallery-slide {
     background-color: #aaaaaaa1;
@@ -761,3 +758,16 @@ input[type='file'] {
 .reviews-link {
   font-size: 10pt;
 }
+
+
+/* ----------------------------------
+  ----- Select Style Circle Buttons----
+  ------------------------------------*/
+
+  .circle {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border-radius: 50%;
+  }
