@@ -216,9 +216,7 @@ return (
         <span><em>{props.productInfo.category}</em></span>
         <h1>{props.productInfo.name}</h1>
       </div>
-      <div>
-        {salePrice ? '$' + salePrice + ' ' + '$' + stylePrice : '$' + stylePrice}
-      </div>
+       {salePrice ? <div><span style={{color: "red"}}> ${salePrice}</span> <strike>${stylePrice}</strike></div> : <span> ${stylePrice}</span>}
       <h4>Select Style</h4>
       <ul>
         {(productGallery.results || []).map((style, key) => {
