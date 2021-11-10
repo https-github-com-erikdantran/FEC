@@ -26,7 +26,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
-    this.handleOutfitAdd = this.handleOutfitAdd.bind(this);
+    this.handleOutfitChange = this.handleOutfitChange.bind(this);
     this.handleHomeClick = this.handleHomeClick.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
   }
@@ -74,9 +74,11 @@ export default class App extends React.Component {
   }
 
 
-  handleOutfitAdd(command, id) {
+  handleOutfitChange(command, id) {
     if (command === 'add') { this.setState([...this.state.outfit, id]); }
-    if (command === 'remove') { this.setState(this.state.outfit.filter(index => id !== index)) }
+    if (command === 'remove') {
+      console.log(id)
+      this.setState({outfit: this.state.outfit.filter(index => id !== index)} )}
   }
 
   render() {
@@ -84,7 +86,7 @@ export default class App extends React.Component {
       return (
         <>
           <NavBar home={this.handleHomeClick}/>
-          <h2 className="products">Fall 2021 Collection X Hack Reactor</h2>
+          <h2>Fall 2021 Collection X Hack Reactor</h2>
           <Carousel cols={4} rows={2} gap={5} style={{ 'margin-top': '50px' }}>
             {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
           </Carousel>
@@ -94,7 +96,7 @@ export default class App extends React.Component {
       return (
         <>
           <NavBar home={this.handleHomeClick}/>
-          <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitAdd} addToCart={this.addToCart} productChange={this.handleProductClick} />
+          <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitChange} addToCart={this.addToCart} productChange={this.handleProductClick} />
         </>
         // remove the porduct Change prop later since it doesnt work when passed down
       )

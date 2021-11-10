@@ -21,6 +21,7 @@ function ProductPage(props) {
   }
 
   return (
+    // keep this comment in, useful for changing pages on relted product click for later on
     // <div key={props.id}>
     <div>
       <h2>Product page</h2>
