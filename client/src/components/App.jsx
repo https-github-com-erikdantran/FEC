@@ -120,7 +120,7 @@ export default class App extends React.Component {
           </CartContext.Provider>
           <h2>Fall 2021 Collection</h2>
           <Carousel cols={4} rows={2} gap={5} style={{ 'margin-top': '50px' }}>
-            {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
+            {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct className="app-carousel-product" info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
           </Carousel>
         </>
       )
