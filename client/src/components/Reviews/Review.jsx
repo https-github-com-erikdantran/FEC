@@ -35,9 +35,9 @@ function Review(props) {
             <div className="percent" style={{width: percentRating(props.review.rating)}}>
             </div>
           </div>
-          <h4>{props.review.summary}</h4>
           <span className='review-info'>{props.review.reviewer_name},&nbsp;&nbsp;{formatDate(props.review.date)}</span>
         </header>
+          <h4>{props.review.summary}</h4>
         <p>{props.review.body}</p>
         {props.review.recommend ?
         <span><em>&#10003; I recommend this product! </em></span> :
