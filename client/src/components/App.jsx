@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-grid-carousel';
-import ProductInfo from './Product-Overview/ProductInfo.jsx';
 import ProductPage from './Product-Overview/ProductPage.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import NavBar from './NavBar.jsx';
