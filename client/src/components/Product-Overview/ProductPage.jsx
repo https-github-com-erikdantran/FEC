@@ -29,7 +29,7 @@ function ProductPage(props) {
       <ProductGallery id={props.id} productInfo={productInfo} addToCart={props.addToCart} />
       <hr/>
       {/* Related Products */}
-          <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd} productChange={props.productChange}/>
+      <RelatedProductsList id={props.id} current={productInfo} setOutfit={props.handleOutfitChange} productChange={props.productChange} />
 
       <hr className='hr-review'/>
       {/* Q&A */}

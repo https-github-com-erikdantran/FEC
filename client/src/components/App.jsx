@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-grid-carousel';
-import ProductInfo from './Product-Overview/ProductInfo.jsx';
 import ProductPage from './Product-Overview/ProductPage.jsx';
 import RelatedProduct from './RelatedProducts/RelatedProduct.jsx';
 import NavBar from './NavBar.jsx';
-
+import CartContext from './CartContext.jsx';
+import OutfitContext from './OutfitContext.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,14 +15,27 @@ export default class App extends React.Component {
       productCarouselInfo: [],
       view: 'home',
       product_id: null,
-      outfit: [42369, 42366],
-      cart: []
+      outfits: [],
+      cart: [
+        {
+          id: 42670,
+          name: 'Camo Onesie',
+          style: 'Forest Green & Black',
+          price: 140.00,
+          quantity: 1,
+          size: 'M'
+        },
+        {
+          id: 42670,
+          name: 'Camo Onesie',
+          style: 'Forest Green & Black',
+          price: 100.99,
+          quantity: 2,
+          size: 'L'
+        }
+      ]
     }
-    // var cartItemEntry = {
-    //   Style: styleName,
-    //   Size: size,
-    //   Quantity: initialQuantity
-    // }
+
     this.addToCart = this.addToCart.bind(this);
     this.handleProductClick = this.handleProductClick.bind(this);
     this.getProducts = this.getProducts.bind(this);
@@ -35,9 +48,9 @@ export default class App extends React.Component {
     this.getProducts()
   }
 
-  // this would delete the current cart instead of add I think
   addToCart(item) {
-    this.setState({ cart: item })
+    this.setState({ cart: [...this.state.cart, item] })
+    alert('Added to Cart!')
   }
 
   getProducts() {
@@ -65,39 +78,43 @@ export default class App extends React.Component {
   }
 
   handleProductClick(id) {
-    console.log('id', id)
     this.setState({
       view: 'product',
       product_id: id
     })
   }
 
-
   handleOutfitChange(command, id) {
-    if (command === 'add') { this.setState([...this.state.outfit, id]); }
-    if (command === 'remove') {
-      console.log(id)
-      this.setState({outfit: this.state.outfit.filter(index => id !== index)} )}
+    if (command === 'add') {
+      this.setState({ outfits: [...this.state.outfits, id] });
+    } else if (command === 'remove') {
+      this.setState({ outfits: this.state.outfits.filter(index => id !== index.id) })
+    }
   }
 
   render() {
     if (this.state.view === 'home' && this.state.productCarouselInfo.length > 0) {
       return (
         <>
-          <NavBar home={this.handleHomeClick}/>
-          <h2>Fall 2021 Collection X Hack Reactor</h2>
+          <CartContext.Provider value={this.state.cart}>
+            <NavBar home={this.handleHomeClick} />
+          </CartContext.Provider>
+          <h2>Fall 2021 Collection</h2>
           <Carousel cols={4} rows={2} gap={5} style={{ 'margin-top': '50px' }}>
-            {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
+            {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct className="app-carousel-product" info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
           </Carousel>
         </>
       )
     } else if (this.state.view === 'product') {
       return (
         <>
-          <NavBar home={this.handleHomeClick}/>
-          <ProductPage id={this.state.product_id} outfit={this.state.outfit} handleOutfitAdd={this.handleOutfitChange} addToCart={this.addToCart} productChange={this.handleProductClick} />
+          <CartContext.Provider value={this.state.cart}>
+            <NavBar home={this.handleHomeClick} />
+          </CartContext.Provider>
+          <OutfitContext.Provider value={this.state.outfits}>
+            <ProductPage id={this.state.product_id} handleOutfitChange={this.handleOutfitChange} addToCart={this.addToCart} productChange={this.handleProductClick} />
+          </OutfitContext.Provider>
         </>
-        // remove the porduct Change prop later since it doesnt work when passed down
       )
     } else {
       return (
