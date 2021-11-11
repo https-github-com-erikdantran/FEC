@@ -780,14 +780,17 @@ h4 span {
 /* ----------------------------------
   ----- Select Style Circle Buttons----
   ------------------------------------*/
+  .Product-Detail ul {
+    padding: 10px;
+  }
 
   .circle {
     display: inline-block;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     margin-right: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     margin-top: 15px;
     background-size: cover;
   }
@@ -798,16 +801,25 @@ h4 span {
 
   .selectSizeButton {
     width: 200px;
+    margin-top: 10px;
     margin-right: 20px;
   }
 
   .selectQuantityButton {
     width: 100px;
+    margin-top: 10px;
     margin-bottom: 20px;
   }
 
   .styleAndQuantity div {
     display: inline-block;
+  }
+
+  .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    line-height: 3 !important;
+  }
+  .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root {
+    line-height: 2 !important;
   }
 
   .addToCart {
@@ -842,6 +854,6 @@ h4 span {
   }
 
   .Description {
-    margin-top: 50px;
+    margin-top: 10px;
     position: absolute;
   }

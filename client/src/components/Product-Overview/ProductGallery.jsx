@@ -207,12 +207,14 @@ return (
         <h1>{props.productInfo.name}</h1>
       </div>
         {salePrice ? <div><span style={{color: "red"}}> ${salePrice}</span> <strike>${stylePrice}</strike></div> : <span> ${stylePrice}</span>}
+      <hr></hr>
       <h4>Select Style {'> '}<span>{styleName}</span></h4>
       <ul>
         {(productGallery.results || []).map((style, key) => {
           return <ProductGalleryListEntry i={key} key={style.style_id} style={style} handleClickName={handleClickName} selectedStyle={styleName}/>
         })}
       </ul>
+      <hr></hr>
       {outOfStock === true && <div>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
@@ -299,14 +301,16 @@ return (
         <SocialIcon className="socialIcon" url="https://pinterest.com/" target="_blank"/>
       </div>
     </div>
-
+    <hr></hr>
     <div className="Description">
       <h3>Product Description:</h3>
+      <p>
+        <em>{props.productInfo.slogan}</em>
+      </p>
       <p>
         {props.productInfo.description}
       </p>
     </div>
-
   </div>
   )
 
