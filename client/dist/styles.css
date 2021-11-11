@@ -396,11 +396,14 @@ hr {
   height: 90%;
   margin: 0 auto;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-.review-form header h2, .review-form header h5 {
+.review-form div form h5 {
+  text-align: center;
+  font-size: 14pt;
   margin: 0;
-  padding: 0 0 0 5px;
 }
 
 .exit {
@@ -436,7 +439,8 @@ textarea {
 
 .form-rating {
   display: inline-flex;
-
+  margin-left: 17.5%;
+  padding-bottom: 5px;
 }
 
 .rating-input:checked ~ .rating-label {
@@ -466,7 +470,7 @@ textarea {
 }
 .rating-label > * {
   transition: all 0.2s;
-  font-size: 20pt;
+  font-size: 25pt;
   grid-column-start: 1;
   grid-row-start: 1;
 }
@@ -482,45 +486,56 @@ textarea {
 }
 
 .recommend-label div {
-  display: inline-flex;
-  width: 30px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px solid black;
+  width: 50%;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
-  text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   transition: all 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #b9b9b9;
+  background-color: #f9f9f9;
 }
+
 
 .recommend-label div:hover {
-  background-color: rgb(154, 197, 199);
+  background-color: #499bec;
+  color: white;
 }
 
-.recommend-input:checked + .recommend-label{
-  background-color: rgb(154, 197, 199);
+.recommend-input:checked + .recommend-label div{
+  background-color: #499bec;
+  color: white;
 }
 
 /* ----- CHARACTERISTICS FORM ----- */
 
 .chara-label div {
-  display: inline-flex;
-  width: 30px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px solid black;
+  width: 20%;
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
-  text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   transition: all 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #b9b9b9;
+  background-color: #f9f9f9;
 }
 
 .chara-label div:hover {
-  background-color: rgb(154, 197, 199);
+  background-color: #499bec;
+  color: white;
 }
 
-.chara-input:checked + .chara-label {
-  background-color: rgb(154, 197, 199);
+.chara-input:checked + .chara-label div {
+  background-color: #499bec;
+  color: white;
 }
 
 /* ---------- IMAGE FORM ---------- */

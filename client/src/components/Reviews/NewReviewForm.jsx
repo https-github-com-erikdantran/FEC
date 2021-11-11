@@ -127,56 +127,65 @@ function NewReviewForm(props) {
   return (
     <div className='review-form-outline' style={styleDisplay}>
       <div className='review-form'>
-        <header>
-          <h2>Write Your Review</h2>
-          <h5>About the {props.name}:</h5>
-          <span onClick={props.toggleFormDisplay} className='exit'>&times;</span>
-        </header>
-        <form onSubmit={handleSubmit}>
-          <div className='form-rating'>
-            {/* the commented code below allows the stars to be unchecked upon load, but a strange bug occurs where you have to click twice to check a star */}
-            <input disabled checked={ratingStatus.checked} className='rating-input rating-input-none' name='rating' id='no-rating' value='0' type='radio'></input>
-            <input name='rating' type='radio' value='1' className='rating-input' id='one-star-rating' onChange={handleStarRatingChange} ></input>
-            <label className='rating-label' htmlFor='one-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-            <input name='rating' type='radio' value='2' className='rating-input' id='two-star-rating' onChange={handleStarRatingChange}></input>
-            <label className='rating-label' htmlFor='two-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-            <input name='rating' type='radio' value='3' className='rating-input' id='three-star-rating' onChange={handleStarRatingChange}></input>
-            <label className='rating-label' htmlFor='three-star-rating' data-testid='three-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-            <input name='rating' type='radio' value='4' className='rating-input' id='four-star-rating' onChange={handleStarRatingChange}></input>
-            <label className='rating-label' htmlFor='four-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-            <input name='rating' type='radio' value='5' className='rating-input' id='five-star-rating' onChange={handleStarRatingChange}></input>
-            <label className='rating-label' htmlFor='five-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
-              <span>{ratingStatus.description}</span>
-              <span className='form-error' style={{ color: "red" }}>{formErrors.rating}</span>
-          </div>
-          <h4>Do you recommend this product?</h4>
-          <div className='form-recommend'>
-            <input name='recommend' type='radio' value='true' className='recommend-input' id='recommend-true' ></input>
-            <label className='recommend-label' htmlFor='recommend-true'>
-              <div>Yes</div>
-            </label>
-            <input name='recommend' type='radio' value='false' className='recommend-input' id='recommend-false'></input>
-            <label className='recommend-label' htmlFor='recommend-false'>
-              <div>No</div>
-            </label>
-            <span className='form-error' style={{ color: "red" }}>{formErrors.recommend}</span>
-          </div>
-          <div className='form-chara'>
-            {Object.keys(props.metadata.characteristics).map((characteristic, index) => <CharacteristicsInput characteristic={characteristic} key={index} />)}
-            <span className='form-error' style={{ color: "red" }}>{formErrors.characteristics}</span>
-          </div>
-          {/* <label htmlFor='review-summary'>Review Summary:</label><br/> */}
-          <input type='text' id='review-summary' name='review-summary' maxLength='60' placeholder='Review summary' ></input>
-          <span className='form-error' style={{ color: "red" }}>{formErrors.summary}</span><br/>
-          <textarea name='review-body' placeholder='Why did you like the product or not?' maxLength='1000' minLength='50' ></textarea>
-          <span className='form-error' style={{ color: "red" }}>{formErrors.body}</span><br/>
-          <UploadPhotos /><br/>
-          <input type='text' name='nickname' placeholder='Nickname' maxLength='60' ></input>
-          <span className='form-error' style={{ color: "red" }}>{formErrors.name}</span><br/>
-          <input type='text' name='email' placeholder='Example: jackson11@email.com' maxLength='60' ></input>
-          <span className='form-error' style={{ color: "red" }}>{formErrors.email}</span><br/>
-          <button>Submit</button>
-        </form>
+        <div>
+
+          <header>
+            <h2>Write Your Review</h2>
+            <h5>About the {props.name}:</h5>
+            <span onClick={props.toggleFormDisplay} className='exit'>&times;</span>
+          </header>
+          <hr/>
+          <form onSubmit={handleSubmit}>
+            <div className='form-rating'>
+              {/* the commented code below allows the stars to be unchecked upon load, but a strange bug occurs where you have to click twice to check a star */}
+              <input disabled checked={ratingStatus.checked} className='rating-input rating-input-none' name='rating' id='no-rating' value='0' type='radio'></input>
+              <input name='rating' type='radio' value='1' className='rating-input' id='one-star-rating' onChange={handleStarRatingChange} ></input>
+              <label className='rating-label' htmlFor='one-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
+              <input name='rating' type='radio' value='2' className='rating-input' id='two-star-rating' onChange={handleStarRatingChange}></input>
+              <label className='rating-label' htmlFor='two-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
+              <input name='rating' type='radio' value='3' className='rating-input' id='three-star-rating' onChange={handleStarRatingChange}></input>
+              <label className='rating-label' htmlFor='three-star-rating' data-testid='three-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
+              <input name='rating' type='radio' value='4' className='rating-input' id='four-star-rating' onChange={handleStarRatingChange}></input>
+              <label className='rating-label' htmlFor='four-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
+              <input name='rating' type='radio' value='5' className='rating-input' id='five-star-rating' onChange={handleStarRatingChange}></input>
+              <label className='rating-label' htmlFor='five-star-rating'><span>&#9733;</span><span className='star-outline'>&#9734;</span></label>
+                <span className='form-error' style={{ color: "red" }}>{formErrors.rating}</span>
+            </div>
+                <h5>{ratingStatus.description}</h5>
+            <hr/>
+            <h4>Do you recommend this product?</h4>
+            <div className='form-recommend'>
+              <input name='recommend' type='radio' value='true' className='recommend-input' id='recommend-true' ></input>
+              <label className='recommend-label' htmlFor='recommend-true'>
+                <div>Yes</div>
+              </label>
+              <input name='recommend' type='radio' value='false' className='recommend-input' id='recommend-false'></input>
+              <label className='recommend-label' htmlFor='recommend-false'>
+                <div>No</div>
+              </label>
+              <span className='form-error' style={{ color: "red" }}>{formErrors.recommend}</span>
+            </div>
+            <hr/>
+            <div className='form-chara'>
+              {Object.keys(props.metadata.characteristics).map((characteristic, index) => <CharacteristicsInput characteristic={characteristic} key={index} />)}
+              <span className='form-error' style={{ color: "red" }}>{formErrors.characteristics}</span>
+            </div>
+            <hr/>
+            {/* <label htmlFor='review-summary'>Review Summary:</label><br/> */}
+            <input type='text' id='review-summary' name='review-summary' maxLength='60' placeholder='Review summary' ></input>
+            <span className='form-error' style={{ color: "red" }}>{formErrors.summary}</span><br/>
+            <textarea name='review-body' placeholder='Why did you like the product or not?' maxLength='1000' minLength='50' ></textarea>
+            <span className='form-error' style={{ color: "red" }}>{formErrors.body}</span><br/>
+            <hr/>
+            <UploadPhotos /><br/>
+            <hr/>
+            <input type='text' name='nickname' placeholder='Nickname' maxLength='60' ></input>
+            <span className='form-error' style={{ color: "red" }}>{formErrors.name}</span><br/>
+            <input type='text' name='email' placeholder='Example: jackson11@email.com' maxLength='60' ></input>
+            <span className='form-error' style={{ color: "red" }}>{formErrors.email}</span><br/>
+            <button>Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   );
