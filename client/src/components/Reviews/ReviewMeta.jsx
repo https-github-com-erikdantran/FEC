@@ -47,7 +47,7 @@ function ReviewMeta(props) {
       </div>
       <br/>
       {Object.keys(starRatingPercents).map(key => <RatingBars rating={starRatingPercents[key]} key={key} name={key} handleSortByRating={props.handleSortByRating}/>)}
-      <span><em>{recommendPercent + '% of reviews recommend this product'}</em></span>
+      <span><em>{recommendPercent + '% of reviews recommend this product'}</em></span><br/><br/>
       {Object.keys(props.metadata.characteristics).map(key => <Characteristics rating={props.metadata.characteristics[key]} key={key} name={key}/>)}
     </div>
   )

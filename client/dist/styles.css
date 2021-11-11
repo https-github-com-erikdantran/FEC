@@ -14,7 +14,6 @@ body {
 }
 
 .nav-bar {
-  color: #aaaaaa;
   position: fixed;
   top: 0;
   left: auto;
@@ -23,11 +22,6 @@ body {
   width: 100%;
   z-index: 1000;
 }
-
-/* .right-side-content {
-  display: flex;
-  align-items: center;
-} */
 
 a {
   color: rgb(0, 0, 0);
@@ -54,13 +48,24 @@ a {
   float: left;
 }
 
+hr {
+  background-color: transparent;
+  display: block;
+  height: 1px;
+  border-width: 0;
+  border-top: 1px solid #d4d4d4;
+  line-height: 19px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* ----------------------------------
 --------------- STARS ---------------
 ------------------------------------*/
 .stars {
   position: relative;
   float: left;
-  font-size: 20pt;
+  font-size: 22pt;
   height: 20px;
   line-height: 1em;
 }
@@ -95,13 +100,13 @@ a {
 
 
 .num-rating {
-  margin: 10px 0 10px 0;
+  margin: 25px 0 25px 0;
   text-align: center;
   font-size: 50px;
 }
 
 .star-rating {
-  margin: 25px 0 10px 0;
+  margin: 42px 0 10px 0;
 }
 
 /* ----------------------------------
@@ -110,8 +115,8 @@ a {
 .bar {
   position: relative;
   float: left;
-  height: 5px;
-  width: 150px;
+  height: 10px;
+  width: 210px;
   background-color: rgb(218, 218, 218);
   z-index: 1;
 }
@@ -142,7 +147,7 @@ a {
 }
 
 .rating-bars {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 /* ----------------------------------
@@ -150,7 +155,7 @@ a {
 ------------------------------------*/
 .chara {
   height: 50px;
-  width: 150px
+  width: 210px
 }
 
 .chara-name {
@@ -166,12 +171,15 @@ a {
   position: relative;
   width: 100%;
 }
+.chara-bar .bar {
+  height: 7px;
+}
 
 .chara-left, .chara-right, .chara-mid {
   position: relative;
   width: 33%;
   display: inline-block;
-  font-size: 8px;
+  font-size: 9px;
 }
 .chara-left {
   text-align: left;
@@ -196,7 +204,7 @@ a {
 .marker {
   position: absolute;
   z-index: 3;
-  font-size: 11pt;
+  font-size: 13pt;
   top: -10px;
 }
 
@@ -213,18 +221,17 @@ a {
 
 .review-meta {
   display: inline-block;
-  border-style: ridge;
-  width: 39%;
+  width: 32%;
   height: 500px;
-  padding-left: 10px;
+  padding-left: 7%;
 }
 
 .review-list {
   position: absolute;
   right: 0px;
   display: inline-block;
-  border-style: ridge;
-  width: 58%;
+  width: 51%;
+  padding-right: 7%;
   overflow: auto;
   height: 98.8%;
   overflow-x: hidden;
@@ -232,13 +239,9 @@ a {
 
 .review-section {
   position: relative;
-  border-style: solid;
-  border-radius: 4px;
-  border-width: 2px;
-  min-width: 800px;
-  max-width: 1000px;
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
+  height: 750px;
+  margin-bottom: 60px;
 }
 
 
@@ -247,12 +250,85 @@ a {
   top: 0px;
   background-color: white;
   z-index: 10;
-  padding: 3px 6px 3px 6px;
+  padding: 30px 6px 3px 6px;
+  height: 50px;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 15px;
+}
+
+.review-sort button, .review-list footer button{
+  position: absolute;
+  top: 20px;
+  background-color: #36A9AE;
+  background-image: linear-gradient(#37ADB2, #329CA0);
+  border: 1px solid #2A8387;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  line-height: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 11px 15px 12px;
+  text-align: center;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+
 }
 
 .review-sort button {
+  right: 10px;
+  width: 160px;
+}
+.review-list footer button {
+  left: 10px;
+}
+
+.review-list footer {
+  padding-top: 10px;
+  position: sticky;
+  bottom: 0px;
+  background-color: white;
+  z-index: 10;
+  border-top: 1px solid #d4d4d4;
+  height: 60px;
+  margin-top: 15px;
+}
+
+.review-sort select {
+  text-align: left;
+  font-size: 11pt;
   position: absolute;
-  right: 5px;
+  bottom: 0;
+  right: 0;
+  top: 25px;
+  left: 10px;
+  margin: 0;
+  padding: 0 4px;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  height: 40px;
+  width: 120px;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+.review-sort span {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  font-size: 8pt;
+  z-index: 4;
+}
+
+.hr-review {
+  margin-bottom: 0;
 }
 
 /* ----------------------------------
@@ -260,7 +336,11 @@ a {
 ------------------------------------*/
 
 .review {
-  padding: 20px 10px 20px 10px;
+  padding: 0 10px 10px 10px;
+  margin: 8px 20px 8px 20px;
+  border: 1px solid #d4d4d4;
+  border-radius: 5px;
+  position: relative;
 }
 .review div span:hover{
   cursor: pointer;
@@ -270,6 +350,27 @@ a {
   text-decoration: underline;
 }
 
+.review header {
+  position: absolute;
+  top: 8px;
+  width: 100%;
+}
+
+.review-info {
+  position: absolute;
+  right: 15px;
+  font-size: 8pt;
+}
+
+.review .stars {
+  display: block;
+}
+.review h4 {
+  position: relative;
+  left: 0px;
+  top: 10px;
+  width: 70%;
+}
 
 /* ----------------------------------
 ------------ REVIEW FORM ------------
@@ -466,9 +567,11 @@ input[type='file'] {
 }
 
 .related-list {
-  margin: auto;
+  /* margin: auto; */
   /* max-width: inherit; */
   font-weight: 100;
+  margin-bottom: 16px;
+  margin-top: 30px;
 }
 
 .related-carousel {
@@ -482,9 +585,22 @@ input[type='file'] {
   position: relative;
   margin: 5px;
   text-align: center;
-  border: 1px solid rgb(114, 114, 114);
+  /* border: 1px solid rgb(114, 114, 114); */
+  /* border: 1px solid #D1DCE6; */
+  border-radius: 6px;
   width: 250px;
   height: 400px;
+  filter: drop-shadow(4px 8px 8px rgba(0, 0, 0, 0.25));
+  background: white;
+  transition-duration: 5s;
+  transition-property: top;
+  transition-timing-function: linear;
+}
+
+.single-related:hover {
+  cursor: pointer;
+  top: -5px;
+  /* filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.35)); */
 }
 
 .thumbnail {
@@ -496,6 +612,8 @@ input[type='file'] {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .related-info {
@@ -535,7 +653,9 @@ input[type='file'] {
 .outfit-add {
   position: relative;
   margin: 5px;
-  border: 1px solid rgb(114, 114, 114);
+  /* border: 1px solid rgb(114, 114, 114); */
+  border-radius: 6px;
+  border: 4px dashed #D0d0d4;
   width: 250px;
   height: 400px;
   display: flex;
@@ -563,6 +683,20 @@ input[type='file'] {
   margin: 8px;
   stroke: black;
   stroke-width: .5;
+}
+
+.carousel-container .star-icon:hover {
+  cursor: pointer;
+  fill: yellow;
+}
+
+.carousel-container .x-icon:hover {
+  cursor: pointer;
+  fill: rgb(255, 35, 35);
+}
+
+.app-carousel-product:hover {
+  cursor: pointer;
 }
 
   /* ----------------------------------

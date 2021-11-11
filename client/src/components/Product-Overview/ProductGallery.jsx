@@ -158,13 +158,17 @@ const ProductGallery = (props) => {
 
 
   const handleAddToCart = () => {
+    let price = stylePrice
+    if (salePrice) { price = salePrice}
     var cartItemEntry = {
-      Style: styleName,
-      Size: size,
-      Quantity: initialQuantity
+      id: props.id,
+      name: props.productInfo.name,
+      style: styleName,
+      price: Number(price),
+      quantity: initialQuantity,
+      size: size
     }
-    cartItems.push(cartItemEntry)
-    return props.addToCart(cartItems)
+    return props.addToCart(cartItemEntry)
   }
 
   // console.log('this is size: ', size)

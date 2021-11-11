@@ -5,8 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Drawer from '@mui/material/Drawer';
+import Cart from './Cart.jsx';
 
 export default function NavBar(props) {
 
@@ -14,15 +15,19 @@ export default function NavBar(props) {
     props.home()
   }
 
+  const [right, setState] = React.useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    setState(open);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }} className="nav-bar">
+    <Box sx={{ flexGrow: 1 }} className="nav-bar" >
       <AppBar position="static">
         <Toolbar variant="dense">
           <IconButton
             size="medium"
-            edge="start"
             color="inherit"
-            aria-label="menu"
             sx={{ mr: 2, ml: 4 }}
             onClick={handleNavHomeClick}
           >
@@ -31,7 +36,13 @@ export default function NavBar(props) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {/* this typography is needed for spacing for some reason, removing it messes up the cart icon right alignment */}
           </Typography>
-          <IconButton color="inherit"><ShoppingCartIcon className="cartIcon" /></IconButton>
+          <IconButton color="inherit" >
+            {/* placing onClick on IconButton causes it to trigger when trying to click out of drawer */}
+            <ShoppingCartIcon className="cartIcon" onClick={toggleDrawer(true)} />
+            <Drawer anchor={'right'} open={right} onClose={toggleDrawer(false)}>
+              <Cart />
+            </Drawer>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
