@@ -15,26 +15,7 @@ export default class App extends React.Component {
       productCarouselInfo: [],
       view: 'home',
       product_id: null,
-      outfits: [
-        //   {
-        //   "id": 42369,
-        //   "campus": "hr-lax",
-        //   "name": "Slacker's Slacks",
-        //   "slogan": "Comfortable for everything, or nothing",
-        //   "description": "I'll tell you how great they are after I nap for a bit.",
-        //   "category": "Pants",
-        //   "default_price": "65.00",
-        //   "created_at": "2021-08-13T14:39:39.968Z",
-        //   "updated_at": "2021-08-13T14:39:39.968Z",
-        //   "features": [{ "feature": "Fabric", "value": "99% Cotton 1% Elastic" }, { "feature": "Cut", "value": "Loose" }],
-        //   "thumbnail_url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-        //   "url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
-        //   "product_id": "42369",
-        //   "ratings": { "2": "1", "3": "1", "4": "1", "5": "2" },
-        //   "recommended": { "false": "2", "true": "3" },
-        //   "characteristics": { "Fit": { "id": 142041, "value": "3.5000000000000000" }, "Length": { "id": 142042, "value": "3.5000000000000000" }, "Comfort": { "id": 142043, "value": "3.5000000000000000" }, "Quality": { "id": 142044, "value": "3.5000000000000000" } }
-        // }
-      ],
+      outfits: [],
       cart: [
         {
           id: 42670,
