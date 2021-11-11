@@ -57,16 +57,9 @@ const ProductGallery = (props) => {
         }
       })
 
-    // axios.get(`/api/products/${props.id}`)
-    //   .then(results => {
-    //     console.log('product overview results: ', results)
-    //   })
 
     axios.post('/api/reviews/meta/', {params: {product_id: props.id}})
       .then(results => setMetadata({metadata: results.data}))
-
-
-
   }, []);
 
   const photoMapping = (photoList) => {
@@ -205,8 +198,8 @@ return (
 
     <div className="Product-Detail">
       <div className="starsAboveCategory">
-        {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
-          <div className="percent" style={starWidth}></div>
+        {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}} data-testid='stars'>
+          <div className="percent" style={starWidth} data-testid='starsWidth'></div>
         </div>
         }
       </div>
@@ -218,12 +211,14 @@ return (
         <h1>{props.productInfo.name}</h1>
       </div>
         {salePrice ? <div><span style={{color: "red"}}> ${salePrice}</span> <strike>${stylePrice}</strike></div> : <span> ${stylePrice}</span>}
+      <hr></hr>
       <h4>Select Style {'> '}<span>{styleName}</span></h4>
       <ul>
         {(productGallery.results || []).map((style, key) => {
           return <ProductGalleryListEntry i={key} key={style.style_id} style={style} handleClickName={handleClickName} selectedStyle={styleName}/>
         })}
       </ul>
+      <hr></hr>
       {outOfStock === true && <div>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>
@@ -310,14 +305,16 @@ return (
         <SocialIcon className="socialIcon" url="https://pinterest.com/" target="_blank"/>
       </div>
     </div>
-
+    <hr></hr>
     <div className="Description">
-      <h3>Placeholder Product Description:</h3>
+      <h3>Product Description:</h3>
+      <p>
+        <em>{props.productInfo.slogan}</em>
+      </p>
       <p>
         {props.productInfo.description}
       </p>
     </div>
-
   </div>
   )
 

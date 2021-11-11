@@ -24,7 +24,7 @@ function ProductPage(props) {
     // keep this comment in, useful for changing pages on relted product click for later on
     // <div key={props.id}>
     <div>
-      <h2>Product page</h2>
+      {/* <h2>Product page</h2> */}
       {/* Main Product Info */}
       <ProductGallery id={props.id} productInfo={productInfo} addToCart={props.addToCart} />
       <hr/>

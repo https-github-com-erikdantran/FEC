@@ -4,7 +4,7 @@
 
 /* needed so navbar doesn't block content on top */
 body {
-  padding-top: 50px;
+  padding-top: 100px;
 }
 
 #app {
@@ -850,17 +850,22 @@ input[type='file'] {
     background-color: #aaaaaa4b;
   }
 
-  /* .image-gallery-slide {
-    background-color: #aaaaaaa1;
-    padding: 10px 0 10px 0 !important;
+  .review .stars {
+    display: block;
   }
-  .image-gallery-image {
-    width: auto !important;
-    height: auto !important;
-    max-height: 400px !important;
-  } */
-
-
+  .review h4 {
+    position: relative;
+    left: -73px;
+    top: 16px;
+    width: 70%;
+  }
+  .review-info {
+    position: relative;
+    top: -36px;
+    right: 3px;
+    float: right;
+    font-size: 8pt;
+  }
 
 /* ----------------------------------
   ----- Image Gallery Positioning----
@@ -909,34 +914,46 @@ h4 span {
 /* ----------------------------------
   ----- Select Style Circle Buttons----
   ------------------------------------*/
+  .Product-Detail ul {
+    padding: 10px;
+  }
 
   .circle {
     display: inline-block;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     margin-right: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
     margin-top: 15px;
     background-size: cover;
   }
 
-  /* ---------------------------------------
-  Select Size, Quantity, Add to Cart Buttons
-  -----------------------------------------*/
+  /* ----------------------------------------------------
+  Select Size, Quantity, Add to Cart Buttons, Social Icon
+  ------------------------------------------------------*/
 
   .selectSizeButton {
     width: 200px;
+    margin-top: 10px;
     margin-right: 20px;
   }
 
   .selectQuantityButton {
     width: 100px;
+    margin-top: 10px;
     margin-bottom: 20px;
   }
 
   .styleAndQuantity div {
     display: inline-block;
+  }
+
+  .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    line-height: 3 !important;
+  }
+  .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root {
+    line-height: 2 !important;
   }
 
   .addToCart {
@@ -968,4 +985,9 @@ h4 span {
     height: 30px !important;
     margin-right: 10px;
     margin-top: 5px;
+  }
+
+  .Description {
+    margin-top: 10px;
+    position: absolute;
   }
