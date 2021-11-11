@@ -460,9 +460,11 @@ input[type='file'] {
 }
 
 .related-list {
-  margin: auto;
+  /* margin: auto; */
   /* max-width: inherit; */
   font-weight: 100;
+  margin-bottom: 16px;
+  margin-top: 30px;
 }
 
 .related-carousel {
@@ -476,9 +478,13 @@ input[type='file'] {
   position: relative;
   margin: 5px;
   text-align: center;
-  border: 1px solid rgb(114, 114, 114);
+  /* border: 1px solid rgb(114, 114, 114); */
+  border: 1px solid white;
+  border-radius: 6px;
   width: 250px;
   height: 400px;
+  filter: drop-shadow(4px 8px 8px rgba(0, 0, 0, 0.15));
+  background: white;
 }
 
 .thumbnail {
@@ -529,7 +535,9 @@ input[type='file'] {
 .outfit-add {
   position: relative;
   margin: 5px;
-  border: 1px solid rgb(114, 114, 114);
+  /* border: 1px solid rgb(114, 114, 114); */
+  border-radius: 6px;
+  border: 4px dashed #D0d0d4;
   width: 250px;
   height: 400px;
   display: flex;

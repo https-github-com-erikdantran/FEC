@@ -30,7 +30,7 @@ function ProductPage(props) {
 
 
       {/* Related Products */}
-          <RelatedProductsList id={props.id} current={productInfo} outfit={props.outfit} setOutfit={props.handleOutfitAdd} productChange={props.productChange}/>
+      <RelatedProductsList id={props.id} current={productInfo} setOutfit={props.handleOutfitChange} productChange={props.productChange} />
 
 
       {/* Q&A */}

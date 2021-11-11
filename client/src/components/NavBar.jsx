@@ -18,7 +18,6 @@ export default function NavBar(props) {
   const [right, setState] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
-    console.log(open)
     setState(open);
   };
 
