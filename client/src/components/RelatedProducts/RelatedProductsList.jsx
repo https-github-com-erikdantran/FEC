@@ -10,14 +10,15 @@ import OutfitContext from '../OutfitContext.jsx';
 
 const RelatedProductsList = (props) => {
   const [related, setRelated] = useState(null);
+  // this needs to run every time since every product has different related products
   useEffect(() => {
     axios.get(`/api/products/${props.id}/related`)
       .then(results => { setRelated(results.data) })
   }, []);
 
-
   const outfits = useContext(OutfitContext);
 
+  // only runs on add outfit click so also needed
   const handleAddClick = (e) => {
     let saved = false;
     outfits.forEach(item => { if (item.id === props.current.id) { saved = true } })
