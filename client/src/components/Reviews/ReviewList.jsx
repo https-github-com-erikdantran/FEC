@@ -41,15 +41,17 @@ function ReviewList(props) {
         )
       }
       })}
-      {reviewArr.length > display.num ?
-        <button onClick={() => {
-          setDisplay({num: display.num += 2});
-          if(display.num >= reviewArr.length) {
-            props.handleMoreReviews();
-          }
-        }}>MORE REVIEWS</button> :
-        null
-      }
+      <footer>
+        {reviewArr.length > display.num ?
+          <button onClick={() => {
+            setDisplay({num: display.num += 2});
+            if(display.num >= reviewArr.length) {
+              props.handleMoreReviews();
+            }
+          }}>MORE REVIEWS</button> :
+          null
+        }
+      </footer>
       <NewReviewForm toggleFormDisplay={toggleFormDisplay} display={formDisplay.display} name={props.name} metadata={props.metadata}/>
     </div>
   )
