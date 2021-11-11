@@ -57,16 +57,9 @@ const ProductGallery = (props) => {
         }
       })
 
-    // axios.get(`/api/products/${props.id}`)
-    //   .then(results => {
-    //     console.log('product overview results: ', results)
-    //   })
 
     axios.post('/api/reviews/meta/', {params: {product_id: props.id}})
       .then(results => setMetadata({metadata: results.data}))
-
-
-
   }, []);
 
   const photoMapping = (photoList) => {
@@ -165,9 +158,6 @@ const ProductGallery = (props) => {
 
 
   const handleAddToCart = () => {
-    // console.log('size: ', size)
-    // console.log('quantity: ', initialQuantity)
-    // console.log('style name: ', styleName)
     var cartItemEntry = {
       Style: styleName,
       Size: size,
@@ -204,8 +194,8 @@ return (
 
     <div className="Product-Detail">
       <div className="starsAboveCategory">
-        {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}}>
-          <div className="percent" style={starWidth}></div>
+        {metadata.metadata !== null && <div className="stars" style={{"fontSize": "10pt"}} data-testid='stars'>
+          <div className="percent" style={starWidth} data-testid='starsWidth'></div>
         </div>
         }
       </div>
@@ -311,7 +301,7 @@ return (
     </div>
 
     <div className="Description">
-      <h3>Placeholder Product Description:</h3>
+      <h3>Product Description:</h3>
       <p>
         {props.productInfo.description}
       </p>

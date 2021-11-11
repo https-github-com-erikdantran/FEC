@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, screen, cleanup } from '@testing-library/react';
+import { render, waitFor, screen, cleanup, container } from '@testing-library/react';
 import App from '../client/src/components/App.jsx';
 import ProductGallery from '../client/src/components/Product-Overview/ProductGallery.jsx';
 import ProductGalleryListEntry from '../client/src/components/Product-Overview/ProductGalleryListEntry.jsx';
@@ -38,57 +38,54 @@ var productInfoStyle = {
                 "quantity": 14,
                 "size": "7"
             },
-            "1471681": {
-                "quantity": 25,
-                "size": "7.5"
-            },
-            "1471682": {
-                "quantity": 9,
-                "size": "8"
-            },
-            "1471683": {
-                "quantity": 2,
-                "size": "8.5"
-            },
-            "1471684": {
-                "quantity": 18,
-                "size": "9"
-            },
-            "1471685": {
-                "quantity": 12,
-                "size": "9.5"
-            },
-            "1471686": {
-                "quantity": 10,
-                "size": "10"
-            },
-            "1471687": {
-                "quantity": 18,
-                "size": "10.5"
-            },
-            "1471688": {
-                "quantity": 11,
-                "size": "11"
-            },
-            "1471689": {
-                "quantity": 35,
-                "size": "11.5"
-            },
-            "1471690": {
-                "quantity": 25,
-                "size": "12"
-            }
         }
       }
   ]
 }
 
+var metaData = {
+    "product_id": "42370",
+    "ratings": {
+        "1": "1",
+        "2": "1",
+        "3": "7",
+        "4": "1",
+        "5": "2"
+    },
+    "recommended": {
+        "false": "6",
+        "true": "6"
+    },
+    "characteristics": {
+        "Size": {
+            "id": 142045,
+            "value": "2.6363636363636364"
+        },
+        "Width": {
+            "id": 142046,
+            "value": "2.2727272727272727"
+        },
+        "Comfort": {
+            "id": 142047,
+            "value": "3.7272727272727273"
+        },
+        "Quality": {
+            "id": 142048,
+            "value": "3.2727272727272727"
+        }
+    }
+}
+
+
 const server = setupServer(
-  rest.get('/api/products', (req, res, ctx) => {
-    return res(ctx.json([productInfo]))
+  rest.get('/api/products/', (req, res, ctx) => {
+    return res(ctx.json(productInfo))
   }),
-  rest.get(`/api/products/:product_id/styles`, (req, res, ctx) => {
+  rest.get(`/api/products/:product_id/styles/`, (req, res, ctx) => {
     return res(ctx.json(productInfoStyle))
+  }),
+  rest.post(`/api/reviews/meta/`, (req, res, ctx) => {
+    return res(ctx.json(metaData))
   }),
 )
 
@@ -99,7 +96,7 @@ afterAll(() => server.close())
 
 
 test('loads style name', async () => {
-  render(<ProductPage />)
+  render(<ProductGallery id={42370} productInfo={productInfo} />)
 
   await waitFor(() => {
     let items = screen.getByText('White & White');
@@ -107,12 +104,74 @@ test('loads style name', async () => {
   })
 })
 
-// test('select size and quantity', async () => {
+test('loads default price', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
 
-//   render(<ProductPage />)
+  await waitFor(() => {
+    let items = screen.getByText('99.00', {exact: false});
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('loads category name', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    let items = screen.getByText('Kicks');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('loads Read all reviews', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    let items = screen.getByText('Read all reviews');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('loads Product Name Heir Force Ones', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    let items = screen.getByText('Heir Force Ones');
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('loads Product Description', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    let items = screen.getByText(`Now where da boxes where I keep mine? You should peep mine, maybe once or twice but never three times. I'm just a sneaker pro, I love Pumas and shell toes, but can't nothin compare to a fresh crispy white pearl`);
+    expect(items).toBeInTheDocument()
+  })
+})
+
+test('loads correct font-size for stars', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    expect(screen.getByTestId('stars')).toHaveStyle('font-size: 10pt')
+  })
+})
+
+test('loads correct font-size for stars', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    expect(screen.getByTestId('starsWidth')).toHaveStyle('width: 64%')
+  })
+})
+
+
+
+
+// test('select size and quantity', async () => {
+//   render(<ProductGallery id={42370} productInfo={productInfo}/>)
 
 //   await waitFor(() => {
-//     //userEvent.click(screen.getByText('Select Size'))
 //     userEvent.click(screen.getByTestId('testSize'))
 //     userEvent.keyboard('{arrowdown}')
 //     userEvent.keyboard('{enter}')
@@ -123,6 +182,15 @@ test('loads style name', async () => {
 
 
 
-// userEvent.keyboard('{arrowdown}')
-// userEvent.type(button, '{enter}')
-// data-testid="ArrowDropDownIcon"
+
+// test('select size and quantity', async () => {
+//   render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+//   await waitFor(() => {
+//     userEvent.click(screen.getByTestId('testSize'))
+//     expect(screen.getByLabelText('Select Size')).toBeChecked()
+//   })
+// })
+
+
+
