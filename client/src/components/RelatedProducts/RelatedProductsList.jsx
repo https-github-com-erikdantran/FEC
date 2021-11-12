@@ -10,15 +10,12 @@ import OutfitContext from '../OutfitContext.jsx';
 
 const RelatedProductsList = (props) => {
   const [related, setRelated] = useState(null);
-  // this needs to run every time since every product has different related products
   useEffect(() => {
     axios.get(`/api/products/${props.id}/related`)
       .then(results => { setRelated(results.data) })
   }, []);
 
   const outfits = useContext(OutfitContext);
-
-  // only runs on add outfit click so also needed
   const handleAddClick = (e) => {
     let saved = false;
     outfits.forEach(item => { if (item.id === props.current.id) { saved = true } })
@@ -36,7 +33,6 @@ const RelatedProductsList = (props) => {
     props.setOutfit('remove', id);
   }
 
-
   return (
     <div className="related-products">
       <Typography component="div"><h3 className="related-list">Related Products</h3></Typography>
@@ -47,8 +43,6 @@ const RelatedProductsList = (props) => {
           </Carousel>
         </div>
       </ClickTracker>
-
-      {/* If plus is clicked, add this product ID to outfit IDs array and add this product info into carousel */}
       <Typography component="div"><h3 className="related-list">Your Outfit</h3></Typography>
       <ClickTracker element="outfits-carousel" module="related-products">
         <div className="related-carousel">
