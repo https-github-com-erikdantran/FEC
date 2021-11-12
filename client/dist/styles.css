@@ -30,7 +30,7 @@ a {
 
 .jackie-chan::before {
   content: "";
-  background-image: url("./2d7cb24161541f539c2b.png");
+  background-image: url("./Jackie.webp");
   opacity: .02;
   background-size: cover;
   position: absolute;
@@ -567,18 +567,13 @@ input[type='file'] {
 }
 
 .related-list {
-  /* margin: auto; */
-  /* max-width: inherit; */
   font-weight: 100;
   margin-bottom: 16px;
   margin-top: 30px;
 }
 
 .related-carousel {
-  /* display: flex;
-  align-content: center; */
   margin-bottom: 10px;
-  /* max-width: 74%; */
 }
 
 .single-related {
@@ -619,7 +614,7 @@ input[type='file'] {
 .related-info {
   text-align: left;
   padding-bottom: 20px;
-  padding-left: 10px;
+  padding-left: 16px;
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -657,7 +652,7 @@ input[type='file'] {
   border-radius: 6px;
   border: 4px dashed #D0d0d4;
   width: 250px;
-  height: 400px;
+  height: 393px;
   display: flex;
   text-align: center;
   vertical-align: middle;
@@ -665,12 +660,7 @@ input[type='file'] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* transition: .3s; */
 }
-
-/* .outline-add:hover {
-  box-shadow: 0 0 5px rgba(33,33,33,.2);
-} */
 
 .carousel-container {
   position: relative;
@@ -682,7 +672,7 @@ input[type='file'] {
   right: 0;
   margin: 8px;
   stroke: black;
-  stroke-width: .5;
+  stroke-width: .3;
 }
 
 .carousel-container .star-icon:hover {
