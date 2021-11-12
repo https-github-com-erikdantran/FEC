@@ -16,24 +16,7 @@ export default class App extends React.Component {
       view: 'home',
       product_id: null,
       outfits: [],
-      cart: [
-        {
-          id: 42670,
-          name: 'Camo Onesie',
-          style: 'Forest Green & Black',
-          price: 140.00,
-          quantity: 1,
-          size: 'M'
-        },
-        {
-          id: 42670,
-          name: 'Camo Onesie',
-          style: 'Forest Green & Black',
-          price: 100.99,
-          quantity: 2,
-          size: 'L'
-        }
-      ]
+      cart: []
     }
 
     this.addToCart = this.addToCart.bind(this);
