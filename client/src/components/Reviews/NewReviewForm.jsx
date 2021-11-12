@@ -71,7 +71,7 @@ function NewReviewForm(props) {
   let checkErrors = function(e) {
     var errorsArr = [null, null, null, null, null, null, null];
     var errorExists = false
-    if (e.target.rating.value === '') {
+    if (e.target.rating.value === '0') {
       errorsArr[0] = 'Input a rating';
       errorExists = true;
     }
