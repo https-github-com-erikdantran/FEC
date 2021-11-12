@@ -278,7 +278,6 @@ hr {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-
 }
 
 .review-sort button {
@@ -392,15 +391,62 @@ hr {
   padding: 10px;
   position: relative;
   background-color: white;
-  width: 80%;
-  height: 90%;
-  margin: 0 auto;
+  width: 800px;
+  height: 82%;
+  margin: 20px auto;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
-.review-form header h2, .review-form header h5 {
+.review-form div {
+  width: 50%;
+}
+
+.review-form div form {
+  text-align: center;
+}
+
+.review-form div h5 {
+  margin-top: 2px;
+  font-size: 12pt;
+  font-weight: 200;
+}
+.review-form div h2 {
+  margin-bottom: 2px;
+  font-size: 24pt;
+}
+.review-form div button {
+  position: absolute;
+  right: 235px;
+  background-color: #36A9AE;
+  background-image: linear-gradient(#37ADB2, #329CA0);
+  border: 1px solid #2A8387;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  line-height: 100%;
   margin: 0;
-  padding: 0 0 0 5px;
+  outline: 0;
+  padding: 9px 15px 10px;
+  text-align: center;
+  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 5px 0 20px 0;
+}
+
+.review-form div form h5 {
+  text-align: center;
+  font-size: 14pt;
+  margin: 0;
 }
 
 .exit {
@@ -436,7 +482,8 @@ textarea {
 
 .form-rating {
   display: inline-flex;
-
+  margin-left: 9%;
+  padding-bottom: 5px;
 }
 
 .rating-input:checked ~ .rating-label {
@@ -446,6 +493,10 @@ textarea {
 
 .rating-input:checked + .rating-label {
   color: rgb(255, 200, 0);
+}
+
+.rating-label:hover {
+  cursor: pointer;
 }
 
 .form-rating:hover .rating-label {
@@ -466,7 +517,7 @@ textarea {
 }
 .rating-label > * {
   transition: all 0.2s;
-  font-size: 20pt;
+  font-size: 25pt;
   grid-column-start: 1;
   grid-row-start: 1;
 }
@@ -478,69 +529,117 @@ textarea {
 /* -------- RECOMMEND FORM -------- */
 
 .form-recommend {
-  margin: 10px 0 10px 0;
+  margin: 0 auto;
+  width: 220px !important;
 }
 
 .recommend-label div {
-  display: inline-flex;
-  width: 30px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px solid black;
+  width: 110px;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
-  text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   transition: all 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #b9b9b9;
+  background-color: #f9f9f9;
 }
+
 
 .recommend-label div:hover {
-  background-color: rgb(154, 197, 199);
+  background-color: #499bec;
+  color: white;
+  cursor: pointer;
 }
 
-.recommend-input:checked + .recommend-label{
-  background-color: rgb(154, 197, 199);
+.recommend-input:checked + .recommend-label div{
+  background-color: #499bec;
+  color: white;
 }
 
 /* ----- CHARACTERISTICS FORM ----- */
-
+.form-chara > div, .form-chara {
+  margin: 0 auto;
+  width: 250px !important;
+}
+.form-chara > div {
+  padding-bottom: 10px;
+  padding-top: 2px;
+}
 .chara-label div {
-  display: inline-flex;
-  width: 30px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px solid black;
+  width: 50px;
+  height: 30px;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
   box-sizing: border-box;
-  text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   transition: all 0.2s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #b9b9b9;
+  background-color: #f9f9f9;
 }
 
 .chara-label div:hover {
-  background-color: rgb(154, 197, 199);
+  background-color: #499bec;
+  color: white;
+  cursor: pointer;
 }
 
-.chara-input:checked + .chara-label {
-  background-color: rgb(154, 197, 199);
+.chara-input:checked + .chara-label div {
+  background-color: #499bec;
+  color: white;
 }
+
+/* --------- TEXT INPUT ----------- */
+.review-form div form input[type="text"],
+.review-form div form textarea {
+  width: 350px !important;
+  border-radius: 3px;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 12pt;
+  transition: all 0.2s;
+  display: inline-flex;
+  color: -internal-light-dark(black, white);
+  background-color: #f9f9f9;
+  padding: 10px 10px;
+}
+.review-form div form input[type="text"] {
+  height: 30px;
+}
+
 
 /* ---------- IMAGE FORM ---------- */
+
+.image-form {
+  width: 400px !important;
+  height: auto;
+}
 .image-form div img {
   width: 100px;
   height: 100px;
 }
+.image-form div img:hover {
+  cursor: pointer;
+}
 
-.image-form div div {
-  float: left;
-  left: -7%;
-  top: -100%;
-  width: 12px;
-  height: 12px;
+.image-form > div > div {
+  position: absolute;
+  left: -1px;
+  top: 11px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background-color: white;
   border: 1px solid black;
   text-align: center;
-  vertical-align: middle;
-  line-height: 11px;
+  line-height: 12px;
 }
 
 .image-form div div:hover {
