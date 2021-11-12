@@ -4,7 +4,7 @@
 
 /* needed so navbar doesn't block content on top */
 body {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 #app {
@@ -962,6 +962,7 @@ input[type='file'] {
 .Main-Display {
   height: 800px;
   width: 100%;
+  padding-top: 50px;
 }
 
 .Image-Gallery {
