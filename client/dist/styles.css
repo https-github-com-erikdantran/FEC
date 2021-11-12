@@ -349,24 +349,31 @@ hr {
   text-decoration: underline;
 }
 
+.review > div {
+  margin-top: 5px;
+}
+
 .review header {
   position: absolute;
   top: 8px;
+  left: 2px;
   width: 100%;
 }
 
 .review-info {
   position: absolute;
-  right: 15px;
+  top: 0px !important;
+  right: 15px !important;
   font-size: 8pt;
 }
 
-.review .stars {
+.review > header > .stars {
   display: block;
+  left: 10px;
 }
-.review h4 {
-  position: relative;
-  left: 0px;
+.review > h4 {
+  position: absolute;
+  left: 0px !important;
   top: 10px;
   width: 70%;
 }
