@@ -9,6 +9,9 @@ module.exports = {
     path: DIST_DIR
   },
   mode: "development",
+  optimization: {
+    usedExports: true,
+  },
   module: {
     rules: [
       {
