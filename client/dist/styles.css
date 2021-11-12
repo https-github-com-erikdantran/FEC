@@ -862,8 +862,8 @@ input[type='file'] {
 
   /*thumbnail icon update*/
   .image-gallery-thumbnail {
-    width: 55px;
-    height: 55px;
+    width: 55px !important;
+    height: 55px !important;
   }
 
   /*thumbnail image */
