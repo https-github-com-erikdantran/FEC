@@ -6,6 +6,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
+import OutfitContext from '../client/src/components/outfitContext';
 
 let relatedProductInfo = [{
   id: 42374,
@@ -149,7 +150,9 @@ let currentFullInfo = {
   "characteristics": { "Size": { "id": 142045, "value": "2.7000000000000000" }, "Width": { "id": 142046, "value": "2.3000000000000000" }, "Comfort": { "id": 142047, "value": "3.7000000000000000" }, "Quality": { "id": 142048, "value": "3.3000000000000000" } }
 }
 
-// let styles =
+const productChange = () => {
+  console.log('hello')
+}
 
 const server = setupServer(
   rest.get(`/api/products/:product_id/related`, (req, res, ctx) => {
@@ -160,18 +163,6 @@ const server = setupServer(
   }),
   rest.get('/api/products', (req, res, ctx) => {
     return res(ctx.json(appStarterInfo))
-  }),
-  // rest.get('/api/products/42370/styles', (req, res, ctx) => {
-  //   return res(ctx.json())
-  // }),
-  // rest.post('/api/reviews/meta/', (req, res, ctx) => {
-  //   return res(ctx.json())
-  // }),
-  // rest.post('/api/reviews/get', (req, res, ctx) => {
-  //   return res(ctx.json())
-  // }),
-  rest.get('/api/products/42370', (req, res, ctx) => {
-    return res(ctx.json(currentProductInfo))
   }),
 )
 
@@ -188,18 +179,20 @@ test('checks if info is rendered into related product carousel', async () => {
   })
 })
 
-
 test('checks if info is rendered into your outfits carousel', async () => {
-  render(<RelatedProductsList current={currentProductInfo} />)
+  render(
+    <OutfitContext.Provider value={outfitInfo}>
+      <RelatedProductsList current={currentProductInfo} />
+    </OutfitContext.Provider>)
+
   await waitFor(() => {
     let items = screen.getByText('Camo Onesie')
     expect(items).toBeInTheDocument()
   })
 })
 
-
 test('checks if pop up activates when a related product is clicked', async () => {
-  render(<RelatedProductsList current={currentProductInfo} />)
+  render(<RelatedProductsList current={currentProductInfo} productChange={productChange}/>)
   await waitFor(() => {
     userEvent.click(screen.getAllByLabelText('comparison')[0])
     let items = screen.getAllByText('FullControlSkin')[0]
@@ -207,46 +200,12 @@ test('checks if pop up activates when a related product is clicked', async () =>
   })
 })
 
-
-// Can't test this function since it relies on parent hooks, not sure how to test all in one component
+// Hard to test this since it relies on functions passed down from App
 // test('checks if button adds current product into outfit carousel', async () => {
 //   render(<RelatedProductsList current={currentProductInfo} />)
 //   await waitFor(() => {
-//     // let items = screen.getByText('Morning Joggers')
 //     userEvent.click(screen.getByLabelText('addToOutfit'))
 //     let newItems = screen.getByText('Heir Force Ones')
 //     expect(newItems).toBeInTheDocument()
 //   })
 // })
-
-
-// same as test above but trying to come in from top level, Tried to do this but it would require filling in info for every API call that all three of us write since it renders all of our sections
-// test('checks if button adds current product into outfit carousel', async () => {
-//   render(<App />)
-//   await waitFor(() => {
-//     userEvent.click(screen.getByText('Heir Force Ones'))
-//   })
-//   await waitFor(() => {
-//     userEvent.click(screen.getAllByLabelText('addToOutfit')[0])
-//     let newItems = screen.getByText('Heir Force Ones')
-//     // cant run because it relies on another API call in the addOutfit click, it ends up serving back the same data it received in the first place so nothing changes
-//     expect(newItems).toBeInTheDocument()
-//   })
-// })
-
-
-// hitting same problem as above since this component relies on functions that are passed down as props
-// test('Clicking X in your outfits removes that item from carousel', async () => {
-//   render(<RelatedProductsList current={currentProductInfo} />)
-
-//   await waitFor(() => {
-//     userEvent.click(screen.getAllByLabelText('remove')[1])
-//     expect(screen.getByText('Camo Onesie')).not.toBeInTheDocument()
-
-//   })
-//   // await waitForElementToBeRemoved(() => {
-//   //   screen.getByText('Camo Onesie')
-//   // })
-// })
-
-// try creating a mock function for next tests

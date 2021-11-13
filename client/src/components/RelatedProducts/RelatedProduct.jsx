@@ -45,7 +45,7 @@ const RelatedProduct = (props) => {
       <Typography component="div">
         <div className="single-related" aria-describedby={id} variant="contained" onClick={handleProductChange}>
           <div className="carousel-container">
-            <img className="thumbnail" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
+            <img className="thumbnail" aria-label="carousel image" style={{ 'backgroundImage': `url(${props.info.url}` }}></img>
             {props.carousel === "related" ? <StarOutlineIcon aria-label="comparison" className="icon star-icon" onClick={handleClick} sx={{ "color": "white" }} /> : null}
             {props.carousel === "outfits" ? <HighlightOffIcon aria-label="remove" className="icon x-icon" onClick={handleRemove} sx={{ "fill": "white" }} /> : null}
           </div>

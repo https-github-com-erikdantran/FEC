@@ -9,17 +9,21 @@ function Reviews(props) {
   const [sortedReviewData, setSortedReviewData] = useState({results: null})
 
   useEffect(() => {
+    let isMounted = true;
     getReviews(props.id, filters.sort, filters.page)
       .then(reviews => {
-        if (allReviewData.metadata !== null) {
-          setAllReviewData({ reviews , metadata: allReviewData.metadata })
-        } else {
-          getReviewmetadata(props.id)
-            .then(metadata => {
-              setAllReviewData({ reviews , metadata })
-            })
+        if (isMounted) {
+          if (allReviewData.metadata !== null) {
+            setAllReviewData({ reviews , metadata: allReviewData.metadata })
+          } else {
+            getReviewmetadata(props.id)
+              .then(metadata => {
+                setAllReviewData({ reviews , metadata })
+              })
+          }
         }
       })
+      return () => { isMounted = false };
   }, [])
 
   let getReviews = async function(id, sort, page) {

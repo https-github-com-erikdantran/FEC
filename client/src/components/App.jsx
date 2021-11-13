@@ -83,7 +83,7 @@ export default class App extends React.Component {
             <NavBar home={this.handleHomeClick} />
           </CartContext.Provider>
           <h2>Fall 2021 Collection</h2>
-          <Carousel cols={4} rows={2} gap={5} style={{ 'margin-top': '50px' }}>
+          <Carousel cols={4} rows={2} gap={5} >
             {this.state.productCarouselInfo ? this.state.productCarouselInfo.map((product, i) => <Carousel.Item key={i}><RelatedProduct className="app-carousel-product" info={product} productChange={this.handleProductClick} /> </Carousel.Item>) : null}
           </Carousel>
         </>
@@ -102,7 +102,7 @@ export default class App extends React.Component {
     } else {
       return (
         <div className='jackie-chan'>
-          <img src='spiffygif_46x46.gif' />
+          <img src='spiffygif_46x46.gif' alt="loading gif while page load"/>
         </div>
       )
     }
