@@ -174,7 +174,7 @@ afterAll(() => server.close())
 
 
 test('loads review on page', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     let items = screen.getByText("dfsadfsdaf");
@@ -183,7 +183,7 @@ test('loads review on page', async () => {
 })
 
 test('loads metadata (review average) on page', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     let items = screen.getByText("3.8");
@@ -192,7 +192,7 @@ test('loads metadata (review average) on page', async () => {
 })
 
 test('passes the correct width of stars to the star rating', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     expect(screen.getByTestId('stars')).toHaveStyle('width: 80%')
@@ -200,7 +200,7 @@ test('passes the correct width of stars to the star rating', async () => {
 })
 
 test('renders the correct percentage of review recommendations', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     let items = screen.getByText("68% of reviews recommend this product");
@@ -209,16 +209,17 @@ test('renders the correct percentage of review recommendations', async () => {
 })
 
 test('displays product breakdown on page', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
-    let items = screen.getByText("Fit:");
+    let items = screen.getAllByText("Fit:")[0];
+    // let items = screen.getByText("Fit:");
     expect(items).toBeInTheDocument()
   })
 })
 
 test('loads more reviews upon clicking the MORE REVIEWS button', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getByText('MORE REVIEWS'))
@@ -228,7 +229,7 @@ test('loads more reviews upon clicking the MORE REVIEWS button', async () => {
 })
 
 test('loads EVEN more reviews upon clicking the MORE REVIEWS button AGAIN', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getByText('MORE REVIEWS'))
@@ -239,7 +240,7 @@ test('loads EVEN more reviews upon clicking the MORE REVIEWS button AGAIN', asyn
 })
 
 test('Brings up a form when the Submit a Review Button is clicked', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getByText('Submit a Review'))
@@ -250,7 +251,7 @@ test('Brings up a form when the Submit a Review Button is clicked', async () => 
 
 
 test('If the third star on the review form is clicked, it will display the description for that rating', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getByText('Submit a Review'))
@@ -261,29 +262,29 @@ test('If the third star on the review form is clicked, it will display the descr
 })
 
 test('If the second option for the fit characteristic in the review form is clicked, it will display the description for that rating', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getByText('Submit a Review'))
     userEvent.click(screen.getByTestId('length-chara'))
-    let items = screen.getByText('Length: Runs slightly short');
+    let items = screen.getByText('Runs slightly short');
     expect(items).toBeInTheDocument()
   })
 })
 
-// test('If a form is submitted with no information added, it will display error messages', async () => {
-//   render(<Reviews />)
+test('If a form is submitted with no information added, it will display error messages', async () => {
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
-//   await waitFor(() => {
-//     userEvent.click(screen.getByText('Submit a Review'))
-//     userEvent.click(screen.getByText('Submit'))
-//     let items = screen.getByText('Please imput a rating for all characteristics');
-//     expect(items).toBeInTheDocument()
-//   })
-// })
+  await waitFor(() => {
+    userEvent.click(screen.getByText('Submit a Review'))
+    userEvent.click(screen.getByTestId('review-submit-button'))
+    let items = screen.getByText('Required');
+    expect(items).toBeInTheDocument()
+  })
+})
 
 test('When a review is marked as helpful by a user, it should add 1 to the rating', async () => {
-  render(<Reviews />)
+  render(<Reviews id={42366} name={'Camo Onesie'}/>)
 
   await waitFor(() => {
     userEvent.click(screen.getAllByText('Yes')[0])

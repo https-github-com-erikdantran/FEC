@@ -31,9 +31,9 @@ function CharacteristicsInput(props) {
         <label className='chara-label' htmlFor={`${chara}-score-1`}>
           <div>1</div>
         </label>
-        <input name={`chara-${chara}`} data-testid={chara === 'Length' ? 'length-chara' : null} type='radio' value='2' className='chara-input' onChange={handleCharaScoreChange} id={`${chara}-score-2`}></input>
+        <input name={`chara-${chara}`} type='radio' value='2' className='chara-input' onChange={handleCharaScoreChange} id={`${chara}-score-2`}></input>
         <label className='chara-label' htmlFor={`${chara}-score-2`}>
-          <div>2</div>
+          <div data-testid={chara === 'Length' ? 'length-chara' : null} >2</div>
         </label>
         <input name={`chara-${chara}`} type='radio' value='3' className='chara-input' onChange={handleCharaScoreChange} id={`${chara}-score-3`}></input>
         <label className='chara-label' htmlFor={`${chara}-score-3`}>

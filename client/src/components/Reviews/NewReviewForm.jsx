@@ -71,27 +71,27 @@ function NewReviewForm(props) {
   let checkErrors = function(e) {
     var errorsArr = [null, null, null, null, null, null, null];
     var errorExists = false
-    if (e.target.rating.value === '0') {
+    if (e.target.rating === undefined || e.target.rating.value === '0') {
       errorsArr[0] = 'Input a rating';
       errorExists = true;
     }
-    if (e.target['review-summary'].value.length === 0) {
+    if (e.target['review-summary'] === undefined || e.target['review-summary'].value.length === 0) {
       errorsArr[1] = 'Review summary missing';
       errorExists = true;
     }
-    if (e.target['review-body'].value.length < 50) {
+    if (e.target['review-body'] === undefined || e.target['review-body'].value.length < 50) {
       errorsArr[2] = 'Review body needs to be at least 50 characters';
       errorExists = true;
     }
-    if (e.target.recommend.value === '') {
+    if (e.target.recommend === undefined || e.target.recommend.value === '') {
       errorsArr[3] = 'Required';
       errorExists = true;
     }
-    if (e.target.nickname.value.length === 0) {
+    if (e.target.nickname === undefined || e.target.nickname.value.length === 0) {
       errorsArr[4] = 'Please enter a nickname';
       errorExists = true;
     }
-    if (e.target.email.value.length === 0) {
+    if (e.target.email === undefined || e.target.email.value.length === 0) {
       errorsArr[5] = 'Please enter an email';
       errorExists = true;
     } else if (!validateEmail(e.target.email.value)) {
@@ -99,7 +99,7 @@ function NewReviewForm(props) {
       errorExists = true;
     }
     for (var key in chara) {
-      if (e.target[`chara-${key}`].value === '') {
+      if (e.target[`chara-${key}`] === undefined || e.target[`chara-${key}`].value === '') {
         errorsArr[6] = 'Please imput a rating for all characteristics';
         errorExists = true;
         break
@@ -183,7 +183,7 @@ function NewReviewForm(props) {
             <span className='form-error' style={{ color: "red" }}>{formErrors.name}</span><br/>
             <input type='text' name='email' placeholder='Example: jackson11@email.com' maxLength='60' ></input>
             <span className='form-error' style={{ color: "red" }}>{formErrors.email}</span><br/>
-            <button>Submit</button>
+            <button data-testid={'review-submit-button'}>Submit</button>
           </form>
         </div>
       </div>

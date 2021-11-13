@@ -31,6 +31,7 @@
     "webpack": "^5.60.0"
   },
   "scripts": {
+    "run_band": "jest --runInBand --detectOpenHandles --forceExit",
     "test": "jest",
     "start": "nodemon server/index.js",
     "build": "webpack --config ./webpack.config.js --mode development -w",

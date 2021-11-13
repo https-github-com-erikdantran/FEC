@@ -30,15 +30,16 @@ export default function NavBar(props) {
             color="inherit"
             sx={{ mr: 2, ml: 4 }}
             onClick={handleNavHomeClick}
+            aria-label="home-button"
           >
             Home
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {/* this typography is needed for spacing for some reason, removing it messes up the cart icon right alignment */}
           </Typography>
-          <IconButton color="inherit" >
+          <IconButton color="inherit" aria-label="shopping-cart">
             {/* placing onClick on IconButton causes it to trigger when trying to click out of drawer */}
-            <ShoppingCartIcon className="cartIcon" onClick={toggleDrawer(true)} />
+            <ShoppingCartIcon className="cartIcon" aria-label="cart" onClick={toggleDrawer(true)} />
             <Drawer anchor={'right'} open={right} onClose={toggleDrawer(false)}>
               <Cart />
             </Drawer>

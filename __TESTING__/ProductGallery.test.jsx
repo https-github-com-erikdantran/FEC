@@ -38,6 +38,10 @@ var productInfoStyle = {
                 "quantity": 14,
                 "size": "7"
             },
+            "1471680": {
+              "quantity": 25,
+              "size": "7.5"
+          },
         }
       }
   ]
@@ -140,6 +144,15 @@ test('loads Product Name Heir Force Ones', async () => {
   })
 })
 
+test('loads Product Slogan', async () => {
+  render(<ProductGallery id={42370} productInfo={productInfo}/>)
+
+  await waitFor(() => {
+    let items = screen.getByText('A sneaker dynasty');
+    expect(items).toBeInTheDocument()
+  })
+})
+
 test('loads Product Description', async () => {
   render(<ProductGallery id={42370} productInfo={productInfo}/>)
 
@@ -157,7 +170,7 @@ test('loads correct font-size for stars', async () => {
   })
 })
 
-test('loads correct font-size for stars', async () => {
+test('loads correct width for stars', async () => {
   render(<ProductGallery id={42370} productInfo={productInfo}/>)
 
   await waitFor(() => {
@@ -166,20 +179,21 @@ test('loads correct font-size for stars', async () => {
 })
 
 
-
-
 // test('select size and quantity', async () => {
 //   render(<ProductGallery id={42370} productInfo={productInfo}/>)
 
 //   await waitFor(() => {
-//     userEvent.click(screen.getByTestId('testSize'))
-//     userEvent.keyboard('{arrowdown}')
-//     userEvent.keyboard('{enter}')
+//     userEvent.click(screen.getAllByLabelText('demo-simple-select-label')[1])
+//     // userEvent.click(screen.getByTestId('testSize'))
+//     // userEvent.click(screen.getByText('7'))
+//     userEvent.type(button, `{arrowdown}`)
+//     // userEvent.keyboard('{arrowdown}')
+//     userEvent.type(button, `{enter}`)
+//     // userEvent.keyboard('{enter}')
 //     let items = screen.getByText('7.5');
 //     expect(items).toBeInTheDocument()
 //   })
 // })
-
 
 
 

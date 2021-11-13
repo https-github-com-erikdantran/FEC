@@ -54,7 +54,7 @@ const RelatedProductsList = (props) => {
                 </Typography>
                 <ClickTracker eventName="addOutfits">
                   <div>
-                    <Button variant="contained" aria-label="addToOutfit" onClick={handleAddClick}><AddIcon aria-label="addToOutfit" /></Button>
+                    <Button variant="contained" aria-label="addToOutfit" onClick={handleAddClick}><AddIcon aria-label="add-button-for-outfits" /></Button>
                   </div>
                 </ClickTracker >
               </div>

@@ -63,9 +63,10 @@ const ProductGallery = (props) => {
   }, []);
 
   const photoMapping = (photoList) => {
+    console.log(photoList)
     const imageListEntry = [];
     photoList.map(item => {
-      const singleImage = {original: item.url, thumbnail: item.thumbnail_url}
+      const singleImage = {original: item.url, thumbnail: item.thumbnail_url, originalAlt: 'image gallery photo', thumbnailAlt: 'image gallery thumbnail photo'}
       imageListEntry.push(singleImage)
     })
     return imageListEntry
@@ -184,7 +185,6 @@ const ProductGallery = (props) => {
       myImageRef.current.fullScreen()
     }
   }
-
 
 
 return (

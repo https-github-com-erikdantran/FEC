@@ -24,16 +24,18 @@ class ProductGalleryListEntry extends React.Component {
       borderWidth: '3px'
     };
     let style = {'backgroundImage': `url(${this.props.style.photos[0].thumbnail_url})`, borderStyle: selectedStyle.borderStyle, borderColor: selectedStyle.borderColor, borderWidth: selectedStyle.borderWidth}
-    if(this.props.i === 3) {
+    if(this.props.i === 3 || this.props.i === 7) {
       return (
         <React.Fragment>
-          <div style={style} className="circle" onClick={(e) => this.props.handleClickName(e, this.props.style.photos, this.props.style.original_price, this.props.style.sale_price, this.props.style.skus, this.props.style.name)}>
+          <div  className="circle" onClick={(e) => this.props.handleClickName(e, this.props.style.photos, this.props.style.original_price, this.props.style.sale_price, this.props.style.skus, this.props.style.name)}>
+            <span style={style} className="circle" role='img' aria-label='select style photos'></span>
           </div> <br/>
         </React.Fragment>
       )
     }
     return (
-      <div style={style} className="circle" onClick={(e) => this.props.handleClickName(e, this.props.style.photos, this.props.style.original_price, this.props.style.sale_price, this.props.style.skus, this.props.style.name)}>
+      <div className="circle" onClick={(e) => this.props.handleClickName(e, this.props.style.photos, this.props.style.original_price, this.props.style.sale_price, this.props.style.skus, this.props.style.name)}>
+        <span style={style} className="circle" role='img' aria-label='select style photos'></span>
       </div>
     )
   }
